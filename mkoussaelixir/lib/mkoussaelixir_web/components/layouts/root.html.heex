@@ -2,16 +2,49 @@
 <html lang="en" class="[scrollbar-gutter:stable]">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title suffix=" · Phoenix Framework">
       <%= assigns[:page_title] || "Mkoussaelixir" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+
+    <link href='https://fonts.googleapis.com/css?family=Nabla' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Megrim' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet'>
+
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body class="bg-white">
-    <%= @inner_content %>
+  <body>
+    <div class="grid-container">
+      <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1; font-family: Nabla">
+        <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA</h1>
+      </div>
+
+      <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 4; rotate: 180deg;">
+        <h1 class="header-scroll" style="animation: marquee 10s linear infinite; rotate: 90deg;">MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA</h1>
+      </div>
+
+      <div class="nav">
+        <a class="navButton" href="/">Home</a><br><br>
+        <a class="navButton" href="/effects/">Effects</a><br><br>
+        <a class="navButton" href="/oscillators/">Oscillators</a><br><br>
+        <a class="navButton" href="/resources/">Resources</a><br><br>
+        <a class="navButton" href="/music/">Music</a><br><br>
+        <a class="navButton" href="/blorp/">Blorp</a><br><br>
+      </div>
+      <div class="mainBody">
+        <%= @inner_content %>
+      </div>
+
+      <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
+          <h1 class="header-scroll" style="animation: marquee 10s linear infinite; rotate: 90deg;">MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA</h1>
+      </div>
+
+      <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
+          <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg;">MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA</h1>
+      </div>
+    </div>
   </body>
 </html>

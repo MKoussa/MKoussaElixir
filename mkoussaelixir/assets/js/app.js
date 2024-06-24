@@ -1,3 +1,10 @@
+//CSS
+//esbuild has basic support for CSS. 
+//If you import a css file at the top of your main .js file, esbuild will also bundle it, 
+//and write it to the same directory as your app.js:
+
+import "../css/global.css"
+
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
 // import "./user_socket.js"

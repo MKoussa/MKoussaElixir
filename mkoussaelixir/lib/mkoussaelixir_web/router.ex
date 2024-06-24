@@ -18,6 +18,8 @@ defmodule MkoussaelixirWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/effects", EffectsController, :index
+    get "/oscillators", OscillatorsController, :index
   end
 
   # Other scopes may use custom stacks.
