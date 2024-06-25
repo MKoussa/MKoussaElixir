@@ -20,11 +20,11 @@ defmodule MkoussaelixirWeb.Router do
     get "/", PageController, :home
     get "/mkoussa", AboutController, :index
 
-    # For Legacy Link Redirection
+    # Legacy Link Redirection
     get "/effects", EffectsController, :index
     get "/oscillators", OscillatorsController, :index
     get "/resources", ResourcesController, :index
-
+    get "/music", AboutController, :index
   end
 
   scope "/loguesdk", MkoussaelixirWeb do
