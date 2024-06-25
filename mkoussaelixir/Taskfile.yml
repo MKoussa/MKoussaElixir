@@ -1,0 +1,21 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+
+  start_prod:
+    cmds:
+      - source ../.env
+      - mix deps.get --only prod
+      - MIX_ENV=prod mix compile
+      - MIX_ENV=prod mix assets.deploy
+      - mix phx.digest.clean --all
+      - PORT=4001 MIX_ENV=prod iex -S mix phx.server
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
