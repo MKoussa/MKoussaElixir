@@ -37,8 +37,9 @@ tasks:
       - gigalixer login    
   push_gigalixir: 
     cmds:
-      - git stage *
+      - git add -u
       - git commit -m "pushing for gigalixir"
+      - git push
       - git push gigalixir
   default:
     cmds:
