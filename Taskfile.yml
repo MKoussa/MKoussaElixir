@@ -35,6 +35,11 @@ tasks:
       - echo "export PATH=\$PATH:$(python3 -m site --user-base)/bin" >> ~/.profile
       - source ~/.profile
       - gigalixer login    
+  push_gigalixir: 
+    cmds:
+      - git stage *
+      - git commit -m "pushing for gigalixir"
+      - git push gigalixir
   default:
     cmds:
       - echo "{{.GREETING}}"
