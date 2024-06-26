@@ -27,6 +27,14 @@ tasks:
     cmds:
       - PHX_SERVER=true _build/prod/rel/mkoussaelixir/bin/mkoussaelixir start
       - _build/prod/rel/mkoussaelixir/bin/mkoussaelixir remote
+  gigalixir:
+    cmds:
+      - asdf install python 3.12.4
+      - asdf local python 3.12.4
+      - pip3 install gigalixir --user
+      - echo "export PATH=\$PATH:$(python3 -m site --user-base)/bin" >> ~/.profile
+      - source ~/.profile
+      - gigalixer login    
   default:
     cmds:
       - echo "{{.GREETING}}"
