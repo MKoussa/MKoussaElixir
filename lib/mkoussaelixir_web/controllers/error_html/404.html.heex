@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <%!-- <.live_title suffix=" · MKOUSSA">
+      <%= assigns[:page_title] || "Home" %>
+    </.live_title> --%>
+    <page_title>You Are Lost</page_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+
+    <link href="https://fonts.googleapis.com/css?family=Nabla" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" />
+
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div
+        class="header-container-top"
+        style=" grid-column: 1 / 5;grid-row: 1; font-family: Nabla"
+      >
+        <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">
+            ARE YOU LOST? YOU ARE LOST ARE YOU LOST? YOU ARE LOST YOU ARE LOST YOU ARE LOST YOU ARE LOST YOU ARE LOST YOU ARE LOST 
+        </h1>
+      </div>
+
+        <div class="mainBody">
+        <h1>ERROR 404</h1>
+        <h2>NO RESOURCE FOUND</h2>
+        <h3><a href={~p"/"}>GO HOME</a></h3>
+        <h4>THERE'S NOTHING HERE</h4>
+        <h5>AT LEAST, NOT FOR YOU</h5>
+        <h6>OR MAYBE <a href={~p"/"}>THIS IS FOR YOU</a></h6>
+      </div>
+
+      <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
+        <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg;">
+          YOU ARE LOST! YOU ARE. LOST. YOU ARE LOST YOU ARE LOST YOU ARE LOST? YOU ARE LOST YOU ARE GO BACK LOST YOU ARE LOST 
+        </h1>
+      </div>
+    </div>
+  </body>
+</html>
