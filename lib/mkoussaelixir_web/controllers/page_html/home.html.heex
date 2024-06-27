@@ -1,15 +1,15 @@
 <section>
-  <h1>Welcome, <i>Friend</i></h1>
+  <h1>Welcome, <i>Friend <%= System.system_time() %></i></h1>
   <p><i>Currently working on: This!!!</i></p>
 
-  <h3>Effects</h3>
-  <p><a href="/effects/">Precompiled file downloads and Github links to Logue-SDK Effects.</a></p>
-  <h3>Oscillators</h3>
-  <p><a href="/oscillators/">Coming Soon...</a></p>
-  <h3>Resources</h3>
-  <p><a href="/resources/">Helpful links for coding the Korg NTS-1 (and DSP in general).</a></p>
-  <h3>Music</h3>
-  <p><a href="/music/">MKoussa on bandcamp</a></p>
-  <h3>Blorp</h3>
-  <p><a href="/blorp/">Browser Based Synthesizer using the p5 JS Library.</a></p>
+  <h3><a href={~p"/effects/"}>Effects</a></h3>
+  <p>Precompiled file downloads and Github links to Logue-SDK Effects.</p>
+  <h3><a href={~p"/oscillators/"}>Oscillators</a></h3>
+  <p>Coming Soon...</p>
+  <h3><a href={~p"/resources/"}>Resources</a></h3>
+  <p>Helpful links for coding the Korg NTS-1 (and DSP in general).</p>
+  <h3><a href={~p"/mkoussa/"}>About</a></h3>
+  <p>What does this all even <i>mean</i>?</p>
+  <h3><a href={~p"/"}>Blorp</a></h3>
+  <p>Browser Based Synthesizer using the p5 JS Library.</p>
 </section>

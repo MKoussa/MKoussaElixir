@@ -30,6 +30,8 @@ defmodule MkoussaelixirWeb.Router do
   scope "/loguesdk", MkoussaelixirWeb do
     pipe_through :browser
 
+    get "/stuttermodeffect", StutterModEffectController, :index
+    get "/reverseechodelayeffect", ReverseEchoDelayEffectController, :index
     get "/effects", EffectsController, :index
     get "/oscillators", OscillatorsController, :index
     get "/resources", ResourcesController, :index
