@@ -18,18 +18,17 @@
   </head>
   <body>
     <div class="grid-container">
-      <div
-        class="header-container-top"
-        style=" grid-column: 1 / 5;grid-row: 1"
-      >
+      <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">
-          MKOUSSA MKOUSSA MKOUSSA MKOUSSA <span style="color: #00ff33;">MKOUSSA</span> MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA
+          <span :for={_n <- 1..4}>MKOUSSA </span>
+          <span style="color: #00ff33;">MK0USSA</span>
+          <span :for={_n <- 1..9}>MKOUSSA </span>
         </h1>
       </div>
 
       <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 4; rotate: 180deg;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA
+          <span :for={_n <- 1..7}>MKOUSSA </span>
         </h1>
       </div>
 
@@ -47,13 +46,13 @@
 
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA
+          <span :for={_n <- 1..7}>MKOUSSA </span>
         </h1>
       </div>
 
       <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg;">
-          MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA MKOUSSA
+          <span :for={number <- 1..14}>MK<%= number %>USSA</span>
         </h1>
       </div>
     </div>
