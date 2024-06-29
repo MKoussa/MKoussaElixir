@@ -10,23 +10,25 @@ tasks:
     cmds:
       - source .env
       - mix deps.get --only prod
-      - MIX_ENV=prod mix compile
-      - MIX_ENV=prod mix assets.deploy
+      - mix compile
+      - mix assets.deploy
+      - mix ecto.migrate
   start_prod:
     deps: [build]
     cmds:
-      - PORT=4001 MIX_ENV=prod iex -S mix phx.server
+      - PORT=4001  iex -S mix phx.server
   release:
     deps: [build]
     cmds:
-      - mix phx.gen.release # --docker 
-      - MIX_ENV=prod mix release --overwrite
+      # - mix phx.gen.release # --docker 
+      - mix release --overwrite
       - mix phx.digest.clean --all
   start_release:
-    deps: [release]
+    # deps: [release]
     cmds:
+      - _build/prod/rel/mkoussaelixir/bin/migrate
       - PHX_SERVER=true _build/prod/rel/mkoussaelixir/bin/mkoussaelixir start
-      - _build/prod/rel/mkoussaelixir/bin/mkoussaelixir remote
+      # - _build/prod/rel/mkoussaelixir/bin/mkoussaelixir remote
   gigalixir:
     cmds:
       - asdf install python 3.12.4
