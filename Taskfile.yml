@@ -20,11 +20,11 @@ tasks:
   release:
     deps: [build]
     cmds:
-      # - mix phx.gen.release # --docker 
+      - mix phx.gen.release # --docker 
       - mix release --overwrite
       - mix phx.digest.clean --all
   start_release:
-    # deps: [release]
+    deps: [release]
     cmds:
       - _build/prod/rel/mkoussaelixir/bin/migrate
       - PHX_SERVER=true _build/prod/rel/mkoussaelixir/bin/mkoussaelixir start
@@ -38,11 +38,14 @@ tasks:
       - source ~/.profile
       - gigalixer login    
   push_gigalixir: 
+    deps: [release]
     cmds:
       - git add -u
       - git commit -m "pushing for gigalixir"
       - git push
       - git push gigalixir
+      - gigalixir run mix ecto.migrate
+      - gigalixir open
   default:
     cmds:
       - echo "{{.GREETING}}"
