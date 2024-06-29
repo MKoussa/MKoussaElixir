@@ -45,7 +45,6 @@ tasks:
       - git push
       - git push gigalixir
       - gigalixir run mix ecto.migrate
-      - gigalixir open
   default:
     cmds:
       - echo "{{.GREETING}}"
