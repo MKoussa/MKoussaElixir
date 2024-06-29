@@ -19,6 +19,7 @@ defmodule MkoussaelixirWeb.Router do
 
     get "/", PageController, :home
     get "/mkoussa", AboutController, :index
+    resources "/products", ProductController
   end
 
   scope "/loguesdk", MkoussaelixirWeb do
