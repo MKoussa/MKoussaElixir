@@ -18,7 +18,7 @@ defmodule Mkoussaelixir.Catalog.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:title, :category, :description, :price, :views])
-    |> validate_required([:title, :category, :description, :price, :views])
+    |> cast(attrs, [:title, :description, :price, :views])
+    |> validate_required([:title, :description, :price, :views])
   end
 end

@@ -10,6 +10,7 @@ tasks:
     cmds:
       - mix format
       - mix deps.get
+      - mix deps.compile
       - mix compile
       - mix ecto.create
       - mix ecto.migrate
