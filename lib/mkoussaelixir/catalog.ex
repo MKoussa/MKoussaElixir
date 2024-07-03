@@ -7,6 +7,7 @@ defmodule Mkoussaelixir.Catalog do
   alias Mkoussaelixir.Repo
 
   alias Mkoussaelixir.Catalog.Product
+  alias Mkoussaelixir.Catalog.Category
 
   @doc """
   Returns the list of products.
@@ -26,6 +27,10 @@ defmodule Mkoussaelixir.Catalog do
 
   Raises `Ecto.NoResultsError` if the Product does not exist.
 
+  Preloads our categories when we fetch a product.
+  This will allow us to reference product.categories in our controllers, templates
+  and anywhere else we want to make use of category information.
+
   ## Examples
 
       iex> get_product!(123)
@@ -35,7 +40,11 @@ defmodule Mkoussaelixir.Catalog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_product!(id), do: Repo.get!(Product, id)
+  def get_product!(id) do
+    Product
+    |> Repo.get!(id)
+    |> Repo.preload(:categories)
+  end
 
   @doc """
   Creates a product.
@@ -51,7 +60,7 @@ defmodule Mkoussaelixir.Catalog do
   """
   def create_product(attrs \\ %{}) do
     %Product{}
-    |> Product.changeset(attrs)
+    |> change_product(attrs)
     |> Repo.insert()
   end
 
@@ -69,7 +78,7 @@ defmodule Mkoussaelixir.Catalog do
   """
   def update_product(%Product{} = product, attrs) do
     product
-    |> Product.changeset(attrs)
+    |> change_product(attrs)
     |> Repo.update()
   end
 
@@ -99,7 +108,18 @@ defmodule Mkoussaelixir.Catalog do
 
   """
   def change_product(%Product{} = product, attrs \\ %{}) do
-    Product.changeset(product, attrs)
+    categories = list_categories_by_id(attrs["category_ids"])
+
+    product
+    |> Repo.preload(:categories)
+    |> Product.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:categories, categories)
+  end
+
+  def list_categories_by_id(nil), do: []
+
+  def list_categories_by_id(category_ids) do
+    Repo.all(from c in Category, where: c.id in ^category_ids)
   end
 
   @doc """
@@ -114,8 +134,6 @@ defmodule Mkoussaelixir.Catalog do
 
     put_in(product.views, views)
   end
-
-  alias Mkoussaelixir.Catalog.Category
 
   @doc """
   Returns the list of categories.
