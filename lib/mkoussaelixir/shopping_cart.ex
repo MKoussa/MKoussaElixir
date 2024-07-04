@@ -37,22 +37,26 @@ defmodule Mkoussaelixir.ShoppingCart do
   """
   def get_cart!(id), do: Repo.get!(Cart, id)
 
+  @doc """
+  Get the cart by user_uuid
+  """
   def get_cart_by_user_uuid(user_uuid) do
     Repo.one(
-      from(c in Cart,
+      from c in Cart,
         where: c.user_uuid == ^user_uuid,
         left_join: i in assoc(c, :items),
         left_join: p in assoc(i, :product),
         order_by: [asc: i.inserted_at],
         preload: [items: {i, product: p}]
-      )
     )
   end
 
   def create_cart(user_uuid) do
     %Cart{user_uuid: user_uuid}
     |> Cart.changeset(%{})
+    |> IO.inspect()
     |> Repo.insert()
+    |> IO.inspect()
     |> case do
       {:ok, cart} -> {:ok, reload_cart(cart)}
       {:error, changeset} -> {:error, changeset}
@@ -76,9 +80,21 @@ defmodule Mkoussaelixir.ShoppingCart do
 
   """
   def update_cart(%Cart{} = cart, attrs) do
-    cart
-    |> Cart.changeset(attrs)
-    |> Repo.update()
+    changeset =
+      cart
+      |> Cart.changeset(attrs)
+      |> Ecto.Changeset.cast_assoc(:items, with: &CartItem.changeset/2)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:cart, changeset)
+    |> Ecto.Multi.delete_all(:discarded_items, fn %{cart: cart} ->
+      from i in CartItem, where: i.cart_id == ^cart.id and i.quantity == 0
+    end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{cart: cart}} -> {:ok, cart}
+      {:error, :cart, changeset, _changes_so_far} -> {:error, changeset}
+    end
   end
 
   def add_item_to_cart(%Cart{} = cart, product_id) do
@@ -229,5 +245,23 @@ defmodule Mkoussaelixir.ShoppingCart do
   """
   def change_cart_item(%CartItem{} = cart_item, attrs \\ %{}) do
     CartItem.changeset(cart_item, attrs)
+  end
+
+  @doc """
+  Gets the total price of the item quantity
+  """
+  def total_item_price(%CartItem{} = cart_item) do
+    Decimal.mult(cart_item.product.price, cart_item.quantity)
+  end
+
+  @doc """
+  Gets the total price of all items in the cart
+  """
+  def total_cart_price(%Cart{} = cart) do
+    Enum.reduce(cart.items, 0, fn item, acc ->
+      item
+      |> total_item_price()
+      |> Decimal.add(acc)
+    end)
   end
 end

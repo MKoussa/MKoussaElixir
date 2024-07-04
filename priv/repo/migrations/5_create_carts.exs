@@ -3,7 +3,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateCarts do
 
   def change do
     create table(:carts) do
-      add :user_uuid, :string
+      add :user_uuid, :uuid
 
       timestamps(type: :utc_datetime)
     end

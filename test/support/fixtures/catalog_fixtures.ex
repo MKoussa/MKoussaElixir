@@ -23,18 +23,6 @@ defmodule Mkoussaelixir.CatalogFixtures do
   end
 
   @doc """
-  Generate a category.
-  """
-  def category_fixture(attrs \\ %{}) do
-    {:ok, category} =
-      attrs
-      |> Enum.into(%{})
-      |> Mkoussaelixir.Catalog.create_category()
-
-    category
-  end
-
-  @doc """
   Generate a unique category title.
   """
   def unique_category_title, do: "some title#{System.unique_integer([:positive])}"
