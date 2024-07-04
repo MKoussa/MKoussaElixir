@@ -8,6 +8,7 @@ vars:
 tasks:
   start_dev:
     cmds:
+      - docker container start mkelixir
       - mix format
       - mix deps.get
       - mix deps.compile
@@ -55,7 +56,7 @@ tasks:
       - git commit -m "pushing for gigalixir"
       - git push
       - git push gigalixir
-      - gigalixir run mix ecto.migrate
+      # - gigalixir run mix ecto.migrate
   default:
     cmds:
       - echo "{{.GREETING}}"
