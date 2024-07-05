@@ -6,6 +6,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :mkoussaelixir, MkoussaelixirWeb.Endpoint,
+  server: true,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Configures Swoosh API Client
@@ -24,5 +25,4 @@ config :logger, level: :info
 config :mkoussaelixir, Mkoussaelixir.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, System.get_env("DATABASE_URL")},
-  database: "",
-  pool_size: 2
+  pool_size: System.get_env("POOL_SIZE")
