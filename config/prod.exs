@@ -8,9 +8,9 @@ import Config
 config :mkoussaelixir, MkoussaelixirWeb.Endpoint,
   server: true,
   cache_static_manifest: "priv/static/cache_manifest.json",
-  http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
+  http: [port: {:system, System.get_env("PORT")}], # Possibly not needed, but doesn't hurt
   url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: true
 
 # Configures Swoosh API Client

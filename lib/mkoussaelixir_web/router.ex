@@ -18,8 +18,6 @@ defmodule MkoussaelixirWeb.Router do
     plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :fetch_current_user
-    plug :fetch_current_cart
   end
 
   pipeline :home do
@@ -34,6 +32,8 @@ defmodule MkoussaelixirWeb.Router do
   end
 
   pipeline :shop do
+    plug :fetch_current_user
+    plug :fetch_current_cart
     plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :shop}
   end
 

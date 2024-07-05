@@ -4,7 +4,7 @@ defmodule Mkoussaelixir.MixProject do
   def project do
     [
       app: :mkoussaelixir,
-      version: "0.1.2",
+      version: "0.1.20",
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
