@@ -25,5 +25,4 @@ config :logger, level: :info
 config :mkoussaelixir, Mkoussaelixir.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: {:system, System.get_env("DATABASE_URL")},
-  pool_size: System.get_env("POOL_SIZE"),
-  ssl: true
+  pool_size: System.get_env("POOL_SIZE")
