@@ -8,12 +8,12 @@ defmodule MkoussaelixirWeb.OrderController do
       {:ok, order} ->
         conn
         |> put_flash(:info, "Order Created Successfully!")
-        |> redirect(to: ~p"/orders/#{order}")
+        |> redirect(to: ~p"/shop/orders/#{order}")
 
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Oh No! There was an error processing your order!")
-        |> redirect(to: ~p"/cart")
+        |> redirect(to: ~p"/shop/cart")
     end
   end
 
