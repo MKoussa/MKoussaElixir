@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="[scrollbar-gutter:stable]">
+<html lang="en" class="[scrollbar-gutter:stable]" style="background-color: #ffd3e9;">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title suffix=" · MKOUSSA">
-      <%= assigns[:page_title] || "Home" %>
+      <%= assigns[:page_title] || "SHOP" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
 
@@ -16,28 +16,24 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
-  <body style="background-color: #0f070b;">
+  <body style="background-color: #ffd3e9;">
     <div class="grid-container">
       <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">
-          <span :for={_n <- 1..4}>MKOUSSA&nbsp;</span>
-          <span style="color: #00ff33;">MK0USSA&nbsp;</span>
-          <span :for={_n <- 1..9}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..2}>BUY&nbsp;</span>
+          <span style="color: #00ff33;">THE&nbsp;MK0USSA&nbsp;WEBSHOP</span>
+          <span :for={_n <- 1..11}>BUY&nbsp;</span>
         </h1>
       </div>
 
       <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 4; rotate: 180deg;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..7}>SHOP&nbsp;</span>
         </h1>
       </div>
 
       <div class="nav">
-        <a class="navButton" href="/">Home</a> <br /><br />
-        <a class="navButton" href={~p"/shop/products/"}>Shop</a> <br /><br />
-        <a class="navButton" href={~p"/loguesdk/"}>Korg LogueSDK</a> <br /><br />
-        <a class="navButton" href={~p"/mkoussa/"}>About</a> <br /><br />
-        <a class="navButton" href={~p"/"}>Blorp</a> <br /><br />
+        <a class="navButton" href={~p"/"}>Home</a> <br /><br />
       </div>
       <div class="mainBody">
         <%= @inner_content %>
@@ -45,13 +41,13 @@
 
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..7}>BUY&nbsp;</span>
         </h1>
       </div>
 
       <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg;">
-          <span :for={number <- 1..14}>MK<%= number %>USSA&nbsp;</span>
+          <span :for={number <- 1..14}>BUY&nbsp;<%= number * number %>&nbsp;OR&nbsp;</span>
         </h1>
       </div>
     </div>

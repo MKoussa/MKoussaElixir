@@ -8,17 +8,17 @@ defmodule MkoussaelixirWeb.CartItemController do
       {:ok, _item} ->
         conn
         |> put_flash(:info, "Item added to your cart!")
-        |> redirect(to: ~p"/cart")
+        |> redirect(to: ~p"/shop/cart")
 
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Error Adding Item to Cart.")
-        |> redirect(to: ~p"/cart")
+        |> redirect(to: ~p"/shop/cart")
     end
   end
 
   def delete(conn, %{"id" => product_id}) do
     {:ok, _cart} = ShoppingCart.remove_item_from_cart(conn.assigns.cart, product_id)
-    redirect(conn, to: ~p"/cart")
+    redirect(conn, to: ~p"/shop/cart")
   end
 end

@@ -19,7 +19,7 @@ defmodule MkoussaelixirWeb.ProductController do
       {:ok, product} ->
         conn
         |> put_flash(:info, "Product created successfully.")
-        |> redirect(to: ~p"/products/#{product}")
+        |> redirect(to: ~p"/shop/products/#{product}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
@@ -48,7 +48,7 @@ defmodule MkoussaelixirWeb.ProductController do
       {:ok, product} ->
         conn
         |> put_flash(:info, "Product updated successfully.")
-        |> redirect(to: ~p"/products/#{product}")
+        |> redirect(to: ~p"/shop/products/#{product}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :edit, product: product, changeset: changeset)
@@ -61,6 +61,6 @@ defmodule MkoussaelixirWeb.ProductController do
 
     conn
     |> put_flash(:info, "Product deleted successfully.")
-    |> redirect(to: ~p"/products")
+    |> redirect(to: ~p"/shop/products")
   end
 end
