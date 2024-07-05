@@ -34,7 +34,7 @@ tasks:
     cmds:
       - mix phx.gen.release # --docker 
       - mix release --overwrite
-      - mix phx.digest.clean --all
+      - mix phx.digest #.clean --all
   start_release:
     deps: [release]
     cmds:
