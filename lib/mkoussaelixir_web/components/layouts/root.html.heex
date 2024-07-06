@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <.live_title suffix=" · MKOUSSA">
-      <%= assigns[:page_title] || "Home" %>
+      <%= assigns[:page_title] || "HOME" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
 
@@ -33,7 +33,6 @@
       </div>
 
       <div class="nav">
-        <a class="navButton" href="/">Home</a> <br /><br />
         <a class="navButton" href={~p"/shop/products/"}>Shop</a> <br /><br />
         <a class="navButton" href={~p"/loguesdk/"}>Korg LogueSDK</a> <br /><br />
         <a class="navButton" href={~p"/mkoussa/"}>About</a> <br /><br />
