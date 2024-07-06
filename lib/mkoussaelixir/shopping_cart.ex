@@ -54,9 +54,7 @@ defmodule Mkoussaelixir.ShoppingCart do
   def create_cart(user_uuid) do
     %Cart{user_uuid: user_uuid}
     |> Cart.changeset(%{})
-    |> IO.inspect()
     |> Repo.insert()
-    |> IO.inspect()
     |> case do
       {:ok, cart} -> {:ok, reload_cart(cart)}
       {:error, changeset} -> {:error, changeset}
