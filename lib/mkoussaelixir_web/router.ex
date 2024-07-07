@@ -9,7 +9,7 @@ defmodule MkoussaelixirWeb.Router do
   scope "/api", MkoussaelixirWeb do
     pipe_through :api
 
-    resources "/products", ProductAPIController, except: [:new, :edit]
+    resources "/products", ProductAPIController, only: [:index, :show]
   end
 
   # ----------------- Browser -----------------
@@ -94,7 +94,6 @@ defmodule MkoussaelixirWeb.Router do
     end
   end
 
-  alias Mkoussaelixir.ProductAPIs.ProductAPI
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do

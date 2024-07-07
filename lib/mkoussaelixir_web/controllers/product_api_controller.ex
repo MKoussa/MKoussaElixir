@@ -8,7 +8,6 @@ defmodule MkoussaelixirWeb.ProductAPIController do
 
   def index(conn, _params) do
     products = Catalog.list_products()
-    IO.inspect(conn)
     render(conn, :index, products: products)
   end
 

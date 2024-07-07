@@ -19,7 +19,9 @@ defmodule Mkoussaelixir.Catalog do
 
   """
   def list_products do
-    Repo.all(Product)
+    Product
+    |> Repo.all()
+    |> Repo.preload(:categories)
   end
 
   @doc """
