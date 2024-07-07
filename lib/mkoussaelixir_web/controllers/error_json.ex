@@ -12,6 +12,15 @@ defmodule MkoussaelixirWeb.ErrorJSON do
   #   %{errors: %{detail: "Internal Server Error"}}
   # end
 
+  def render("404.json", assigns) do
+    %{
+      errors: %{
+        detail:
+          "I'm sorry, I can't seem to find anything at #{assigns.conn.request_path || "that place"}."
+      }
+    }
+  end
+
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.json" becomes
   # "Not Found".

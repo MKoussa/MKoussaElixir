@@ -6,10 +6,11 @@ defmodule MkoussaelixirWeb.Router do
     plug :accepts, ["json"]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", MkoussaelixirWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", MkoussaelixirWeb do
+    pipe_through :api
+
+    resources "/products", ProductAPIController, except: [:new, :edit]
+  end
 
   # ----------------- Browser -----------------
   pipeline :browser do
@@ -93,6 +94,7 @@ defmodule MkoussaelixirWeb.Router do
     end
   end
 
+  alias Mkoussaelixir.ProductAPIs.ProductAPI
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do
