@@ -75,9 +75,9 @@ defmodule MkoussaelixirWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through :browser
+      pipe_through [:browser, :home]
 
-      live_dashboard "/dashboard", metrics: MkoussaelixirWeb.Telemetry
+      live_dashboard "/dashboard", metrics: {MkoussaelixirWeb.Telemetry, :metrics}
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end

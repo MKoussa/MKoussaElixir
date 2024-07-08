@@ -11,9 +11,9 @@ defmodule MkoussaelixirWeb.Telemetry do
     children = [
       # Telemetry poller will execute the given period measurements
       # every 10_000ms. Learn more here: https://hexdocs.pm/telemetry_metrics
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
+      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000},
       # Add reporters as children of your supervision tree.
-      # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
+      {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
@@ -22,6 +22,12 @@ defmodule MkoussaelixirWeb.Telemetry do
   def metrics do
     [
       # Phoenix Metrics
+      counter("phoenix.endpoint.stop.duration",
+        description: "Counts completed http requests."
+      ),
+      distribution("phoenix.endpoint.stop.duration",
+        description: "Requests completed in a time bucket."
+      ),
       summary("phoenix.endpoint.start.system_time",
         unit: {:native, :millisecond}
       ),
@@ -68,6 +74,10 @@ defmodule MkoussaelixirWeb.Telemetry do
         unit: {:native, :millisecond},
         description: "The time spent waiting for a database connection"
       ),
+      distribution("mkoussaelixir.repo.query.queue_time",
+      unit: {:native, :millisecond},
+      description: "The time spent waiting for a database connection, distributed."
+     ),
       summary("mkoussaelixir.repo.query.idle_time",
         unit: {:native, :millisecond},
         description:

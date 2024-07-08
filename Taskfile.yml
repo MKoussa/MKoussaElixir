@@ -17,7 +17,7 @@ tasks:
       - mix ecto.migrate
       - mix phx.digest
       - source .env
-      - iex -S mix phx.server
+      - MIX_ENV=dev iex -S mix phx.server
   build:
     cmds:
       - source .env
