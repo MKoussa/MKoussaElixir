@@ -49,6 +49,9 @@ tasks:
       - echo "export PATH=\$PATH:$(python3 -m site --user-base)/bin" >> ~/.profile
       - source ~/.profile
       - gigalixer login    
+  seed_gigalixir:
+    cmds:
+      - gigalixir run -- mix run priv/repo/seeds.exs
   push_gigalixir: 
     deps: [release]
     cmds:
