@@ -14,14 +14,16 @@
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Sixtyfour" rel="stylesheet" />
 
-
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
   </head>
   <body style="background-color: #0f070b;">
     <div class="grid-container">
       <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1">
-        <h1 class="header-scroll" style="animation: marquee 100s linear infinite; font-family: 'Bebas Neue'">
+        <h1
+          class="header-scroll"
+          style="animation: marquee 100s linear infinite; font-family: 'Bebas Neue'"
+        >
           <span :for={_n <- 1..4}>KORG&nbsp;LOGUESDK&nbsp;</span>
           <span style="color: #00ff33; font-family: Sixtyfour">&nbsp;WELCOME&nbsp;</span>
           <span :for={_n <- 1..9}>KORG&nbsp;LOGUESDK&nbsp;</span>
@@ -29,7 +31,10 @@
       </div>
 
       <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 4; rotate: 180deg;">
-        <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg; font-family: 'Bebas Neue'">
+        <h1
+          class="header-scroll"
+          style="animation: marquee 20s linear infinite; rotate: 90deg; font-family: 'Bebas Neue'"
+        >
           <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
         </h1>
       </div>
@@ -45,13 +50,19 @@
       </div>
 
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
-        <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg; font-family: 'Bebas Neue'">
+        <h1
+          class="header-scroll"
+          style="animation: marquee 20s linear infinite; rotate: 90deg; font-family: 'Bebas Neue'"
+        >
           <span :for={_n <- 1..7}>LOGUESDK&nbsp;</span>
         </h1>
       </div>
 
       <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
-        <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg; font-family: 'Bebas Neue'">
+        <h1
+          class="header-scroll"
+          style="animation: marquee 100s linear infinite; rotate: 180deg; font-family: 'Bebas Neue'"
+        >
           <span :for={number <- 1..14}>L<%= number %>GUESDK&nbsp;</span>
         </h1>
       </div>

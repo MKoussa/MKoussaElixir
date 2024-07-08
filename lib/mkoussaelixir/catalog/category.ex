@@ -2,6 +2,7 @@ defmodule Mkoussaelixir.Catalog.Category do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:id, :title]}
   schema "categories" do
     field :title, :string
 
