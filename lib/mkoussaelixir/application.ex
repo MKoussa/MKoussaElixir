@@ -8,8 +8,8 @@ defmodule Mkoussaelixir.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      MkoussaelixirWeb.Telemetry,
       Mkoussaelixir.Repo,
+      MkoussaelixirWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:mkoussaelixir, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Mkoussaelixir.PubSub},
       # Start the Finch HTTP client for sending emails
