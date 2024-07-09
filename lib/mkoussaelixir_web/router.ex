@@ -41,7 +41,7 @@ defmodule MkoussaelixirWeb.Router do
 
     get "/", BlorpController, :index
     get "/original", BlorpController, :original
-    get "/project_now", BlorpContler, :now
+    get "/project_now", BlorpController, :now
   end
 
   pipeline :shop do
