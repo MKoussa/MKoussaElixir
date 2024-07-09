@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · MKOUSSA">
+      <%= assigns[:page_title] || "BLORP" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+
+    <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet" />
+
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body style="background-color: #7091ea; color: #394f38;">
+    <div class="grid-container">
+      <div class="header-container-top" style=" grid-column: 1 / 5; grid-row: 1 / 2">
+        <h1
+          class="header-scroll"
+          style="animation: marquee 100s linear infinite; grid-column: 1 / 5; grid-row: 1 / 2; font-family: 'Major Mono Display'"
+        >
+          <span :for={_n <- 1..2}>PLAY&nbsp;AND&nbsp;LISTEN&nbsp;AND&nbsp;</span>
+          <span style="color: #00ff33;">_blorp_v1.<%= System.system_time() %>&nbsp;</span>
+          <span :for={_n <- 1..9}>PLAY&nbsp;AND&nbsp;LISTEN&nbsp;AND&nbsp;</span>
+        </h1>
+      </div>
+
+      <%!-- <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 4; rotate: 180deg;">
+        <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
+          <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
+        </h1>
+      </div> --%>
+
+      <div
+        class="nav"
+        style="grid-column: 2 / 5; font-family: 'Major Mono Display'; background-color: #dfed25; animation-name: backColorReverseBlorp; mix-blend-mode: normal;"
+      >
+        <a class="navButton" href={~p"/"}>home</a> <br /><br />
+        <a class="navButton" href={~p"/blorp/original"}>original</a> <br /><br />
+      </div>
+      <div style="grid-column: 3 / 5; grid-row: 2 / 2">
+        <%= @inner_content %>
+      </div>
+
+      <%!-- <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
+        <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
+          <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
+        </h1>
+      </div> --%>
+
+      <%!-- <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
+        <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg;">
+          <span :for={number <- 1..14}>MK<%= number %>USSA&nbsp;</span>
+        </h1>
+      </div> --%>
+    </div>
+  </body>
+</html>

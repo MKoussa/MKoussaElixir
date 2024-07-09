@@ -4,4 +4,8 @@ defmodule MkoussaelixirWeb.BlorpController do
   def index(conn, _params) do
     render(conn, :index)
   end
+
+  def original(conn, _params) do
+    render(conn, :original)
+  end
 end

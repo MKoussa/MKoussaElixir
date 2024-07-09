@@ -181,7 +181,7 @@ td {
 
 .smallLeftLabels{
     rotate: -75deg;
-    color: #c6cac1;
+    color: #944a5a;
 } 
 
 .smallLeftLabels:hover{
@@ -206,10 +206,26 @@ td {
 @keyframes backColor {
     0%   { color: #0f0d07; transform: translateY(10%);}
     100% { color: #C46DC4; transform: translateY(0); }
+}   
+@keyframes backColorLogueSDK {
+    0%   { color: #0f0d07; transform: translateY(10%);}
+    100% { color: gold; transform: translateY(0); }
+}   
+@keyframes backColorBlorp {
+    0%   { color: #7091ea; transform: translateY(10%);}
+    100% { color: #dfed25; transform: translateY(0); }
 }
 @keyframes backColorReverse{
     0%   {background-color: #0f0d07; transform: translateY(-10%);}
     100% {background-color: #C46DC4; transform: translateY(0); }               
+}
+@keyframes backColorReverseLogueSDK{
+    0%   {background-color: #0f0d07; transform: translateY(-10%);}
+    100% {background-color: gold; transform: translateY(0); }               
+}
+@keyframes backColorReverseBlorp{
+    0%   {background-color: #7091ea; transform: translateY(-10%);}
+    100% {background-color: #dfed25; transform: translateY(0); }               
 }
 @keyframes backColorTransitionSide{
     0% { opacity: 0; transform: translateX(50%); }

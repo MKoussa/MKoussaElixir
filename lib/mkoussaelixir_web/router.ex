@@ -30,7 +30,18 @@ defmodule MkoussaelixirWeb.Router do
 
     get "/", PageController, :home
     get "/mkoussa", AboutController, :index
-    get "/blorp", BlorpController, :index
+  end
+
+  pipeline :blorp do
+    plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :blorp}
+  end
+
+  scope "/blorp", MkoussaelixirWeb do
+    pipe_through [:browser, :blorp]
+
+    get "/", BlorpController, :index
+    get "/original", BlorpController, :original
+    get "/project_now", BlorpContler, :now
   end
 
   pipeline :shop do
