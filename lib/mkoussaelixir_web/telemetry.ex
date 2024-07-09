@@ -97,7 +97,8 @@ defmodule MkoussaelixirWeb.Telemetry do
 
       # Mkelixir Metrics
       last_value("mkoussaelixir.orders.total",
-        description: "Total All time Orders Placed.")
+        description: "Total All time Orders Placed."
+      )
     ]
   end
 
