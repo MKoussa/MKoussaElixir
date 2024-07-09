@@ -30,6 +30,7 @@ defmodule MkoussaelixirWeb.Router do
 
     get "/", PageController, :home
     get "/mkoussa", AboutController, :index
+    get "/blorp", BlorpController, :index
   end
 
   pipeline :shop do
