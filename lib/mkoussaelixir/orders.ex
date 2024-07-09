@@ -21,6 +21,10 @@ defmodule Mkoussaelixir.Orders do
     Repo.all(Order)
   end
 
+  def count_orders do
+    Repo.aggregate(Order, :count)
+  end
+
   @doc """
   Gets an oder by user_uuid and order_id
   """

@@ -32,6 +32,18 @@ defmodule MkoussaelixirWeb.Router do
     get "/mkoussa", AboutController, :index
   end
 
+  pipeline :blorp do
+    plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :blorp}
+  end
+
+  scope "/blorp", MkoussaelixirWeb do
+    pipe_through [:browser, :blorp]
+
+    get "/", BlorpController, :index
+    get "/original", BlorpController, :original
+    get "/project_now", BlorpController, :now
+  end
+
   pipeline :shop do
     plug :fetch_current_user
     plug :fetch_current_cart
@@ -75,9 +87,9 @@ defmodule MkoussaelixirWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through :browser
+      pipe_through [:browser, :home]
 
-      live_dashboard "/dashboard", metrics: MkoussaelixirWeb.Telemetry
+      live_dashboard "/dashboard", metrics: {MkoussaelixirWeb.Telemetry, :metrics}
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
