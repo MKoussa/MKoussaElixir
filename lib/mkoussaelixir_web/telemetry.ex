@@ -107,7 +107,7 @@ defmodule MkoussaelixirWeb.Telemetry do
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
       # {MkoussaelixirWeb, :count_users, []}
-      {Mkoussaelixir, :measure_orders, []}
+      # {Mkoussaelixir, :measure_orders, []}
       # {:process_info,
       #  event: [:mkoussaelixir, :my_server],
       #  name: Mkoussaelixir.Orders,

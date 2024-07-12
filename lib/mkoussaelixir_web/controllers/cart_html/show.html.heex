@@ -13,11 +13,18 @@
     </:actions>
   </.header>
 
+  <p>Unique Cart Items: <%= ShoppingCart.get_cart_items_count(@cart) %></p>
+  <p>Total Cart Items: <%= ShoppingCart.get_total_cart_items_count(@cart) %></p>
+
   <.simple_form :let={f} for={@changeset} action={~p"/shop/cart"}>
     <.inputs_for :let={item_form} field={f[:items]}>
       <% item = item_form.data %>
       <.input field={item_form[:quantity]} type="number" label={item.product.title} />
-      <%= currency_to_str(ShoppingCart.total_item_price(item)) %>
+      <p>
+        Total <%= item.product.title %> Price: <%= currency_to_str(
+          ShoppingCart.total_item_price(item)
+        ) %>
+      </p>
     </.inputs_for>
     <:actions>
       <.button>Update Cart</.button>

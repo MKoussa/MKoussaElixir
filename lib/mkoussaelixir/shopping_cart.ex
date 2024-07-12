@@ -130,6 +130,20 @@ defmodule Mkoussaelixir.ShoppingCart do
     {:ok, reload_cart(cart)}
   end
 
+  def get_cart_items_count(%Cart{} = cart) do
+    Repo.one(
+      from i in CartItem,
+        where: i.cart_id == ^cart.id,
+        select: count(i.id)
+    )
+  end
+
+  def get_total_cart_items_count(%Cart{} = cart) do
+    Enum.reduce(cart.items, 0, fn item, acc ->
+      acc + item.quantity
+    end)
+  end
+
   @doc """
   Deletes a cart.
 

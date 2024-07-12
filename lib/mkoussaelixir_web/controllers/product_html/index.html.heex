@@ -9,29 +9,22 @@
 
 <.table id="products" rows={@products} row_click={&JS.navigate(~p"/shop/products/#{&1}")}>
   <:col :let={product} label="Title"><%= product.title %></:col>
-  <%!-- <:col :let={product} label="Categories"><%= product.categories %></:col> --%>
-  <%!-- <:col>
-  <.list>
-    <:item title="Categories">
-    <%= for cat <- @product.categories do %>
-      <%= cat.title %>
-      <br />
-    <% end %>
-  </:item>
-</.list>
-</:col> --%>
   <:col :let={product} label="Description"><%= product.description %></:col>
   <:col :let={product} label="Price"><%= product.price %></:col>
   <:col :let={product} label="Views"><%= product.views %></:col>
+  <:col :let={product} label="Categories">
+    <%= Enum.map(product.categories, &" #{&1.title} ") %>
+  </:col>
   <:action :let={product}>
     <div class="sr-only">
       <.link navigate={~p"/shop/products/#{product}"}>Show</.link>
     </div>
     <.link navigate={~p"/shop/products/#{product}/edit"}>Edit</.link>
-  </:action>
-  <:action :let={product}>
     <.link href={~p"/shop/products/#{product}"} method="delete" data-confirm="Are you sure?">
       Delete
+    </.link>
+    <.link href={~p"/shop/cart_items?product_id=#{product.id}"} method="post">
+      Add To Cart
     </.link>
   </:action>
 </.table>
