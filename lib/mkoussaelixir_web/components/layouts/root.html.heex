@@ -17,6 +17,47 @@
     </script>
   </head>
   <body style="background-color: #0f070b;">
+    <%!-- <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end"> --%>
+      <%= if @current_user do %>
+        <%!-- <li class="text-[0.8125rem] leading-6 text-zinc-900"> --%>
+          <%= @current_user.email %>
+        <%!-- </li> --%>
+        <li>
+          <.link
+            href={~p"/users/settings"}
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Settings
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/users/log_out"}
+            method="delete"
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Log out
+          </.link>
+        </li>
+      <% else %>
+        <li>
+          <.link
+            href={~p"/users/register"}
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Register
+          </.link>
+        </li>
+        <li>
+          <.link
+            href={~p"/users/log_in"}
+            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+          >
+            Log in
+          </.link>
+        </li>
+      <% end %>
+    <%!-- </ul> --%>
     <div class="grid-container">
       <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">
@@ -37,6 +78,12 @@
         <a class="navButton" href={~p"/loguesdk/"}>Korg LogueSDK</a> <br /><br />
         <a class="navButton" href={~p"/mkoussa/"}>About</a> <br /><br />
         <a class="navButton" href={~p"/blorp"}>Blorp</a> <br /><br />
+        <%= if @current_user do %>
+        <a class="navButton" href={~p"/users/settings"}>Settings</a> <br /><br />
+        <a class="navButton" href={~p"/users/log_out"}>Log Out</a> <br /><br />
+        <% else %>
+        <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
+        <% end %>
       </div>
       <div class="mainBody">
         <%= @inner_content %>
