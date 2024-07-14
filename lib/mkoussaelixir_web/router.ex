@@ -48,7 +48,6 @@ defmodule MkoussaelixirWeb.Router do
   end
 
   pipeline :shop do
-    plug :fetch_current_user
     plug :fetch_current_cart
     plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :shop}
   end
@@ -97,18 +96,6 @@ defmodule MkoussaelixirWeb.Router do
     end
   end
 
-  # defp fetch_current_user(conn, _) do
-  #   if user_uuid = get_session(conn, :current_uuid) do
-  #     assign(conn, :current_uuid, user_uuid)
-  #   else
-  #     new_uuid = Ecto.UUID.generate()
-
-  #     conn
-  #     |> assign(:current_uuid, new_uuid)
-  #     |> put_session(:current_uuid, new_uuid)
-  #   end
-  # end
-
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do
@@ -125,31 +112,31 @@ defmodule MkoussaelixirWeb.Router do
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
 
-    get "/users/register", UserRegistrationController, :new
-    post "/users/register", UserRegistrationController, :create
-    get "/users/log_in", UserSessionController, :new
-    post "/users/log_in", UserSessionController, :create
-    get "/users/reset_password", UserResetPasswordController, :new
-    post "/users/reset_password", UserResetPasswordController, :create
-    get "/users/reset_password/:token", UserResetPasswordController, :edit
-    put "/users/reset_password/:token", UserResetPasswordController, :update
+    get "/users/register", UserController, :new_registration
+    post "/users/register", UserController, :create_registration
+    get "/users/log_in", UserController, :new_session
+    post "/users/log_in", UserController, :create_session
+    get "/users/reset_password", UserController, :new_reset_password
+    post "/users/reset_password", UserController, :create_reset_password
+    get "/users/reset_password/:token", UserController, :edit_reset_password
+    put "/users/reset_password/:token", UserController, :update_reset_password
   end
 
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :require_authenticated_user, :home]
 
-    get "/users/settings", UserSettingsController, :edit
-    put "/users/settings", UserSettingsController, :update
-    get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+    get "/users/settings", UserController, :edit_settings
+    put "/users/settings", UserController, :update_settings
+    get "/users/settings/confirm_email/:token", UserController, :confirm_email
   end
 
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :home]
 
-    delete "/users/log_out", UserSessionController, :delete
-    get "/users/confirm", UserConfirmationController, :new
-    post "/users/confirm", UserConfirmationController, :create
-    get "/users/confirm/:token", UserConfirmationController, :edit
-    post "/users/confirm/:token", UserConfirmationController, :update
+    delete "/users/log_out", UserController, :delete_session
+    get "/users/confirm", UserController, :new_confirmation
+    post "/users/confirm", UserController, :create_confirmation
+    get "/users/confirm/:token", UserController, :edit_confirmation
+    post "/users/confirm/:token", UserController, :update_confirmation
   end
 end

@@ -79,9 +79,10 @@
         <a class="navButton" href={~p"/mkoussa/"}>About</a> <br /><br />
         <a class="navButton" href={~p"/blorp"}>Blorp</a> <br /><br />
         <%= if @current_user do %>
-        <a class="navButton" href={~p"/users/log_out"}>Log Out</a> <br /><br />
+          <.link class="navButton" href={~p"/users/log_out"} method="delete">Log Out</.link>
+          <br /><br />
         <% else %>
-        <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
+          <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
         <% end %>
       </div>
       <div class="mainBody">
