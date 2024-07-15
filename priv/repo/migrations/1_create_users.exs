@@ -5,6 +5,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
 
     create table(:users) do
+      add :uuid, :uuid
       add :email, :citext, null: false
       add :admin?, :boolean
       add :hashed_password, :string, null: false

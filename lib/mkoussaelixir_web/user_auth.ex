@@ -97,7 +97,7 @@ defmodule MkoussaelixirWeb.UserAuth do
       IO.puts("--------------User is true ---------------")
 
       conn
-      |> assign(:current_uuid, user.id)
+      |> assign(:current_uuid, user.uuid)
       |> assign(:current_user, user)
     else
       IO.puts("\n--------------User is false ---------------\n")

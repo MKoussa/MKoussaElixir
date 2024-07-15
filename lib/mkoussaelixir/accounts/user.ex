@@ -3,6 +3,7 @@ defmodule Mkoussaelixir.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :uuid, Ecto.UUID
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true

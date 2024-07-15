@@ -76,6 +76,7 @@ defmodule Mkoussaelixir.Accounts do
   """
   def register_user(attrs) do
     %User{}
+    |> Map.put(:uuid, Ecto.UUID.generate())
     |> User.registration_changeset(attrs)
     |> Repo.insert()
   end
