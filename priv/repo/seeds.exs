@@ -12,3 +12,27 @@
 for catTitle <- ["LogueSDK", "Modulation", "Delay", "Reverb", "Oscillator"] do
   {:ok, _} = Mkoussaelixir.Catalog.create_category(%{title: catTitle})
 end
+
+alias Mkoussaelixir.Catalog
+alias Mkoussaelixir.Catalog.Product
+
+for product <- [
+      %{
+        title: "Stutter",
+        description: "Korg LogueSDK Stutter Mod FX",
+        description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/stuttermodeffect",
+        price: 2.99,
+        views: 0,
+        categories: ["LogueSDK", "Modulation"]
+      },
+      %{
+        title: "Reverse Echo",
+        description: "Korg LogueSDK Reverse Echo Delay FX",
+        description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/reverseechodelayeffect",
+        price: 2.99,
+        views: 0,
+        categories: ["LogueSDK", "Delay"]
+      }
+    ] do
+  {:ok, _} = Mkoussaelixir.Catalog.create_product(product)
+end
