@@ -4,7 +4,8 @@ defmodule Mkoussaelixir.Catalog.Product do
 
   alias Mkoussaelixir.Catalog.Category
 
-  @derive {Jason.Encoder, only: [:id, :title, :description, :description_link, :price, :categories]}
+  @derive {Jason.Encoder,
+           only: [:id, :title, :description, :description_link, :price, :categories]}
   schema "products" do
     field :description, :string
     field :description_link, :string

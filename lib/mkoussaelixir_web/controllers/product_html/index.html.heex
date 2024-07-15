@@ -1,9 +1,11 @@
 <.header>
   Listing Products
   <:actions>
-    <.link href={~p"/shop/products/new"}>
-      <.button>New Product</.button>
-    </.link>
+    <%= if @user.admin? do %>
+      <.link href={~p"/shop/products/new"}>
+        <.button>New Product</.button>
+      </.link>
+    <% end %>
   </:actions>
 </.header>
 

@@ -6,6 +6,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
 
     create table(:users) do
       add :email, :citext, null: false
+      add :admin?, :boolean
       add :hashed_password, :string, null: false
       add :confirmed_at, :utc_datetime
 

@@ -8,6 +8,7 @@ defmodule Mkoussaelixir.Accounts.User do
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
+    field :admin?, :boolean
 
     timestamps(type: :utc_datetime)
   end
@@ -128,6 +129,14 @@ defmodule Mkoussaelixir.Accounts.User do
   def confirm_changeset(user) do
     now = DateTime.utc_now() |> DateTime.truncate(:second)
     change(user, confirmed_at: now)
+  end
+
+  def make_admin?(user, boolean) do
+    if boolean do
+      change(user, admin?: true)
+    else
+      change(user, admin?: false)
+    end
   end
 
   @doc """
