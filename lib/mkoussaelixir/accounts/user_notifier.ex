@@ -8,7 +8,7 @@ defmodule Mkoussaelixir.Accounts.UserNotifier do
     email =
       new()
       |> to(recipient)
-      |> from({"Mkoussaelixir", "contact@example.com"})
+      |> from({"Mkoussaelixir", "contact@#{System.get_env("MAILGUN_API_DOMAIN")}"})
       |> subject(subject)
       |> text_body(body)
 

@@ -6,10 +6,11 @@ defmodule MkoussaelixirWeb.Router do
   # -------- API -----------------
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_current_api_user
   end
 
   scope "/api", MkoussaelixirWeb do
-    pipe_through :api
+    pipe_through [:api, :require_authenticated_api_user]
 
     resources "/products", ProductAPIController, only: [:index, :show]
   end

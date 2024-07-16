@@ -117,6 +117,21 @@ defmodule MkoussaelixirWeb.UserAuth do
     end
   end
 
+  @doc """
+  Fetches the API user
+  """
+  def fetch_current_api_user(conn, _opts) do
+    with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
+    {:ok, user} <- Accounts.fetch_user_by_api_token(token) do
+      assign(conn, :current_user, user)
+    else
+      _ ->
+        conn
+        |> send_resp(401, "You Do Not Have Access. Good Bye.")
+        |> halt()
+    end
+  end
+
   defp ensure_user_token(conn) do
     if token = get_session(conn, :user_token) do
       {token, conn}
@@ -231,6 +246,16 @@ defmodule MkoussaelixirWeb.UserAuth do
       |> maybe_store_return_to()
       |> redirect(to: ~p"/users/log_in")
       |> halt()
+    end
+  end
+
+  def require_authenticated_api_user(conn, _opts) do
+    if conn.assigns[:current_user] do
+      conn
+    else
+      conn
+      |> put_view(json: MkoussaelixirWeb.ErrorJSON)
+      |> render(:"401")
     end
   end
 

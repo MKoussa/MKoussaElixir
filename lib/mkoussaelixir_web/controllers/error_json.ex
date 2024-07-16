@@ -11,12 +11,29 @@ defmodule MkoussaelixirWeb.ErrorJSON do
   # def render("500.json", _assigns) do
   #   %{errors: %{detail: "Internal Server Error"}}
   # end
-
   def render("404.json", assigns) do
     %{
       errors: %{
         detail:
           "I'm sorry, I can't seem to find anything at #{assigns.conn.request_path || "that place"}."
+      }
+    }
+  end
+
+  def render("401.json", _assigns) do
+    %{
+      errors: %{
+        detail:
+          "You are not authenticated. Please Try Again.}."
+      }
+    }
+  end
+
+  def render("500.json", _assigns) do
+    %{
+      errors: %{
+        detail:
+          "You are Lost.}."
       }
     }
   end
