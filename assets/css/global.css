@@ -49,6 +49,39 @@ a:visited {
     color: inherit;
     text-decoration-line: none;
 }
+
+.nav_user {
+    font-family: Megrim, Helvetica, sans-serif;
+    border-radius: 5px;
+    height: clamp(30px, 5vw, 60px);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #C46DC4;
+    align-content: center;
+    animation-name: backColorReverse;
+    animation-duration: 3s;
+}
+.nav_user_li {
+    float: right;   
+    display: block; 
+    color: #0f0d07;
+    margin-right: 5%; 
+}
+.nav_user_button{
+    transition: 0.8s;
+    text-decoration-line: none;
+}
+.nav_user_button:link{
+    text-decoration-line: none;
+}
+.nav_user_button:visited{
+    text-decoration-line: none;
+}
+.nav_user_button:hover {
+    letter-spacing: 0.5px;
+}
 .nav {
     font-family: Megrim, Helvetica, sans-serif;
     align-content: center;

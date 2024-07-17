@@ -129,6 +129,8 @@ defmodule MkoussaelixirWeb.Router do
     get "/users/settings", UserController, :edit_settings
     put "/users/settings", UserController, :update_settings
     get "/users/settings/confirm_email/:token", UserController, :confirm_email
+
+    get "/users/orders", UserController, :show_orders
   end
 
   scope "/", MkoussaelixirWeb do

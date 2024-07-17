@@ -34,6 +34,14 @@ defmodule Mkoussaelixir.Orders do
     |> Repo.preload(line_items: [:product])
   end
 
+  def get_orders!(user_uuid) do
+    Repo.all(
+      from o in Order,
+        where: o.user_uuid == ^user_uuid
+    )
+    |> Repo.preload(line_items: [:product])
+  end
+
   @doc """
   Creates a order.
 

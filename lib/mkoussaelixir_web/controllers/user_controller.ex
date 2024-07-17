@@ -228,4 +228,11 @@ defmodule MkoussaelixirWeb.UserController do
         render(conn, :new_registration, changeset: changeset)
     end
   end
+
+  alias Mkoussaelixir.Orders
+
+  def show_orders(conn, _opts) do
+    orders = Orders.get_orders!(conn.assigns.current_uuid)
+    render(conn, :show_orders, orders: orders)
+  end
 end

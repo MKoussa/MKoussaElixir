@@ -74,18 +74,31 @@
       </div>
 
       <div class="nav">
+        <a class="navButton" href={~p"/"}>Home</a> <br /><br />
         <a class="navButton" href={~p"/shop/products/"}>Shop</a> <br /><br />
         <a class="navButton" href={~p"/loguesdk/"}>Korg LogueSDK</a> <br /><br />
         <a class="navButton" href={~p"/mkoussa/"}>About</a> <br /><br />
         <a class="navButton" href={~p"/blorp"}>Blorp</a> <br /><br />
-        <%= if @current_user do %>
-          <.link class="navButton" href={~p"/users/log_out"} method="delete">Log Out</.link>
-          <br /><br />
-        <% else %>
+        <%= if is_nil(@current_user) do %>
           <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
         <% end %>
       </div>
       <div class="mainBody">
+        <%= if @current_user do %>
+          <ul class="nav_user">
+            <li class="nav_user_li">
+              <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
+                Log Out
+              </.link>
+            </li>
+            <li class="nav_user_li">
+              <a class="nav_user_button" href={~p"/users/orders/"}>Orders</a>
+            </li>
+            <li class="nav_user_li">
+              <a class="nav_user_button" href={~p"/users/settings/"}>Settings</a>
+            </li>
+          </ul>
+        <% end %>
         <%= @inner_content %>
       </div>
 

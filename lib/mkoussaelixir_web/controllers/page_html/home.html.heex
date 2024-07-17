@@ -4,11 +4,14 @@
     <p>
       You should either <.link href={~p"/users/log_in"}>Log In</.link>
       or <.link href={~p"/users/register"}>Register</.link>
-      for... reasons.
     </p>
   <% else %>
-    <h1>Hello Again, <%= @user.email %></h1>
-    <p>It's so good to see you again.</p>
+    <%= if is_nil(@user.confirmed_at) do %>
+      <p>Please confirm your account.</p>
+    <% else %>
+      <h1>Hello Again, <%= @user.email %></h1>
+      <p>It's so good to see you again.</p>
+    <% end %>
   <% end %>
 
   <h3><a href={~p"/shop/products"}>Shop</a></h3>
