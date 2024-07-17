@@ -23,8 +23,7 @@ defmodule MkoussaelixirWeb.ErrorJSON do
   def render("401.json", _assigns) do
     %{
       errors: %{
-        detail:
-          "You are not authenticated. Please Try Again.}."
+        detail: "You are not authenticated. Please Try Again.}."
       }
     }
   end
@@ -32,8 +31,7 @@ defmodule MkoussaelixirWeb.ErrorJSON do
   def render("500.json", _assigns) do
     %{
       errors: %{
-        detail:
-          "You are Lost.}."
+        detail: "You are Lost.}."
       }
     }
   end

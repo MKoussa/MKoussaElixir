@@ -13,6 +13,7 @@ for catTitle <- ["LogueSDK", "Modulation", "Delay", "Reverb", "Oscillator"] do
   {:ok, _} = Mkoussaelixir.Catalog.create_category(%{title: catTitle})
 end
 
+alias Mkoussaelixir.Catalog.Category
 alias Mkoussaelixir.Catalog
 alias Mkoussaelixir.Catalog.Product
 
@@ -23,7 +24,7 @@ for product <- [
         description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/stuttermodeffect",
         price: 2.99,
         views: 0,
-        categories: ["LogueSDK", "Modulation"]
+        categories: Catalog.list_categories_by_id([1, 2])
       },
       %{
         title: "Reverse Echo",
@@ -31,7 +32,7 @@ for product <- [
         description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/reverseechodelayeffect",
         price: 2.99,
         views: 0,
-        categories: ["LogueSDK", "Delay"]
+        categories: [Catalog.get_category!(1), Catalog.get_category!(3)]
       }
     ] do
   {:ok, _} = Mkoussaelixir.Catalog.create_product(product)

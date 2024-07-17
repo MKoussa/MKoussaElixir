@@ -1,12 +1,15 @@
 <section>
   <%= if is_nil(@user) do %>
-  <h1> Welcome, <i>Friend</i></h1>
-  <p>You should either <.link href={~p"/users/log_in"}>Log In</.link> or <.link href={~p"/users/register"}>Register</.link> for... reasons.</p>
+    <h1>Welcome, <i>Friend</i></h1>
+    <p>
+      You should either <.link href={~p"/users/log_in"}>Log In</.link>
+      or <.link href={~p"/users/register"}>Register</.link>
+      for... reasons.
+    </p>
   <% else %>
-     <h1>Hello Again, <%= @user.email %></h1>
-     <p>It's so good to see you again.</p>
+    <h1>Hello Again, <%= @user.email %></h1>
+    <p>It's so good to see you again.</p>
   <% end %>
-  
 
   <h3><a href={~p"/shop/products"}>Shop</a></h3>
   <p>Give me your <i>money</i>.</p>

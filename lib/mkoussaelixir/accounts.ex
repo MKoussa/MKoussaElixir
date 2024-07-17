@@ -244,7 +244,7 @@ defmodule Mkoussaelixir.Accounts do
   """
   def fetch_user_by_api_token(token) do
     with {:ok, query} <- UserToken.verify_email_token_query(token, "api-token"),
-    %User{} = user <- Repo.one(query) do
+         %User{} = user <- Repo.one(query) do
       {:ok, user}
     else
       _ -> :error
