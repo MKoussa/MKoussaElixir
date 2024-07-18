@@ -31,6 +31,6 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
 
   def down do
     #drop table("users_tokens")
-    drop table("users")
+    drop table("users"), mode: :cascade
   end
 end

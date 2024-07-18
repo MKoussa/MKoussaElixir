@@ -94,6 +94,7 @@ defmodule Mkoussaelixir.Accounts.UserNotifier do
 
     If you didn't request this change, please ignore this.
 
+    Have a Great Day!
     ==============================
     """)
   end
