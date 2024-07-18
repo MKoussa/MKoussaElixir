@@ -28,4 +28,9 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
     create index(:users_tokens, [:user_id])
     create unique_index(:users_tokens, [:context, :token])
   end
+
+  def down do
+    #drop table("users_tokens")
+    drop table("users")
+  end
 end
