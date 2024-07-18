@@ -1,12 +1,14 @@
 defmodule MkoussaelixirWeb.ProductController do
   use MkoussaelixirWeb, :controller
 
+  alias Hex.API.User
   alias Mkoussaelixir.Catalog
+  alias Mkoussaelixir.Accounts.User
   alias Mkoussaelixir.Catalog.Product
 
   def index(conn, _params) do
     products = Catalog.list_products()
-    render(conn, :index, products: products)
+    render(conn, :index, products: products, user: conn.assigns.current_user || %User{})
   end
 
   def new(conn, _params) do

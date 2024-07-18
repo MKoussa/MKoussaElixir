@@ -29,7 +29,10 @@ config :mkoussaelixir, MkoussaelixirWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :mkoussaelixir, Mkoussaelixir.Mailer, adapter: Swoosh.Adapters.Local
+config :mkoussaelixir, Mkoussaelixir.Mailer,
+  adapter: Swoosh.Adapters.Mailgun,
+  api_key: System.get_env("MAILGUN_API_KEY"),
+  domain: System.get_env("MAILGUN_API_DOMAIN")
 
 # Configure esbuild (the version is required)
 config :esbuild,

@@ -19,6 +19,7 @@ config :mkoussaelixir, Mkoussaelixir.Repo,
 config :mkoussaelixir, MkoussaelixirWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  url: [host: "localhost", port: 4000],
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
@@ -81,4 +82,4 @@ config :phoenix_live_view,
   enable_expensive_runtime_checks: true
 
 # Disable swoosh api client as it is only required for production adapters.
-config :swoosh, :api_client, false
+config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: Mkoussaelixir.Finch

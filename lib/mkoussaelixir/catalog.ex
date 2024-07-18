@@ -166,6 +166,13 @@ defmodule Mkoussaelixir.Catalog do
   """
   def get_category!(id), do: Repo.get!(Category, id)
 
+  # def get_category_by_name(catName) do
+  #   Repo.one(
+  #     from cat in Category,
+  #     where cat.title == ^catName
+  #   )
+  # end
+
   @doc """
   Creates a category.
 

@@ -4,9 +4,11 @@ defmodule Mkoussaelixir.Catalog.Product do
 
   alias Mkoussaelixir.Catalog.Category
 
-  @derive {Jason.Encoder, only: [:id, :title, :description, :price, :categories]}
+  @derive {Jason.Encoder,
+           only: [:id, :title, :description, :description_link, :price, :categories]}
   schema "products" do
     field :description, :string
+    field :description_link, :string
     field :title, :string
     field :price, :decimal
     field :views, :integer
@@ -19,7 +21,7 @@ defmodule Mkoussaelixir.Catalog.Product do
   @doc false
   def changeset(product, attrs) do
     product
-    |> cast(attrs, [:title, :description, :price, :views])
+    |> cast(attrs, [:title, :description, :description_link, :price, :views])
     |> validate_required([:title, :description, :price, :views])
   end
 end

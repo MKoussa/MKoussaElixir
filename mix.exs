@@ -38,6 +38,7 @@ defmodule Mkoussaelixir.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 3.0"},
       {:phoenix, "~> 1.7.14"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
@@ -49,8 +50,12 @@ defmodule Mkoussaelixir.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.5"},
+      {:plug, "~> 1.16.1"},
+      {:hackney, "~> 1.20"},
+      {:gen_smtp, "~> 1.2.0"},
+      {:swoosh, "~> 1.16.9"},
       {:finch, "~> 0.13"},
+      {:multipart, "~> 0.4.0"},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},

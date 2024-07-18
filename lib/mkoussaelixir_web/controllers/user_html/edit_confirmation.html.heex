@@ -1,0 +1,9 @@
+<div>
+  <.header>Registration Confirmation</.header>
+  <p>Please confirm you account by pressing the button below</p>
+  <.simple_form for={@conn.params["user"]} as={:user} action={~p"/users/confirm/#{@token}"}>
+    <:actions>
+      <.button>Complete Registration</.button>
+    </:actions>
+  </.simple_form>
+</div>
