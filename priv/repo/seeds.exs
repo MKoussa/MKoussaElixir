@@ -23,16 +23,14 @@ for product <- [
         description: "Korg LogueSDK Stutter Mod FX",
         description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/stuttermodeffect",
         price: 2.99,
-        views: 0,
-        categories: Catalog.list_categories_by_id([1, 2])
+        views: 0
       },
       %{
         title: "Reverse Echo",
         description: "Korg LogueSDK Reverse Echo Delay FX",
         description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/reverseechodelayeffect",
         price: 2.99,
-        views: 0,
-        categories: [Catalog.get_category!(1), Catalog.get_category!(3)]
+        views: 0
       }
     ] do
   {:ok, _} = Mkoussaelixir.Catalog.create_product(product)
