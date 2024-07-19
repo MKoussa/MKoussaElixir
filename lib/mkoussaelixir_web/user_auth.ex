@@ -94,12 +94,10 @@ defmodule MkoussaelixirWeb.UserAuth do
     {user_token, conn} = ensure_user_token(conn)
 
     if user = user_token && Accounts.get_user_by_session_token(user_token) do
-
       conn
       |> assign(:current_uuid, user.uuid)
       |> assign(:current_user, user)
     else
-
       if curr_uuid = get_session(conn, :current_uuid) do
         conn
         |> assign(:current_uuid, curr_uuid)

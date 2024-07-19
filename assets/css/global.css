@@ -140,7 +140,57 @@ a:visited {
     animation-name: backColor;
     animation-duration: 4s;
 }
-
+.core-list {
+    margin: 0.3rem;
+}
+.core-list-dt {
+    display: flex;
+    background-color: inherit;
+    align-items: center;
+    margin: 0.3rem;
+}
+.core-list-item-title{
+    border: 5px solid #C46DC4;
+    border-radius: 5px 0 0 5px;
+    background-color: #C46DC4;
+    border-right: none;
+    color: white;
+    padding: 0.7rem;
+    height: 3rem;
+    width: 30%;
+    align-content: center;
+}
+.core-list-item{
+    border: 5px solid #C46DC4;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+    align-content: center;
+    width: 70%;
+    background-color: inherit;
+    padding: 0.7rem;
+    height: 3rem;
+}
+.core-button{
+    border-radius: 5px;
+    background-color: #C46DC4;
+    border: 0.5rem outset #C46DC4;
+    color: #ffc7ff;
+    font-size: larger;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.core-button:hover {
+    border-radius: 5px;
+    background-color: #d57ed5;
+    border: 0.5rem outset #d57ed5;
+}
+.core-button:active {
+    border-radius: 5px;
+    background-color: #d57ed5;
+    border: 0.5rem inset #00ff33;
+    transform: translateY(2px);
+}
 td {
     border: 1px solid #C46DC4;
 }

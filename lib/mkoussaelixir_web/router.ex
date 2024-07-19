@@ -34,6 +34,7 @@ defmodule MkoussaelixirWeb.Router do
 
     get "/", PageController, :home
     get "/mkoussa", AboutController, :index
+    live "/thermostat", ThermostatLive
   end
 
   pipeline :blorp do
@@ -97,6 +98,7 @@ defmodule MkoussaelixirWeb.Router do
     end
   end
 
+  alias MkoussaelixirWeb.ThermostatLive
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do

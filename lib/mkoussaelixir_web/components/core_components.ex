@@ -228,15 +228,7 @@ defmodule MkoussaelixirWeb.CoreComponents do
 
   def button(assigns) do
     ~H"""
-    <button
-      type={@type}
-      class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
-        @class
-      ]}
-      {@rest}
-    >
+    <button type={@type} class="core-button" {@rest}>
       <%= render_slot(@inner_block) %>
     </button>
     """
@@ -535,13 +527,11 @@ defmodule MkoussaelixirWeb.CoreComponents do
 
   def list(assigns) do
     ~H"""
-    <div class="mt-14">
-      <dl class="-my-4 divide-y divide-zinc-100">
-        <div :for={item <- @item} class="flex gap-4 py-4 text-sm leading-6 sm:gap-8">
-          <dt class="w-1/4 flex-none text-zinc-500"><%= item.title %></dt>
-          <dd class="text-zinc-700"><%= render_slot(item) %></dd>
-        </div>
-      </dl>
+    <div class="core-list">
+      <div :for={item <- @item} class="core-list-dt">
+        <div class="core-list-item-title"><%= item.title %></div>
+        <div class="core-list-item"><%= render_slot(item) %></div>
+      </div>
     </div>
     """
   end
