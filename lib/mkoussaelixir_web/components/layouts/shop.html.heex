@@ -16,6 +16,47 @@
 
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
+    <style>
+      .core-button{
+        font-size: clamp(25px, 3.5vw, 40px);
+        font-family: 'Six Caps';
+      }
+      .header {
+        font-size: clamp(25px, 3.5vw, 40px);
+        font-family: 'Six Caps';
+      }
+      .core-list{
+
+      }
+      .core-list-dt{
+      }
+      .core-list-item-title{
+        font-size: clamp(20px, 3.5vw, 45px);
+        font-family: 'Six Caps';
+        height: clamp(50px, 10vw, 300px);
+        font-style: italic;
+      }
+      .core-list-item{
+        font-size: clamp(20px, 3.5vw, 60px);
+        font-family: 'Six Caps';
+        height: clamp(50px, 10vw, 300px);
+      }
+      .mainBody{
+        animation-duration: 0.5s;
+      }
+      .nav{
+        animation-duration: 0.5s;
+      }
+      .nav-user-div{
+        animation-duration: 0.5s;
+            mix-blend-mode: difference;
+
+      }
+      .nav_user {
+        background-color: none;
+        color: inherit;
+      }
+    </style>
   </head>
   <body style="background-color: #ffd3e9;">
     <div class="grid-container">
@@ -39,12 +80,69 @@
         </h1>
       </div>
 
-      <div class="nav">
-        <a class="navButton" href={~p"/"}>Home</a> <br /><br />
-        <a class="navButton" href={~p"/shop/products"}>Products</a> <br /><br />
+      <div class="nav" style="font-family: 'Six Caps';">
+        <a class="navButton" style="font-size: clamp(25px, 3.5vw, 90px);" href={~p"/"}>Home</a>
+        <br /><br />
+        <a
+          class="navButton"
+          style="font-size: clamp(25px, 3.5vw, 50px);"
+          href={~p"/shop/products"}
+        >
+          Products
+        </a>
+        <br /><br />
+        <%= if is_nil(@current_user) do %>
+          <a
+            class="navButton"
+            style="font-size: clamp(25px, 3.5vw, 50px);"
+            href={~p"/users/log_in"}
+          >
+            Log In
+          </a>
+          <br /><br />
+        <% end %>
       </div>
-      <div class="mainBody">
-        <%= @inner_content %>
+      <div style="grid-column: 3; grid-row: 2;">
+        <div class="nav-user-div" style="font-family: 'Six Caps';">
+          <%= if @current_user do %>
+            <ul
+              class="nav_user"
+              style="text-size: larger; font-family: 'Six Caps'; animation-name: backColorReverseShop;"
+            >
+              <li class="nav_user_li">
+                <.link
+                  class="nav_user_button"
+                  style="font-size: clamp(25px, 3.5vw, 50px);"
+                  href={~p"/users/log_out"}
+                  method="delete"
+                >
+                  Log Out
+                </.link>
+              </li>
+              <li class="nav_user_li">
+                <a
+                  class="nav_user_button"
+                  style="font-size: clamp(25px, 3.5vw, 50px);"
+                  href={~p"/users/orders/"}
+                >
+                  Orders
+                </a>
+              </li>
+              <li class="nav_user_li">
+                <a
+                  class="nav_user_button"
+                  style="font-size: clamp(25px, 3.5vw, 50px);"
+                  href={~p"/users/settings/"}
+                >
+                  Settings
+                </a>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+        <div class="mainBody" style="animation-name: backColorShop;">
+          <%= @inner_content %>
+        </div>
       </div>
 
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">

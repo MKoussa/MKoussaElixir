@@ -14,9 +14,13 @@
       row_click={&JS.navigate(~p"/shop/products/#{&1.product.id}")}
     >
       <:col :let={line_item} label="Name"><%= line_item.product.title %></:col>
-      <:col :let={line_item} label="Price"><%= line_item.price %></:col>
+      <:col :let={line_item} label="Price">
+        <%= MkoussaelixirWeb.CartHTML.currency_to_str(line_item.price) %>
+      </:col>
       <:col :let={line_item} label="Quantity"><%= line_item.quantity %></:col>
     </.table>
   </:col>
-  <:col :let={order} label="Order Total"><%= order.total_price %></:col>
+  <:col :let={order} label="Order Total">
+    <%= MkoussaelixirWeb.CartHTML.currency_to_str(order.total_price) %>
+  </:col>
 </.table>

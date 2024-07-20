@@ -98,7 +98,7 @@ defmodule MkoussaelixirWeb.Router do
     end
   end
 
-  alias MkoussaelixirWeb.ThermostatLive
+  # alias MkoussaelixirWeb.ThermostatLive
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do

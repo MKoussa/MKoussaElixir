@@ -47,12 +47,37 @@
         <a class="navButton" href={~p"/loguesdk/effects/"}>Effects</a> <br /><br />
         <a class="navButton" href={~p"/loguesdk/oscillators/"}>Oscillators</a> <br /><br />
         <a class="navButton" href={~p"/loguesdk/resources/"}>Resources</a> <br /><br />
+        <%= if is_nil(@current_user) do %>
+          <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
+        <% end %>
       </div>
-      <div
-        class="mainBody"
-        style=" font-family: 'Bebas Neue'; color: gold; animation-name: backColorLogueSDK;"
-      >
-        <%= @inner_content %>
+      <div style="grid-column: 3; grid-row: 2;">
+        <div class="nav-user-div">
+          <%= if @current_user do %>
+            <ul
+              class="nav_user"
+              style="font-family: 'Bebas Neue'; color: gold; background-color: gold; animation-name: backColorReverseLogueSDK;"
+            >
+              <li class="nav_user_li">
+                <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
+                  Log Out
+                </.link>
+              </li>
+              <li class="nav_user_li">
+                <a class="nav_user_button" href={~p"/users/orders/"}>Orders</a>
+              </li>
+              <li class="nav_user_li">
+                <a class="nav_user_button" href={~p"/users/settings/"}>Settings</a>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+        <div
+          class="mainBody"
+          style="font-family: 'Bebas Neue'; color: gold; animation-name: backColorLogueSDK;"
+        >
+          <%= @inner_content %>
+        </div>
       </div>
 
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">

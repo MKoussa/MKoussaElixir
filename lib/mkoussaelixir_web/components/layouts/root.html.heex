@@ -42,25 +42,28 @@
           <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
         <% end %>
       </div>
-      <div class="mainBody">
-        <%= if @current_user do %>
-          <ul class="nav_user">
-            <li class="nav_user_li">
-              <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
-                Log Out
-              </.link>
-            </li>
-            <li class="nav_user_li">
-              <a class="nav_user_button" href={~p"/users/orders/"}>Orders</a>
-            </li>
-            <li class="nav_user_li">
-              <a class="nav_user_button" href={~p"/users/settings/"}>Settings</a>
-            </li>
-          </ul>
-        <% end %>
-        <%= @inner_content %>
+      <div style="grid-column: 3; grid-row: 2;">
+        <div class="nav-user-div">
+          <%= if @current_user do %>
+            <ul class="nav_user">
+              <li class="nav_user_li">
+                <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
+                  Log Out
+                </.link>
+              </li>
+              <li class="nav_user_li">
+                <a class="nav_user_button" href={~p"/users/orders/"}>Orders</a>
+              </li>
+              <li class="nav_user_li">
+                <a class="nav_user_button" href={~p"/users/settings/"}>Settings</a>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+        <div class="mainBody">
+          <%= @inner_content %>
+        </div>
       </div>
-
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
           <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
