@@ -1,23 +1,35 @@
 <.header>
   <%= @product.title %>
-  <:subtitle>This is a product record from your database.</:subtitle>
+  <:subtitle><i><%= @product.description %></i></:subtitle>
   <:actions>
-    <.link href={~p"/shop/products/#{@product}/edit"}>
-      <.button>Edit product</.button>
-    </.link>
-    <.link href={~p"/shop/cart_items?product_id=#{@product.id}"} method="post">
-      <.button>Add To Cart</.button>
-    </.link>
+    <%= if !is_nil(@current_user) && @current_user.admin? do %>
+      <.link href={~p"/shop/products/#{@product}/edit"}>
+        <.button>Edit product</.button>
+      </.link>
+    <% end %>
   </:actions>
 </.header>
 
 <.list>
-  <:item title="Title"><%= @product.title %></:item>
-  <:item title="Description"><%= @product.description %></:item>
+  <:item title="Product Description">
+    <.link href={"#{@product.description_link}"}>
+      <.button style="width: 100%;">Go to Description</.button>
+    </.link>
+  </:item>
   <:item title="Price"><%= @product.price %></:item>
   <:item title="Views"><%= @product.views %></:item>
   <:item title="Categories"><%= Enum.map(@product.categories, &" #{&1.title} ") %></:item>
 </.list>
 
-<.link href={"#{@product.description_link}"}>Product Description</.link>
-<.back navigate={~p"/shop/products"}>Back to products</.back>
+<div style="display: flex;">
+  <span style="width: 30%;">
+    <.back navigate={~p"/shop/products"}>
+      <.button style="width: 90%; height: 4rem;">Marketplace</.button>
+    </.back>
+  </span>
+  <span style="width: 70%;">
+    <.link href={~p"/shop/cart_items?product_id=#{@product.id}"} method="post">
+      <.button style="width: 96%; height: 4rem;">Add To Cart</.button>
+    </.link>
+  </span>
+</div>

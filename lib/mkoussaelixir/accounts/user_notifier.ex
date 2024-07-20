@@ -50,7 +50,8 @@ defmodule Mkoussaelixir.Accounts.UserNotifier do
 
         <p>If you didn't request this, you can ignore it. </p>
         <br />
-        """)
+        """
+      )
     )
   end
 
@@ -141,5 +142,4 @@ defmodule Mkoussaelixir.Accounts.UserNotifier do
       {:ok, email}
     end
   end
-
 end
