@@ -10,7 +10,11 @@
 </.header>
 <div>
   <p>Welcome to the MKoussa Marketplace!</p>
-    <p>Here you can purchase FX for Korg LogueSDK compatible synthesizers.<br />All purchases include lifetime updates.</p>
+  <p>
+    Here you can purchase precompiled FX binaries for Korg LogueSDK compatible synthesizers.<br /><i>
+      All purchases include lifetime updates!
+    </i>
+  </p>
   <p>Please see the product description page for synth-specific details and user instructions.</p>
 </div>
 <div :for={product <- @products}>
@@ -28,4 +32,10 @@
       </div>
     </:item>
   </.list>
+</div>
+<div>
+  <p>
+    In leui of purchasing the precompiled binary, you <i>can</i>
+    compile it yourself via my GitHub.<br />This, however, doesn't support me (and is a real PITA to do)!
+  </p>
 </div>

@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Sixtyfour" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display" rel="stylesheet" />
 
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
@@ -49,12 +50,17 @@
       }
       .nav-user-div{
         animation-duration: 0.5s;
-            mix-blend-mode: difference;
+        mix-blend-mode: difference;
 
       }
       .nav_user {
         background-color: none;
         color: inherit;
+      }
+      p {
+        font-size: clamp(16px, 2vw, 60px);
+        font-family: "Big Shoulders Display";
+        text-align: stable;
       }
     </style>
   </head>
@@ -63,20 +69,20 @@
       <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1">
         <h1
           class="header-scroll"
-          style="animation: marquee 100s linear infinite; font-family: 'Six Caps'"
+          style="animation: marquee 200s linear infinite; font-family: 'Six Caps'"
         >
           <span :for={_n <- 1..3}>SHOP AND BUY AND&nbsp;</span>
           <span style="color: #00ff33; font-family: Sixtyfour">&nbsp;SHOP&nbsp;</span>
-          <span :for={_n <- 1..50}>AND BUY AND SHOP&nbsp;</span>
+          <span :for={_n <- 1..104}>AND BUY AND SHOP&nbsp;</span>
         </h1>
       </div>
 
       <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 4; rotate: 180deg;">
         <h1
           class="header-scroll"
-          style="animation: marquee 20s linear infinite; rotate: 90deg;  font-family: 'Six Caps'"
+          style="animation: marquee 40s linear infinite; rotate: 90deg;  font-family: 'Six Caps'"
         >
-          <span :for={_n <- 1..30}>SHOP AND BUY AND&nbsp;</span>
+          <span :for={_n <- 1..60}>SHOP AND BUY AND&nbsp;</span>
         </h1>
       </div>
 
@@ -148,18 +154,18 @@
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
         <h1
           class="header-scroll"
-          style="animation: marquee 20s linear infinite; rotate: 90deg;  font-family: 'Six Caps'"
+          style="animation: marquee 40s linear infinite; rotate: 90deg;  font-family: 'Six Caps'"
         >
-          <span :for={_n <- 1..30}>BUY&nbsp;</span>
+          <span :for={_n <- 1..60}>BUY&nbsp;</span>
         </h1>
       </div>
 
       <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row:3;">
         <h1
           class="header-scroll"
-          style="animation: marquee 100s linear infinite; rotate: 180deg; font-family: 'Six Caps'"
+          style="animation: marquee 200s linear infinite; rotate: 180deg; font-family: 'Six Caps'"
         >
-          <span :for={number <- 1..40}>BUY&nbsp;<%= number * number %>&nbsp;OR&nbsp;</span>
+          <span :for={number <- 1..80}>BUY&nbsp;<%= number * number %>&nbsp;OR&nbsp;</span>
         </h1>
       </div>
     </div>
