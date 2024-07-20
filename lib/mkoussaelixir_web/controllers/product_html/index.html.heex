@@ -1,5 +1,5 @@
 <.header>
-  Listing Products
+  MKoussa Marketplace
   <:actions>
     <%= if @user.admin? do %>
       <.link href={~p"/shop/products/new"}>
@@ -9,21 +9,17 @@
   </:actions>
 </.header>
 
-<.table id="products" rows={@products} row_click={&JS.navigate(~p"/shop/products/#{&1}")}>
-  <:col :let={product} label="Title"><%= product.title %></:col>
-  <:col :let={product} label="Categories">
-    <%= Enum.map(product.categories, &"#{&1.title} ") %>
-  </:col>
-  <:col :let={product} label="Price"><%= product.price %></:col>
-  <%!-- <:action :let={product}>
-    <div class="sr-only">
-      <.link navigate={~p"/shop/products/#{product}"}>Show</.link>
-    </div>
-    <.link navigate={~p"/shop/products/#{product}/edit"}>Edit</.link>
-  </:action>
-  <:action :let={product}>
-    <.link href={~p"/shop/products/#{product}"} method="delete" data-confirm="Are you sure?">
-      Delete
-    </.link>
-  </:action> --%>
-</.table>
+<div :for={product <- @products}>
+  <.list>
+    <:item title={"#{product.title}"}>
+      <div style="display: flex; align-items: center;">
+        <div style="margin: 4%; width: 40%;">Price: <%= product.price %></div>
+        <div style="margin: 2%; width: 60%;">
+          <.link href={~p"/shop/products/#{product.id}"}>
+            <.button style="width: 100%;">View</.button>
+          </.link>
+        </div>
+      </div>
+    </:item>
+  </.list>
+</div>
