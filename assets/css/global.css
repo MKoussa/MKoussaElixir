@@ -55,12 +55,19 @@ a:visited {
     border-radius: 5px;
     height: clamp(30px, 5vw, 60px);
     list-style-type: none;
-    margin: 0;
+    margin-left: 20%;
     padding: 0;
+    width: 80%;
     overflow: hidden;
     background-color: #C46DC4;
     align-content: center;
+    align-items: center;
     animation-name: backColorReverse;
+    animation-duration: 3s;
+    mix-blend-mode: difference;
+}
+.nav-user-div {
+    animation-name: backColorTransitionSide; 
     animation-duration: 3s;
 }
 .nav_user_li {
@@ -72,6 +79,8 @@ a:visited {
 .nav_user_button{
     transition: 0.8s;
     text-decoration-line: none;
+    font-weight: bold;
+    font-size: clamp(8px, 1.5vw, 18px);
 }
 .nav_user_button:link{
     text-decoration-line: none;
@@ -118,8 +127,6 @@ a:visited {
 }
 .mainBody {
     width: clamp(80px, 60vw, 700px);
-    grid-column: 3;
-    grid-row: 2;
     text-align: center;
     margin-left: 5%;
     padding: 5%;
@@ -244,100 +251,7 @@ a:visited {
     border: 0.5rem inset #00ff33;
     transform: translateY(2px);
 }
-td {
-    border: 1px solid #C46DC4;
-}
 
-/* Blorp CSS */
-
-.slider:hover {
-    opacity: 1;
-  }
-
-.slidecontainer {
-    width: 100%;
-  }
-  
-.slider {
-    width: 100px;
-    height: 25px;
-    background: #c58662;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    transform: rotate(-75deg);
-    cursor: crosshair;
-  }
-  
-
-  
-.slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #c6cac1;
-    cursor: crosshair;
-  }
-  
-.slider::-moz-range-thumb {
-    width: 10px;
-    height: 24px;
-    background: #c6cac1;
-    cursor: crosshair;
-  }
-
-  .medSlider:hover {
-    opacity: 1;
-  }
-
-.medSlider {
-  width: 100px;
-  height: 25px;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  transform: rotate(-100deg);
-  cursor: crosshair;
-}
-  
-.medSlider::-webkit-slider-thumb {
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #c6cac1;
-  cursor: crosshair;
-}
-  
-.medSlider::-moz-range-thumb {
-  width: 10px;
-  height: 24px;
-  background: #c6cac1;
-  cursor: crosshair;
-}
-
-.smallLeftLabels{
-    rotate: -75deg;
-    color: #944a5a;
-} 
-
-.smallLeftLabels:hover{
-  background-color: inherit;
-  cursor: none;
-} 
-
-.smallRightLabels{
-    rotate: 80deg;
-  color: #c58662;
-} 
-
-.smallRightLabels:hover{
-  background-color: inherit;
-  cursor: none;
-} 
-
-.keyboard:hover {
-  background-color: inherit;
-}
 
 @keyframes backColor {
     0%   { color: #0f0d07; transform: translateY(10%);}
@@ -350,6 +264,10 @@ td {
 @keyframes backColorBlorp {
     0%   { color: #7091ea; transform: translateY(10%);}
     100% { color: #dfed25; transform: translateY(0); }
+}
+@keyframes backColorShop {
+    0%   { color: #ffd3e9;; transform: translateY(10%);}
+    100% { color: #C46DC4; transform: translateY(0); }
 }
 @keyframes backColorReverse{
     0%   {background-color: #0f0d07; transform: translateY(-10%);}
