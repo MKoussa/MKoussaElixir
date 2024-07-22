@@ -9,16 +9,16 @@
     <% end %>
   </:actions>
 </.header>
-
+<br />
 <.list>
-  <:item title="Product Description">
+  <:item title="Views"><%= @product.views %></:item>
+  <:item title="Categories"><%= Enum.map(@product.categories, &" #{&1.title} ") %></:item>
+  <:item title="Product Page">
     <.link href={"#{@product.description_link}"}>
-      <.button style="width: 100%;">Go to Description</.button>
+      <.button style="width: 100%;"><%= @product.title %></.button>
     </.link>
   </:item>
   <:item title="Price"><%= MkoussaelixirWeb.CartHTML.currency_to_str(@product.price) %></:item>
-  <:item title="Views"><%= @product.views %></:item>
-  <:item title="Categories"><%= Enum.map(@product.categories, &" #{&1.title} ") %></:item>
 </.list>
 
 <div style="display: flex;">
@@ -33,3 +33,4 @@
     </.link>
   </span>
 </div>
+<br /><br />

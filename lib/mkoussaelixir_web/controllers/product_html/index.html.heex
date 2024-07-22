@@ -11,7 +11,8 @@
 <div>
   <p>Welcome to the MKoussa Marketplace!</p>
   <p>
-    Here you can purchase precompiled FX binaries for Korg LogueSDK compatible synthesizers.<br /><i>
+    Here you can purchase precompiled FX binaries for Korg LogueSDK compatible synthesizers.<br />
+    <i>
       All purchases include lifetime updates!
     </i>
   </p>
@@ -21,12 +22,12 @@
   <.list>
     <:item title={"#{product.title}"}>
       <div style="display: flex; align-items: center;">
-        <div style="width: 40%;">
+        <div style="width: 60%;">
           Price: <%= MkoussaelixirWeb.CartHTML.currency_to_str(product.price) %>
         </div>
-        <div style="width: 60%;">
+        <div style="width: 40%;">
           <.link href={~p"/shop/products/#{product.id}"}>
-            <.button style="width: 100%; height: 100%;">View</.button>
+            <.button style="width: 100%; height: 100%;">👁</.button>
           </.link>
         </div>
       </div>

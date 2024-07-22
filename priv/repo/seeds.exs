@@ -20,14 +20,16 @@ alias Mkoussaelixir.Catalog.Product
 for product <- [
       %{
         title: "Stutter",
-        description: "Korg LogueSDK Stutter Mod FX",
+        description:
+          "Stutter is a Mod FX that samples up to 0.001953125 seconds of audio and repeats the sample up to 50 times.",
         description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/stuttermodeffect",
         price: 2.99,
         views: 0
       },
       %{
         title: "Reverse Echo",
-        description: "Korg LogueSDK Reverse Echo Delay FX",
+        description:
+          "Reverse Echo samples the incoming audio and plays it back in reverse and repeats it. You can set both the audio sample length and how many times it repeats.",
         description_link: "#{MkoussaelixirWeb.Endpoint.url()}/loguesdk/reverseechodelayeffect",
         price: 2.99,
         views: 0
