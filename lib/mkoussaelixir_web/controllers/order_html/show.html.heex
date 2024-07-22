@@ -1,7 +1,7 @@
 <.header>
   Thank You for your order!
   <:subtitle>
-    <strong>User uuid: </strong><%= @order.user_uuid %>
+    <strong>Order Number: </strong><%= @order.id %>
   </:subtitle>
 </.header>
 
@@ -13,7 +13,9 @@
   </:col>
 </.table>
 
-<strong>Total Price</strong>
-<%= MkoussaelixirWeb.CartHTML.currency_to_str(@order.total_price) %>
-
-<.back navigate={~p"/shop/products"}>Back to Products</.back>
+<.list>
+  <:item title="Order Total">
+    <%= MkoussaelixirWeb.CartHTML.currency_to_str(@order.total_price) %>
+  </:item>
+</.list>
+<br />

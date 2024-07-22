@@ -18,13 +18,34 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
     <style>
-      .core-button{
+      .core-input-default {
+      }
+      .header {
+        letter-spacing: 4px;
         font-size: clamp(25px, 3.5vw, 40px);
         font-family: 'Six Caps';
       }
-      .header {
-        font-size: clamp(25px, 3.5vw, 40px);
+      .core-input-label {
+        letter-spacing: 1px;
+        background-color: #C46DC4;
+        color: #ffc7ff;
+        font-size: clamp(25px, 3.5vw, 30px);
         font-family: 'Six Caps';
+        font-style: italic;
+      }
+      .core-input-input{
+        border: 5px solid #C46DC4;
+        border-radius: 0 5px 5px 0;
+        border-left: none;    
+        font-size: clamp(25px, 3.5vw, 40px);
+        font-family: "Big Shoulders Display";
+        background-color: #f9f3f6;
+        color: #C46DC4;
+
+      }
+      .core-button{
+        font-size: clamp(20px, 3.5vw, 30px);
+        font-family: "Big Shoulders Display";
       }
       .core-list{
 
@@ -32,15 +53,13 @@
       .core-list-dt{
       }
       .core-list-item-title{
-        font-size: clamp(20px, 3.5vw, 45px);
+        font-size: clamp(18px, 3.5vw, 40px);
         font-family: 'Six Caps';
-        height: clamp(50px, 10vw, 300px);
         font-style: italic;
       }
       .core-list-item{
-        font-size: clamp(20px, 3.5vw, 60px);
+        font-size: clamp(18px, 3.5vw, 40px);
         font-family: 'Six Caps';
-        height: clamp(50px, 10vw, 300px);
       }
       .mainBody{
         animation-duration: 0.5s;
@@ -58,9 +77,10 @@
         color: inherit;
       }
       p {
-        font-size: clamp(16px, 2vw, 60px);
+        font-size: clamp(15px, 2vw, 25px);
         font-family: "Big Shoulders Display";
         text-align: stable;
+        font-weight: 900;
       }
     </style>
   </head>
@@ -87,7 +107,7 @@
       </div>
 
       <div class="nav" style="font-family: 'Six Caps';">
-        <a class="navButton" style="font-size: clamp(25px, 3.5vw, 90px);" href={~p"/"}>Home</a>
+        <a class="navButton" style="font-size: clamp(25px, 3.5vw, 60px);" href={~p"/"}>Home</a>
         <br /><br />
         <a
           class="navButton"
@@ -110,11 +130,11 @@
       </div>
       <div style="grid-column: 3; grid-row: 2;">
         <div class="nav-user-div" style="font-family: 'Six Caps';">
-          <%= if @current_user do %>
-            <ul
-              class="nav_user"
-              style="text-size: larger; font-family: 'Six Caps'; animation-name: backColorReverseShop;"
-            >
+          <ul
+            class="nav_user"
+            style="text-size: larger; font-family: 'Six Caps'; animation-name: backColorReverseShop;"
+          >
+            <%= if @current_user do %>
               <li class="nav_user_li">
                 <.link
                   class="nav_user_button"
@@ -143,14 +163,23 @@
                   Settings
                 </a>
               </li>
-            </ul>
-          <% end %>
+            <% end %>
+            <li class="nav_user_li">
+              <a
+                class="nav_user_button"
+                style="font-size: clamp(25px, 3.5vw, 50px);"
+                href={~p"/shop/cart/"}
+              >
+                Cart
+              </a>
+            </li>
+          </ul>
         </div>
         <div class="mainBody" style="animation-name: backColorShop;">
           <%= @inner_content %>
         </div>
       </div>
-
+      <br />
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
         <h1
           class="header-scroll"

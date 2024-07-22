@@ -14,12 +14,27 @@
     <% end %>
   <% end %>
 
-  <h3><a href={~p"/shop/products"}>Shop</a></h3>
+  <.link href={~p"/shop/products"}>
+    <.button style="width: 30%; background-color: #ffd3e9; color: #394f38; border-color: #ffd3e9; font-family: 'Six Caps'; font-size: clamp(20px, 3.5vw, 30px);">
+      Shop
+    </.button>
+  </.link>
   <p>Give me your <i>money</i>.</p>
-  <h3><a href={~p"/loguesdk/"}>Korg LogueSDK</a></h3>
+  <.link href={~p"/loguesdk"}>
+    <.button style="width: 40%; background-color: gold; border-color: gold; color: black; font-family: 'Bebas Neue';">
+      Korg LogueSDK
+    </.button>
+  </.link>
   <p>Precompiled file downloads and Github links to Logue-SDK projects.</p>
-  <h3><a href={~p"/mkoussa/"}>About</a></h3>
+  <.link href={~p"/mkoussa"}>
+    <.button style="width: 30%;">About</.button>
+  </.link>
   <p>What does this all even <i>mean</i>?</p>
-  <h3><a href={~p"/blorp"}>Blorp</a></h3>
+  <.link href={~p"/blorp"}>
+    <.button style="width: 50%; background-color: #7091ea; color: #394f38; border-color: #7091ea; font-family: 'Major Mono Display';">
+      B L O R P
+    </.button>
+  </.link>
+
   <p>Browser Based Synthesizer using the p5 JS Library.</p>
 </section>
