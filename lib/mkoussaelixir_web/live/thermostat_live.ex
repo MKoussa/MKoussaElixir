@@ -9,7 +9,11 @@ defmodule MkoussaelixirWeb.ThermostatLive do
     """
   end
 
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    IO.puts("---- HERE ----")
+    IO.inspect(session)
+    IO.puts("---- END ----")
+
     temperature = 70
     {:ok, assign(socket, :temperature, temperature)}
   end

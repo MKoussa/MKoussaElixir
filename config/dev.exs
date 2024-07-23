@@ -26,7 +26,9 @@ config :mkoussaelixir, MkoussaelixirWeb.Endpoint,
   debug_errors: true,
   secret_key_base: System.get_env("SECRET_KEY_BASE", "no secret found"),
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:mkoussaelixir, ~w(--sourcemap=inline --watch)]}
+    esbuild:
+      {Esbuild, :install_and_run,
+       [:mkoussaelixir, ~w(--sourcemap=inline --watch --loader:.jpg=file)]}
   ]
 
 # ## SSL Support

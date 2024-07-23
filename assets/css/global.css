@@ -103,8 +103,9 @@ a:visited {
     background-color: #C46DC4;
     animation-name: backColorReverse;
     animation-duration: 3s;
+    padding: 1%;
 }
-.navButton{
+.navButton {
     margin-top: 10%;
     transition: 0.8s;
     display: table;
