@@ -16,6 +16,17 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
     <style>
+      body {
+        animation: rainbow 12s linear;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .nav {
+        background-color: none;
+        animation: rainbow 16s linear;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
       .slider:hover {
           opacity: 1;
         }
@@ -112,13 +123,14 @@
 
       <div
         class="nav"
-        style="grid-column: 2 / 5; font-family: 'Major Mono Display'; background-color: #dfed25; animation-name: backColorReverseBlorp; mix-blend-mode: normal;"
+        style="grid-column: 2 / 5; font-family: 'Major Mono Display'; animation: backColorReverseBlorp 1s ease-in;"
       >
         <a class="navButton" href={~p"/"}>home</a> <br /><br />
         <a class="navButton" href={~p"/blorp/original"}>original</a> <br /><br />
       </div>
-      <div style="grid-column: 3 / 5; grid-row: 2 / 2">
+      <div style="grid-column: 3 / 5; grid-row: 2 / 2; background-color: rgb(0,117,215);">
         <%= @inner_content %>
+        <br />
       </div>
 
       <%!-- <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">

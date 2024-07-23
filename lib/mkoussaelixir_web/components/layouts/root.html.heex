@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="[scrollbar-gutter:stable]">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -31,11 +31,16 @@
         border-color: #C46DC4;
         color:  #ffc7ff;
       }
+      .core-button {
+        mix-blend-mode: difference;
+      }
       body  {
+        background-color: #0f070b;
         background-image: url(/images/purp-opt-darker.jpg);
-        background-size:cover;
-        -webkit-animation: slidein 150s;
-        animation: slidein 150s;
+        background-size: fill;
+        background-position: center;
+        -webkit-animation: slidein 30s;
+        animation: slidein 30s;
 
         -webkit-animation-fill-mode: forwards;
         animation-fill-mode: forwards;
@@ -46,25 +51,34 @@
         -webkit-animation-direction: alternate;
         animation-direction: alternate;              
       }
-
-      @-webkit-keyframes slidein {
-        from {background-position: top; background-size:3264px; }
-        to {background-position: -100px 0px;background-size:1616px;}
+      h1, h2, h3 {
+        font-family: Sixtyfour, Helvetica, sans-serif;
       }
-
+      h1 {
+        font-size: clamp(6px, 3vw, 40px);  
+      }
+      h2, h3 {
+        mix-blend-mode: difference;
+      }
+      @-webkit-keyframes slidein {
+        from {background-position: -2200px -2600px; background-size: 9264px; }
+        to {background-position: center; background-size: 6264px;}
+      }
       @keyframes slidein {
-        from {background-position: top;background-size:3264px; }
-        to {background-position: -100px 0px;background-size:1616px;}
-      }          
+        from {background-position: -2200px -2600px; background-size: 9264px; }
+        to {background-position: center; background-size: 6264px;}
+      }                   
     </style>
   </head>
-  <body style="background-color: #0f070b;">
+  <body>
     <div class="grid-container">
       <div class="header-container-top" style=" grid-column: 1 / 5;grid-row: 1">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">
-          <span :for={_n <- 1..4}>MKOUSSA&nbsp;</span>
-          <span style="color: #00ff33;">WELCOME&nbsp;HOME&nbsp;</span>
-          <span :for={_n <- 1..9}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..2}>MKOUSSA&nbsp;</span>
+          <span style="mix-blend-mode: difference; animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
+            WELCOME&nbsp;
+          </span>
+          <span :for={_n <- 1..11}>MKOUSSA&nbsp;</span>
         </h1>
       </div>
 
@@ -81,7 +95,13 @@
         <a class="navButton" href={~p"/mkoussa/"}>About</a> <br /><br />
         <a class="navButton" href={~p"/blorp"}>Blorp</a> <br /><br />
         <%= if is_nil(@current_user) do %>
-          <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
+          <a
+            class="navButton"
+            href={~p"/users/log_in"}
+            style="animation: rainbow-color 6s ease-in; animation-iteration-count: infinite;"
+          >
+            Log In
+          </a> <br /><br />
         <% end %>
       </div>
       <div style="grid-column: 3; grid-row: 2;">
