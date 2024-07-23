@@ -1,40 +1,25 @@
-<section>
+<section style="align-items: center;">
   <%= if is_nil(@user) do %>
     <h1>Welcome, <i>Friend</i></h1>
-    <p>
-      You should either <.link href={~p"/users/log_in"}>Log In</.link>
-      or <.link href={~p"/users/register"}>Register</.link>
-    </p>
+    <br />
+    <.link href={~p"/users/log_in"}>
+      <.button>Log In</.button>
+    </.link>
+    <br />
+    <br />
+    <br />
+    <.link href={~p"/users/register"}>
+      <.button>Create an Account</.button>
+    </.link>
+    <br />
   <% else %>
     <%= if is_nil(@user.confirmed_at) do %>
       <p>Please confirm your account.</p>
     <% else %>
       <h1>Hello Again, <%= @user.email %></h1>
       <p>It's so good to see you again.</p>
+      <br />
+      <p>Thank you for being a member and for being you!</p>
     <% end %>
   <% end %>
-
-  <.link href={~p"/shop/products"}>
-    <.button style="width: 30%; background-color: #ffd3e9; color: #394f38; border-color: #ffd3e9; font-family: 'Six Caps'; font-size: clamp(20px, 3.5vw, 30px);">
-      Shop
-    </.button>
-  </.link>
-  <p>Give me your <i>money</i>.</p>
-  <.link href={~p"/loguesdk"}>
-    <.button style="width: 40%; background-color: gold; border-color: gold; color: black; font-family: 'Bebas Neue';">
-      Korg LogueSDK
-    </.button>
-  </.link>
-  <p>Precompiled file downloads and Github links to Logue-SDK projects.</p>
-  <.link href={~p"/mkoussa"}>
-    <.button style="width: 30%;">About</.button>
-  </.link>
-  <p>What does this all even <i>mean</i>?</p>
-  <.link href={~p"/blorp"}>
-    <.button style="width: 50%; background-color: #7091ea; color: #394f38; border-color: #7091ea; font-family: 'Major Mono Display';">
-      B L O R P
-    </.button>
-  </.link>
-
-  <p>Browser Based Synthesizer using the p5 JS Library.</p>
 </section>

@@ -19,6 +19,10 @@
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
     <style>
+      .navButton {
+        font-size: clamp(12px, 2vw, 18px);
+        color: #ffc7ff; 
+      }
       .core-input-label {
         background-color: #C46DC4;
         color: #ffc7ff;
@@ -27,6 +31,31 @@
         border-color: #C46DC4;
         color:  #ffc7ff;
       }
+      body  {
+        background-image: url(/images/purp-opt-darker.jpg);
+        background-size:cover;
+        -webkit-animation: slidein 150s;
+        animation: slidein 150s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+      }
+
+      @-webkit-keyframes slidein {
+        from {background-position: top; background-size:3264px; }
+        to {background-position: -100px 0px;background-size:1616px;}
+      }
+
+      @keyframes slidein {
+        from {background-position: top;background-size:3264px; }
+        to {background-position: -100px 0px;background-size:1616px;}
+      }          
     </style>
   </head>
   <body style="background-color: #0f070b;">
