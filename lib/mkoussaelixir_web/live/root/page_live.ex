@@ -1,12 +1,16 @@
 defmodule MkoussaelixirWeb.PageLive do
   use MkoussaelixirWeb, :live_view
 
+  on_mount {MkoussaelixirWeb.UserAuth, :mount_current_user}
+
   attr :user, :string, required: false, default: nil
 
   def render(assigns) do
+    IO.inspect(assigns)
+    IO.puts("--------------ENDNEDNENDNEDNED-------------")
     ~H"""
     <section style="align-items: center; animation-name: backColor; animation-duration: 2s;">
-      <%= if is_nil(@user) do %>
+      <%= if is_nil(assigns.user) do %>
         <h2>Welcome, <i>Friend</i></h2>
         <br />
         <.link href={~p"/users/log_in"}>
@@ -41,6 +45,6 @@ defmodule MkoussaelixirWeb.PageLive do
     IO.inspect(params)
     IO.inspect(session)
     IO.inspect(socket)
-    {:ok, assign(socket, :user, nil)}
+    {:ok, assign(socket, :user, socket.assigns.current_user)}
   end
 end

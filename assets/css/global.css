@@ -138,6 +138,10 @@ a:visited {
     font-weight: bold;
     color: #C46DC4;
 }
+.loguesdk-mainBody {
+    animation-name: backColorLogueSDK; 
+    animation-duration: 2s;
+}
 
 .download-table {
     margin-left: auto;
