@@ -93,6 +93,15 @@ a:visited {
 .nav_user_button:hover {
     letter-spacing: 0.5px;
 }
+.nav-button-svg {
+    display: block;
+    margin-top: 10%;
+    margin: auto;
+    transition: 0.8s;
+    display: table;
+    width: clamp(30px, 2.5vw, 120px);
+    height: clamp(30px, 2.5vw, 120px);
+}
 .nav {
     font-family: Megrim, Helvetica, sans-serif;
     align-content: center;
@@ -328,6 +337,44 @@ a:visited {
 @keyframes marqueeVert{
     0% { transform: translateY(100%);  }
     100% { transform: translateY(0);  }
+}
+@keyframes rainbow-svg{
+    100%,0%{
+        fill: rgb(0,255,0);
+    }
+    8%{
+        fill: rgb(0,255,127);
+    }
+    16%{
+        fill: rgb(0,255,255);
+    }
+    25%{
+        fill: rgb(0,127,255);
+    }
+    33%{
+        fill: rgb(0,0,255);
+    }
+    41%{
+        fill: #C46DC4;
+    }
+    50%{
+        fill: rgb(255,0,255);
+    }
+    58%{
+        fill: rgb(255,0,127);
+    }      
+    66%{
+        fill: rgb(255,0,0);
+    }
+    74%{
+        fill: rgb(255,127,0);
+    }
+    84%{
+        fill: rgb(255,255,0);
+    }
+    91%{
+        fill: rgb(127,255,0);
+    }
 }
 @keyframes rainbow{
     100%,0%{

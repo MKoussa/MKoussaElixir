@@ -98,8 +98,6 @@ defmodule MkoussaelixirWeb.Router do
     end
   end
 
-  # alias MkoussaelixirWeb.ThermostatLive
-  alias MkoussaelixirWeb.LoguesdkLive
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do
@@ -118,7 +116,7 @@ defmodule MkoussaelixirWeb.Router do
 
     get "/users/register", UserController, :new_registration
     post "/users/register", UserController, :create_registration
-    get "/users/log_in", UserController, :new_session
+    live "/users/log_in", RootLive.NewSessionLive
     post "/users/log_in", UserController, :create_session
     get "/users/reset_password", UserController, :new_reset_password
     post "/users/reset_password", UserController, :create_reset_password

@@ -23,7 +23,6 @@
         background-color: none;
         animation: rainbow 16s linear;
         animation-iteration-count: infinite;
-        animation-timing-function: linear;
       }
       .slider:hover {
           opacity: 1;
@@ -105,7 +104,7 @@
       <div class="header-container-top" style=" grid-column: 1 / 3; grid-row: 1 / 2">
         <h1
           class="header-scroll"
-          style="animation: marquee 100s linear infinite; grid-column: 1 / 5; grid-row: 1 / 2; font-family: 'Major Mono Display'"
+          style="animation: marquee 100s linear infinite; grid-column: 1 / 3; grid-row: 1 / 2; font-family: 'Major Mono Display'"
         >
           <span :for={_n <- 1..2}>PLAY&nbsp;AND&nbsp;LISTEN&nbsp;AND&nbsp;</span>
           <span style="color: #00ff33;">_blorp_v1.<%= System.system_time() %>&nbsp;</span>
@@ -114,7 +113,7 @@
       </div>
       <div
         class="nav"
-        style="grid-column: 2 / 3; font-family: 'Major Mono Display'; animation: backColorReverseBlorp 1s ease-in;"
+        style="grid-column: 2 / 3; grid-row: 2 / 2; font-family: 'Major Mono Display';"
       >
         <a class="navButton" href={~p"/"}>home</a> <br /><br />
         <a class="navButton" href={~p"/blorp/original"}>original</a> <br /><br />

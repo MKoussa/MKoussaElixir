@@ -8,6 +8,7 @@ defmodule MkoussaelixirWeb.PageLive do
   def render(assigns) do
     IO.inspect(assigns)
     IO.puts("--------------ENDNEDNENDNEDNED-------------")
+
     ~H"""
     <section style="align-items: center; animation-name: backColor; animation-duration: 2s;">
       <%= if is_nil(assigns.user) do %>
