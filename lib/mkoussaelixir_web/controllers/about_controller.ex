@@ -1,7 +1,7 @@
-defmodule MkoussaelixirWeb.AboutController do
-  use MkoussaelixirWeb, :controller
+# defmodule MkoussaelixirWeb.AboutController do
+#   use MkoussaelixirWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, :index)
-  end
-end
+#   def index(conn, _params) do
+#     render(conn, :index)
+#   end
+# end

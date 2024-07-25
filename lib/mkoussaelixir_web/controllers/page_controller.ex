@@ -1,9 +1,9 @@
-defmodule MkoussaelixirWeb.PageController do
-  use MkoussaelixirWeb, :controller
+# defmodule MkoussaelixirWeb.PageController do
+#   use MkoussaelixirWeb, :controller
 
-  def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    render(conn, :home, layout: false, user: conn.assigns.current_user)
-  end
-end
+#   def home(conn, _params) do
+#     # The home page is often custom made,
+#     # so skip the default app layout.
+#     render(conn, :home, layout: false, user: conn.assigns.current_user)
+#   end
+# end

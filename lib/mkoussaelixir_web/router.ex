@@ -32,9 +32,10 @@ defmodule MkoussaelixirWeb.Router do
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :home]
 
-    get "/", PageController, :home
-    get "/mkoussa", AboutController, :index
+    live "/", PageLive
+    live "/mkoussa", AboutLive
     live "/thermostat", ThermostatLive
+    # live "/about_live", AboutLive
   end
 
   pipeline :blorp do

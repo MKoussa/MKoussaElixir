@@ -45,10 +45,11 @@
         class="nav"
         style=" font: x-large 'Bebas Neue'; animation-name: backColorReverseLogueSDK; background-color: gold;"
       >
-        <a class="navButton" href="/">Home</a> <br /><br />
-        <a class="navButton" href={~p"/loguesdk/effects/"}>Effects</a> <br /><br />
-        <a class="navButton" href={~p"/loguesdk/oscillators/"}>Oscillators</a> <br /><br />
-        <a class="navButton" href={~p"/loguesdk/resources/"}>Resources</a> <br /><br />
+        <.link class="navButton" navigate={~p"/"}>Home</.link> <br /><br />
+        <.link class="navButton" patch={~p"/loguesdk/effects/"}>Effects</.link> <br /><br />
+        <.link class="navButton" patch={~p"/loguesdk/oscillators/"}>Oscillators</.link>
+        <br /><br />
+        <.link class="navButton" patch={~p"/loguesdk/resources/"}>Resources</.link> <br /><br />
         <%= if is_nil(@current_user) do %>
           <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
         <% end %>
