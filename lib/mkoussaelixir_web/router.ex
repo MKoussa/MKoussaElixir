@@ -32,8 +32,8 @@ defmodule MkoussaelixirWeb.Router do
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :home]
 
-    get "/", PageController, :home
-    get "/mkoussa", AboutController, :index
+    live "/", PageLive
+    live "/mkoussa", AboutLive
     live "/thermostat", ThermostatLive
   end
 
@@ -73,12 +73,12 @@ defmodule MkoussaelixirWeb.Router do
   scope "/loguesdk", MkoussaelixirWeb do
     pipe_through [:browser, :loguesdk]
 
-    get "/", LoguesdkController, :index
-    get "/stuttermodeffect", LoguesdkController, :stutter_mod_fx
-    get "/reverseechodelayeffect", LoguesdkController, :reverse_echo_delay_fx
-    get "/effects", LoguesdkController, :fx
-    get "/oscillators", LoguesdkController, :oscillators
-    get "/resources", LoguesdkController, :resources
+    live "/", LoguesdkLive.IndexLive
+    live "/stuttermodeffect", LoguesdkLive.StutterModLive
+    live "/reverseechodelayeffect", LoguesdkLive.ReverseEchoDelayLive
+    live "/effects", LoguesdkLive.EffectsLive
+    live "/oscillators", LoguesdkLive.OscillatorsLive
+    live "/resources", LoguesdkLive.ResourcesLive
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
@@ -99,6 +99,7 @@ defmodule MkoussaelixirWeb.Router do
   end
 
   # alias MkoussaelixirWeb.ThermostatLive
+  alias MkoussaelixirWeb.LoguesdkLive
   alias Mkoussaelixir.ShoppingCart
 
   defp fetch_current_cart(conn, _opts) do

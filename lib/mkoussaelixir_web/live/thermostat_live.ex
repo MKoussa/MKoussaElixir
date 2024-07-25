@@ -6,6 +6,10 @@ defmodule MkoussaelixirWeb.ThermostatLive do
     Curr Temp:<%= @temperature %>
     <.button phx-click="inc_temperature">+</.button>
     <.button phx-click="dec_temperature">-</.button>
+    <.link patch={~p"/mkoussa"}>
+      <.button>About</.button>
+    </.link>
+    <br /><br />
     """
   end
 
