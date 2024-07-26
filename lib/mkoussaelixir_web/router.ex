@@ -32,9 +32,40 @@ defmodule MkoussaelixirWeb.Router do
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :home]
 
-    live "/", PageLive
-    live "/mkoussa", AboutLive
-    live "/thermostat", ThermostatLive
+    live_session :redirect_if_user_is_authenticated,
+      on_mount: [] do
+      live "/", PageLive
+      live "/mkoussa", AboutLive
+      live "/thermostat", ThermostatLive
+
+      ## Authentication routes
+      live "/users/log_in", UserLoginLive, :new
+      live "/users/register", UserRegistrationLive, :new
+      live "/users/reset_password", UserForgotPasswordLive, :new
+      live "/users/reset_password/:token", UserResetPasswordLive, :edit
+
+      live "/users/settings", UserSettingsLive, :edit
+      live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
+      live "/users/confirm/:token", UserConfirmationLive, :edit
+      live "/users/confirm", UserConfirmationInstructionsLive, :new
+    end
+
+    delete "/users/log_out", UserSessionController, :delete
+  end
+
+  ## Authentication routes
+  scope "/users", MkoussaelixirWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
+
+    post "/log_in", UserSessionController, :create
+  end
+
+  # TBD
+  scope "/users", MkoussaelixirWeb do
+    pipe_through [:browser, :require_authenticated_user, :home]
+
+    get "/orders", UserController, :show_orders
   end
 
   pipeline :blorp do
@@ -111,36 +142,36 @@ defmodule MkoussaelixirWeb.Router do
 
   ## Authentication routes
 
-  scope "/", MkoussaelixirWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
+  # scope "/", MkoussaelixirWeb do
+  #   pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
 
-    get "/users/register", UserController, :new_registration
-    post "/users/register", UserController, :create_registration
-    live "/users/log_in", RootLive.NewSessionLive
-    post "/users/log_in", UserController, :create_session
-    get "/users/reset_password", UserController, :new_reset_password
-    post "/users/reset_password", UserController, :create_reset_password
-    get "/users/reset_password/:token", UserController, :edit_reset_password
-    put "/users/reset_password/:token", UserController, :update_reset_password
-  end
+  #   get "/users/register", UserController, :new_registration
+  #   post "/users/register", UserController, :create_registration
+  #   live "/users/log_in", RootLive.NewSessionLive
+  #   post "/users/log_in", UserController, :create_session
+  #   get "/users/reset_password", UserController, :new_reset_password
+  #   post "/users/reset_password", UserController, :create_reset_password
+  #   get "/users/reset_password/:token", UserController, :edit_reset_password
+  #   put "/users/reset_password/:token", UserController, :update_reset_password
+  # end
 
-  scope "/", MkoussaelixirWeb do
-    pipe_through [:browser, :require_authenticated_user, :home]
+  # scope "/", MkoussaelixirWeb do
+  #   pipe_through [:browser, :require_authenticated_user, :home]
 
-    get "/users/settings", UserController, :edit_settings
-    put "/users/settings", UserController, :update_settings
-    get "/users/settings/confirm_email/:token", UserController, :confirm_email
+  #   get "/users/settings", UserController, :edit_settings
+  #   put "/users/settings", UserController, :update_settings
+  #   get "/users/settings/confirm_email/:token", UserController, :confirm_email
 
-    get "/users/orders", UserController, :show_orders
-  end
+  #   get "/users/orders", UserController, :show_orders
+  # end
 
-  scope "/", MkoussaelixirWeb do
-    pipe_through [:browser, :home]
+  # scope "/", MkoussaelixirWeb do
+  #   pipe_through [:browser, :home]
 
-    delete "/users/log_out", UserController, :delete_session
-    get "/users/confirm", UserController, :new_confirmation
-    post "/users/confirm", UserController, :create_confirmation
-    get "/users/confirm/:token", UserController, :edit_confirmation
-    post "/users/confirm/:token", UserController, :update_confirmation
-  end
+  #   delete "/users/log_out", UserController, :delete_session
+  #   get "/users/confirm", UserController, :new_confirmation
+  #   post "/users/confirm", UserController, :create_confirmation
+  #   get "/users/confirm/:token", UserController, :edit_confirmation
+  #   post "/users/confirm/:token", UserController, :update_confirmation
+  # end
 end
