@@ -6,28 +6,30 @@ defmodule MkoussaelixirWeb.PageLive do
   attr :user, :string, required: false, default: nil
 
   def render(assigns) do
-    IO.inspect(assigns)
-    IO.puts("--------------ENDNEDNENDNEDNED-------------")
     ~H"""
-    <section style="align-items: center; animation-name: backColor; animation-duration: 2s;">
+    <div style="width: auto; animation-name: backColor; animation-duration: 2s;">
       <%= if is_nil(assigns.user) do %>
         <h2>Welcome, <i>Friend</i></h2>
         <br />
-        <.link href={~p"/users/log_in"}>
+        <.link patch={~p"/users/log_in"}>
           <.button>Log In</.button>
         </.link>
         <br />
         <br />
         <br />
-        <.link href={~p"/users/register"}>
+        <.link patch={~p"/users/register"}>
           <.button>Create an Account</.button>
         </.link>
         <br />
       <% else %>
         <%= if is_nil(@user.confirmed_at) do %>
-          <p>Please confirm your account.</p>
+          <h3>Check Your Email</h3>
+          <p>A confirmation email was sent to <i><%= @user.email %></i>.</p>
+          <p>
+            To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @user.email %>.
+          </p>
         <% else %>
-          <h2>Hello Again, <%= @user.email %></h2>
+          <h2>Hello Again!</h2>
           <p>It's <i>so</i> good to see you again!</p>
           <br />
           <p>Thank you for being a member and for being you!</p>
@@ -37,7 +39,7 @@ defmodule MkoussaelixirWeb.PageLive do
           </h3>
         <% end %>
       <% end %>
-    </section>
+    </div>
     """
   end
 

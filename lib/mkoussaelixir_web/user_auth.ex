@@ -96,11 +96,14 @@ defmodule MkoussaelixirWeb.UserAuth do
     if user = user_token && Accounts.get_user_by_session_token(user_token) do
       conn
       |> assign(:current_uuid, user.uuid)
+      |> put_session(:current_uuid, user.uuid)
       |> assign(:current_user, user)
+      |> put_session(:current_user, user)
     else
       if curr_uuid = get_session(conn, :current_uuid) do
         conn
         |> assign(:current_uuid, curr_uuid)
+        |> put_session(:current_uuid, curr_uuid)
       else
         new_uuid = Ecto.UUID.generate()
 

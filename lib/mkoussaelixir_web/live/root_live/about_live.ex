@@ -21,7 +21,7 @@ defmodule MkoussaelixirWeb.AboutLive do
       </author>
 
       <h2>MKOUSSA</h2>
-      <span style="display: flex;">
+      <span style="display: block;">
         <iframe
           style="border: 0; width: 20vw; height: 20vw;"
           src="https://bandcamp.com/EmbeddedPlayer/album=3490434269/size=large/bgcol=333333/linkcol=e99708/tracklist=true/transparent=true/"
