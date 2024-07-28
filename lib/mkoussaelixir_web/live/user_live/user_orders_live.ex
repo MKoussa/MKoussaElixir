@@ -1,6 +1,8 @@
 defmodule MkoussaelixirWeb.UserLive.UserOrdersLive do
   use MkoussaelixirWeb, :live_view
 
+  on_mount {MkoussaelixirWeb.UserAuth, :ensure_authenticated}
+
   def render(assigns) do
     ~H"""
     <.header>
@@ -30,5 +32,17 @@ defmodule MkoussaelixirWeb.UserLive.UserOrdersLive do
       </:col>
     </.table>
     """
+  end
+
+  alias Mkoussaelixir.Orders
+
+  def mount(_params, _session, socket) do
+    IO.inspect(socket.assigns)
+    curUse = socket.assigns.current_user
+    orders = Orders.get_orders!(curUse.uuid)
+    {:ok,
+      socket
+      |> assign(orders: orders)
+      |> assign(current_user: socket.assigns.current_user)}
   end
 end

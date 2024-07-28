@@ -4,7 +4,7 @@ html, body {
 .header-container-top {
     overflow: hidden;
     animation-name: backColorTransitionTop;
-    animation-duration: 8s;
+    animation-duration: 12s;
     animation-timing-function: ease-in;
     height: clamp(10px, 8vw, 100px);
     align-content: center;
@@ -12,7 +12,7 @@ html, body {
 .header-container-bottom {
     overflow: hidden;
     animation-name: backColorTransitionBottom;
-    animation-duration: 8s;
+    animation-duration: 12s;
     animation-timing-function: ease-in;
     height: clamp(10px, 8vw, 100px);
     align-content: center;
@@ -20,7 +20,7 @@ html, body {
 .header-container-side {
     overflow: hidden;
     animation-name: backColorTransitionSide;
-    animation-duration: 8s;
+    animation-duration: 12s;
     animation-timing-function: ease-in;
     width: 7vw;
 }
@@ -138,7 +138,6 @@ a:visited {
     letter-spacing: 0.5px;
 }
 .mainBody {
-    width: clamp(80px, 60vw, 700px);
     text-align: center;
     padding-left: 10%;
     padding-right: 10%;

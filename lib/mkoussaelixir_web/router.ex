@@ -32,7 +32,7 @@ defmodule MkoussaelixirWeb.Router do
   scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :home]
 
-    live_session :redirect_if_user_is_authenticated,
+    live_session :default,
       on_mount: [] do
       live "/", PageLive
       live "/mkoussa", AboutLive
@@ -46,6 +46,7 @@ defmodule MkoussaelixirWeb.Router do
 
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      live "/users/orders", UserLive.UserOrdersLive
 
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
@@ -59,13 +60,6 @@ defmodule MkoussaelixirWeb.Router do
     pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
 
     post "/log_in", UserSessionController, :create
-  end
-
-  # TBD
-  scope "/users", MkoussaelixirWeb do
-    pipe_through [:browser, :require_authenticated_user, :home]
-
-    get "/orders", UserController, :show_orders
   end
 
   pipeline :blorp do

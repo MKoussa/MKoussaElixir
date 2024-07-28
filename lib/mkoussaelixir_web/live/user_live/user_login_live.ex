@@ -21,6 +21,10 @@ defmodule MkoussaelixirWeb.UserLoginLive do
       </.header>
 
       <.simple_form for={@form} id="login_form" action={~p"/users/log_in"} phx-update="ignore">
+        <.error :if={[] != @form[:errors]}>
+          Oops, something went wrong! Please check the errors below.
+        </.error>
+
         <.input field={@form[:email]} type="email" label="Email" required />
         <.input field={@form[:password]} type="password" label="Password" required />
 
@@ -29,7 +33,7 @@ defmodule MkoussaelixirWeb.UserLoginLive do
           <br />
         </:actions>
         <:actions>
-          <.button phx-disable-with="Logging in..." class="w-full">
+          <.button phx-disable-with="Logging in...">
             Log in <span aria-hidden="true">→</span>
           </.button>
         </:actions>
