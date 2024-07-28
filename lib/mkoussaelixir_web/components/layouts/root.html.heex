@@ -84,7 +84,7 @@
             <%= if is_nil(@current_user) do %>
               WELCOME&nbsp;
             <% else %>
-              <%= @user.email %>
+              <%= @current_user.email %>
             <% end %>
           </span>
           <span :for={_n <- 1..11}>MKOUSSA&nbsp;</span>

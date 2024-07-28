@@ -33,7 +33,7 @@ defmodule MkoussaelixirWeb.Router do
     pipe_through [:browser, :home]
 
     live_session :default,
-      on_mount: [] do
+      on_mount: [{MkoussaelixirWeb.UserAuth, :mount_current_user}] do
       live "/", PageLive
       live "/mkoussa", AboutLive
       live "/thermostat", ThermostatLive
@@ -95,15 +95,19 @@ defmodule MkoussaelixirWeb.Router do
     plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :loguesdk}
   end
 
-  scope "/loguesdk", MkoussaelixirWeb do
+  scope "/", MkoussaelixirWeb do
     pipe_through [:browser, :loguesdk]
 
-    live "/", LoguesdkLive.IndexLive
-    live "/stuttermodeffect", LoguesdkLive.StutterModLive
-    live "/reverseechodelayeffect", LoguesdkLive.ReverseEchoDelayLive
-    live "/effects", LoguesdkLive.EffectsLive
-    live "/oscillators", LoguesdkLive.OscillatorsLive
-    live "/resources", LoguesdkLive.ResourcesLive
+    live_session :default_loguesdk,
+      root_layout: {MkoussaelixirWeb.Layouts, :loguesdk},
+      on_mount: [] do
+      live "/loguesdk", LoguesdkLive.IndexLive
+      live "/loguesdk/stuttermodeffect", LoguesdkLive.StutterModLive
+      live "/loguesdk/reverseechodelayeffect", LoguesdkLive.ReverseEchoDelayLive
+      live "/loguesdk/effects", LoguesdkLive.EffectsLive
+      live "/loguesdk/oscillators", LoguesdkLive.OscillatorsLive
+      live "/loguesdk/resources", LoguesdkLive.ResourcesLive
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

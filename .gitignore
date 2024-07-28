@@ -39,3 +39,6 @@ assets/node_modules/
 *.beam
 config/*.secret.exs
 .elixir_ls/
+
+# I don't give a shit about your vscode environment.
+settings.json
