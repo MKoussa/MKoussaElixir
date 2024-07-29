@@ -7,7 +7,7 @@ defmodule MkoussaelixirWeb.UserConfirmationLive do
 
   def render(%{live_action: :edit} = assigns) do
     ~H"""
-    <div>
+    <div class="root-transition">
       <.header>Registration Confirmation</.header>
 
       <p>Please confirm you account by pressing the button below.</p>

@@ -7,7 +7,7 @@ defmodule MkoussaelixirWeb.PageLive do
 
   def render(assigns) do
     ~H"""
-    <div style="width: auto; animation-name: backColor; animation-duration: 2s;">
+    <div class="root-transition">
       <%= if is_nil(assigns.user) do %>
         <h2>Welcome, <i>Friend</i></h2>
         <br />
@@ -26,6 +26,8 @@ defmodule MkoussaelixirWeb.PageLive do
           <h3>Check Your Email</h3>
           <p>A confirmation email was sent to <i><%= @user.email %></i>.</p>
           <p>
+            color: black;
+            font-family: 'Bebas Neue';
             To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @user.email %>.
           </p>
         <% else %>

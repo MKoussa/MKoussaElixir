@@ -1,6 +1,8 @@
-html, body {
+html,
+body {
     font-family: "Noto Sans", sans-serif;
 }
+
 .header-container-top {
     overflow: hidden;
     animation-name: backColorTransitionTop;
@@ -9,6 +11,7 @@ html, body {
     height: clamp(10px, 8vw, 100px);
     align-content: center;
 }
+
 .header-container-bottom {
     overflow: hidden;
     animation-name: backColorTransitionBottom;
@@ -17,6 +20,7 @@ html, body {
     height: clamp(10px, 8vw, 100px);
     align-content: center;
 }
+
 .header-container-side {
     overflow: hidden;
     animation-name: backColorTransitionSide;
@@ -24,6 +28,7 @@ html, body {
     animation-timing-function: ease-in;
     width: 7vw;
 }
+
 .header-scroll {
     font-family: Sixtyfour, Workbench, Nabla, Astloch, Helvetica, sans-serif;
     font-size: clamp(10px, 6vw, 50px);
@@ -31,6 +36,7 @@ html, body {
     white-space: nowrap;
     color: #C46DC4;
 }
+
 .grid-container {
     display: grid;
     gap: -10%;
@@ -44,9 +50,11 @@ a:link {
     color: inherit;
     text-decoration-line: underline;
 }
+
 a:hover {
     text-decoration-line: none;
 }
+
 a:visited {
     color: inherit;
     text-decoration-line: none;
@@ -67,32 +75,39 @@ a:visited {
     animation-name: backColorReverse;
     animation-duration: 3s;
 }
+
 .nav-user-div {
     mix-blend-mode: difference;
-    animation-name: backColorTransitionSide; 
+    animation-name: backColorTransitionSide;
     animation-duration: 3s;
 }
+
 .nav_user_li {
-    float: right;   
-    display: block; 
+    float: right;
+    display: block;
     color: #0f0d07;
-    margin-right: 5%; 
+    margin-right: 5%;
 }
-.nav_user_button{
+
+.nav_user_button {
     transition: 0.8s;
     text-decoration-line: none;
     font-weight: bold;
     font-size: clamp(8px, 1.5vw, 18px);
 }
-.nav_user_button:link{
+
+.nav_user_button:link {
     text-decoration-line: none;
 }
-.nav_user_button:visited{
+
+.nav_user_button:visited {
     text-decoration-line: none;
 }
+
 .nav_user_button:hover {
     letter-spacing: 0.5px;
 }
+
 .nav-button-svg {
     display: block;
     margin-top: 10%;
@@ -102,6 +117,7 @@ a:visited {
     width: clamp(30px, 2.5vw, 120px);
     height: clamp(30px, 2.5vw, 120px);
 }
+
 .nav {
     font-family: Megrim, Helvetica, sans-serif;
     align-content: center;
@@ -116,6 +132,7 @@ a:visited {
     animation-duration: 3s;
     padding: 1%;
 }
+
 .navButton {
     margin-top: 10%;
     transition: 0.8s;
@@ -128,15 +145,19 @@ a:visited {
     color: inherit;
     text-decoration-line: none;
 }
-.navButton:link{
+
+.navButton:link {
     text-decoration-line: none;
 }
-.navButton:visited{
+
+.navButton:visited {
     text-decoration-line: none;
 }
+
 .navButton:hover {
     letter-spacing: 0.5px;
 }
+
 .mainBody {
     text-align: center;
     padding-left: 10%;
@@ -146,43 +167,43 @@ a:visited {
     font-weight: bold;
     color: #C46DC4;
 }
+
 .loguesdk-mainBody {
-    animation-name: backColorLogueSDK; 
+    animation-name: backColorLogueSDK;
     animation-duration: 2s;
 }
 
-.download-table {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    table-layout: fixed;
-    border: 3px solid #C46DC4;
-    color: inherit;
+.root-transition {
     animation-name: backColor;
-    animation-duration: 4s;
+    animation-duration: 2s;
 }
+
 .core-table {
     width: 100%;
 }
+
 .core-table-row {
     border-radius: 5px;
-    border: 5px outset #C46DC4;    
+    border: 5px outset #C46DC4;
     padding: 0.3rem;
     margin: 0.3rem;
     width: 80%;
     background-color: #C46DC4;
     color: #ffc7ff;
 }
+
 .core-table-row:hover {
     border-radius: 5px;
     background-color: #d57ed5;
     border-color: #d57ed5;
 }
+
 .core-table-row:active {
     border-radius: 5px;
-    border: 5px inset #00ff33;    
+    border: 5px inset #00ff33;
 }
-.core-table-span {   
+
+.core-table-span {
     display: flex;
     padding: 0.5%;
     font-size: larger;
@@ -190,7 +211,8 @@ a:visited {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.core-table-item-title{
+
+.core-table-item-title {
     border: 5px solid #d57ed5;
     border-radius: 5px 0 0 5px;
     background-color: white;
@@ -202,7 +224,8 @@ a:visited {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.core-table-item{
+
+.core-table-item {
     border: 5px solid #562f56;
     border-radius: 0 5px 5px 0;
     border-left: none;
@@ -213,16 +236,19 @@ a:visited {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .core-list {
     margin: 0.3rem;
 }
+
 .core-list-dt {
     display: flex;
     background-color: inherit;
     align-items: center;
     margin: 0.3rem;
 }
-.core-list-item-title{
+
+.core-list-item-title {
     border: 5px solid #C46DC4;
     border-radius: 5px 0 0 5px;
     background-color: #C46DC4;
@@ -233,7 +259,8 @@ a:visited {
     width: 30%;
     align-content: center;
 }
-.core-list-item{
+
+.core-list-item {
     border: 5px solid #C46DC4;
     border-radius: 0 5px 5px 0;
     border-left: none;
@@ -243,7 +270,8 @@ a:visited {
     padding: 0.7rem;
     height: clamp(40px, 4rem, 900px);
 }
-.core-button{
+
+.core-button {
     border-radius: 5px;
     background-color: #C46DC4;
     border: 0.5rem outset #C46DC4;
@@ -253,27 +281,33 @@ a:visited {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .core-button:hover {
     animation: rainbow 4s linear;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
+
 .core-button:active {
     border-radius: 5px;
     background-color: #d57ed5;
     border: 0.5rem inset #00ff33;
     transform: translateY(2px);
 }
-.core-simple-form{
+
+.core-simple-form {
     margin-bottom: 5%;
 }
+
 .core-input-default {
     margin: 2%;
 }
+
 .core-input-span {
     display: flex;
 }
-.core-input-label{
+
+.core-input-label {
     border: 5px solid inherit;
     border-radius: 5px 0 0 5px;
     border-right: none;
@@ -282,7 +316,8 @@ a:visited {
     padding: 4%;
     width: 30%;
 }
-.core-input-input{
+
+.core-input-input {
     align-content: center;
     background-color: inherit;
     padding: 4%;
@@ -290,194 +325,328 @@ a:visited {
 }
 
 @keyframes backColor {
-    0%   { color: #0f0d07; transform: translateY(10%);}
-    100% { color: #C46DC4; transform: translateY(0); }
-}   
+    0% {
+        color: #0f0d07;
+        transform: translateY(10%);
+    }
+
+    100% {
+        color: #C46DC4;
+        transform: translateY(0);
+    }
+}
+
 @keyframes backColorLogueSDK {
-    0%   { color: #0f0d07; transform: translateY(10%);}
-    100% { color: gold; transform: translateY(0); }
-}   
+    0% {
+        color: #0f0d07;
+        transform: translateY(10%);
+    }
+
+    100% {
+        color: gold;
+        transform: translateY(0);
+    }
+}
+
 @keyframes backColorBlorp {
-    0%   { color: #7091ea; transform: translateY(10%);}
-    100% { color: #dfed25; transform: translateY(0); }
+    0% {
+        color: #7091ea;
+        transform: translateY(10%);
+    }
+
+    100% {
+        color: #dfed25;
+        transform: translateY(0);
+    }
 }
+
 @keyframes backColorShop {
-    0%   { color: #ffd3e9; transform: translateY(10%);}
-    100% { color: #C46DC4; transform: translateY(0); }
-}
-@keyframes backColorReverse{
-    0%   {background-color: #0f0d07; transform: translateY(-10%);}
-    100% {background-color: #C46DC4; transform: translateY(0); }               
-}
-@keyframes backColorReverseLogueSDK{
-    0%   {background-color: #0f0d07; transform: translateY(-10%);}
-    100% {background-color: gold; transform: translateY(0); }               
-}
-@keyframes backColorReverseBlorp{
-    0%   {background-color: #7091ea; transform: translateY(-10%);}
-    100% {background-color: #dfed25; transform: translateY(0); }               
-}
-@keyframes backColorTransitionSide{
-    0% { opacity: 0; transform: translateX(50%); }
-    100% { opacity: 100; transform: translateX(0); }   
-}
-@keyframes backColorTransitionTop{
-    0% { opacity: 0; transform: translateY(-50%); }
-    100% { opacity: 100; transform: translatY(100%);}   
-}
-@keyframes backColorTransitionBottom{
-    0% { opacity: 0; transform: translateY(50%); }
-    100% { opacity: 100; transform: translatY(-100%);}   
-}
-@keyframes marquee{
-    0% { transform: translateX(0);  }
-    100% { transform: translateX(-100%);  }
-}
-@keyframes marqueeVert{
-    0% { transform: translateY(100%);  }
-    100% { transform: translateY(0);  }
-}
-@keyframes rainbow-svg{
-    100%,0%{
-        fill: rgb(0,255,0);
+    0% {
+        color: #ffd3e9;
+        transform: translateY(10%);
     }
-    8%{
-        fill: rgb(0,255,127);
+
+    100% {
+        color: #C46DC4;
+        transform: translateY(0);
     }
-    16%{
-        fill: rgb(0,255,255);
+}
+
+@keyframes backColorReverse {
+    0% {
+        background-color: #0f0d07;
+        transform: translateY(-10%);
     }
-    25%{
-        fill: rgb(0,127,255);
+
+    100% {
+        background-color: #C46DC4;
+        transform: translateY(0);
     }
-    33%{
-        fill: rgb(0,0,255);
+}
+
+@keyframes backColorReverseLogueSDK {
+    0% {
+        background-color: #0f0d07;
+        transform: translateY(-10%);
     }
-    41%{
+
+    100% {
+        background-color: gold;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backColorReverseBlorp {
+    0% {
+        background-color: #7091ea;
+        transform: translateY(-10%);
+    }
+
+    100% {
+        background-color: #dfed25;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backColorTransitionSide {
+    0% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+
+    100% {
+        opacity: 100;
+        transform: translateX(0);
+    }
+}
+
+@keyframes backColorTransitionTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+
+    100% {
+        opacity: 100;
+        transform: translatY(100%);
+    }
+}
+
+@keyframes backColorTransitionBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+
+    100% {
+        opacity: 100;
+        transform: translatY(-100%);
+    }
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes marqueeVert {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes rainbow-svg {
+
+    100%,
+    0% {
+        fill: rgb(0, 255, 0);
+    }
+
+    8% {
+        fill: rgb(0, 255, 127);
+    }
+
+    16% {
+        fill: rgb(0, 255, 255);
+    }
+
+    25% {
+        fill: rgb(0, 127, 255);
+    }
+
+    33% {
+        fill: rgb(0, 0, 255);
+    }
+
+    41% {
         fill: #C46DC4;
     }
-    50%{
-        fill: rgb(255,0,255);
+
+    50% {
+        fill: rgb(255, 0, 255);
     }
-    58%{
-        fill: rgb(255,0,127);
-    }      
-    66%{
-        fill: rgb(255,0,0);
+
+    58% {
+        fill: rgb(255, 0, 127);
     }
-    74%{
-        fill: rgb(255,127,0);
+
+    66% {
+        fill: rgb(255, 0, 0);
     }
-    84%{
-        fill: rgb(255,255,0);
+
+    74% {
+        fill: rgb(255, 127, 0);
     }
-    91%{
-        fill: rgb(127,255,0);
+
+    84% {
+        fill: rgb(255, 255, 0);
+    }
+
+    91% {
+        fill: rgb(127, 255, 0);
     }
 }
-@keyframes rainbow{
-    100%,0%{
-        border-color: rgb(0,255,0);
-        background-color: rgb(0,255,0);
+
+@keyframes rainbow {
+
+    100%,
+    0% {
+        border-color: rgb(0, 255, 0);
+        background-color: rgb(0, 255, 0);
     }
-    8%{
-        border-color: rgb(0,255,127);
-        background-color: rgb(0,255,127);
+
+    8% {
+        border-color: rgb(0, 255, 127);
+        background-color: rgb(0, 255, 127);
     }
-    16%{
-        border-color: rgb(0,255,255);
-        background-color: rgb(0,255,255);
+
+    16% {
+        border-color: rgb(0, 255, 255);
+        background-color: rgb(0, 255, 255);
     }
-    25%{
-        border-color: rgb(0,127,255);
-        background-color: rgb(0,127,255);
+
+    25% {
+        border-color: rgb(0, 127, 255);
+        background-color: rgb(0, 127, 255);
     }
-    33%{
-        border-color: rgb(0,0,255);
-        background-color: rgb(0,0,255);
+
+    33% {
+        border-color: rgb(0, 0, 255);
+        background-color: rgb(0, 0, 255);
     }
-    41%{
+
+    41% {
         border-color: #C46DC4;
         background-color: #C46DC4;
     }
-    50%{
-        border-color: rgb(255,0,255);
-        background-color: rgb(255,0,255);
+
+    50% {
+        border-color: rgb(255, 0, 255);
+        background-color: rgb(255, 0, 255);
     }
-    58%{
-        border-color: rgb(255,0,127);
-        background-color: rgb(255,0,127);
-    }      
-    66%{
-        border-color: rgb(255,0,0);
-        background-color: rgb(255,0,0);
+
+    58% {
+        border-color: rgb(255, 0, 127);
+        background-color: rgb(255, 0, 127);
     }
-    74%{
-        border-color: rgb(255,127,0);
-        background-color: rgb(255,127,0);
+
+    66% {
+        border-color: rgb(255, 0, 0);
+        background-color: rgb(255, 0, 0);
     }
-    84%{
-        border-color: rgb(255,255,0);
-        background-color: rgb(255,255,0);
+
+    74% {
+        border-color: rgb(255, 127, 0);
+        background-color: rgb(255, 127, 0);
     }
-    91%{
-        border-color: rgb(127,255,0);
-        background-color: rgb(127,255,0);
+
+    84% {
+        border-color: rgb(255, 255, 0);
+        background-color: rgb(255, 255, 0);
+    }
+
+    91% {
+        border-color: rgb(127, 255, 0);
+        background-color: rgb(127, 255, 0);
     }
 }
-@keyframes rainbow-color{
-    100%,0%{
-        border-color: rgb(255,0,0);
-        color: rgb(255,0,0);
+
+@keyframes rainbow-color {
+
+    100%,
+    0% {
+        border-color: rgb(255, 0, 0);
+        color: rgb(255, 0, 0);
     }
-    8%{
-        border-color: rgb(255,127,0);
-        color: rgb(255,127,0);
+
+    8% {
+        border-color: rgb(255, 127, 0);
+        color: rgb(255, 127, 0);
     }
-    16%{
-        border-color: rgb(255,255,0);
-        color: rgb(255,255,0);
+
+    16% {
+        border-color: rgb(255, 255, 0);
+        color: rgb(255, 255, 0);
     }
-    25%{
-        border-color: rgb(127,255,0);
-        color: rgb(127,255,0);
+
+    25% {
+        border-color: rgb(127, 255, 0);
+        color: rgb(127, 255, 0);
     }
-    33%{
-        border-color: rgb(0,255,0);
-        color: rgb(0,255,0);
+
+    33% {
+        border-color: rgb(0, 255, 0);
+        color: rgb(0, 255, 0);
     }
-    41%{
-        border-color: rgb(0,255,127);
-        color: rgb(0,255,127);
+
+    41% {
+        border-color: rgb(0, 255, 127);
+        color: rgb(0, 255, 127);
     }
-    50%{
-        border-color: rgb(0,255,255);
-        color: rgb(0,255,255);
+
+    50% {
+        border-color: rgb(0, 255, 255);
+        color: rgb(0, 255, 255);
     }
-    58%{
-        border-color: rgb(0,127,255);
-        color: rgb(0,127,255);
+
+    58% {
+        border-color: rgb(0, 127, 255);
+        color: rgb(0, 127, 255);
     }
-    63%{
-        border-color: rgb(0,0,255);
-        color: rgb(0,0,255);
+
+    63% {
+        border-color: rgb(0, 0, 255);
+        color: rgb(0, 0, 255);
     }
-    72%{
+
+    72% {
         border-color: #C46DC4;
         color: #C46DC4;
     }
-    84%{
-        border-color: rgb(255,0,255);
-        color: rgb(255,0,255);
+
+    84% {
+        border-color: rgb(255, 0, 255);
+        color: rgb(255, 0, 255);
     }
-    91%{
-        border-color: rgb(255,0,127);
-        color: rgb(255,0,127);
+
+    91% {
+        border-color: rgb(255, 0, 127);
+        color: rgb(255, 0, 127);
     }
 }
+
 @media (prefers-reduced-motion: reduce) {
     .mainBody {
-      transition: none;
+        transition: none;
     }
 
 }

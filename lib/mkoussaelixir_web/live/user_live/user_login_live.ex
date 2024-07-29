@@ -5,7 +5,7 @@ defmodule MkoussaelixirWeb.UserLoginLive do
 
   def render(assigns) do
     ~H"""
-    <div>
+    <div class="root-transition">
       <.header>
         Login
         <:subtitle>
