@@ -175,7 +175,7 @@ a:visited {
 
 .root-transition {
     animation-name: backColor;
-    animation-duration: 2s;
+    animation-duration: 0.4s;
 }
 
 .core-table {
@@ -376,6 +376,18 @@ a:visited {
     0% {
         background-color: #0f0d07;
         transform: translateY(-10%);
+    }
+
+    100% {
+        background-color: #C46DC4;
+        transform: translateY(0);
+    }
+}
+
+@keyframes backColorReverseRoot {
+    0% {
+        background-color: #0f0d07;
+        transform: translateX(-100%);
     }
 
     100% {

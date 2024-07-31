@@ -3,7 +3,7 @@ defmodule MkoussaelixirWeb.AboutLive do
 
   def render(assigns) do
     ~H"""
-    <section style="animation-name: backColor; animation-duration: 4s;">
+    <section class="root-transition">
       <h2>ABOUT</h2>
       <p>Hello World! I'm Matthew Koussa and this is my site!</p>
       <p>
