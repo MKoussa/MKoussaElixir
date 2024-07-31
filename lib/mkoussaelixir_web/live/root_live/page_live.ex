@@ -8,7 +8,7 @@ defmodule MkoussaelixirWeb.PageLive do
   def render(assigns) do
     ~H"""
     <div class="root-transition">
-      <%= if is_nil(assigns.user) do %>
+      <%= if is_nil(@current_user) do %>
         <h2>Welcome, <i>Friend</i></h2>
         <br />
         <.link patch={~p"/users/log_in"}>
@@ -22,9 +22,9 @@ defmodule MkoussaelixirWeb.PageLive do
         </.link>
         <br />
       <% else %>
-        <%= if is_nil(@user.confirmed_at) do %>
+        <%= if is_nil(@current_user.confirmed_at) do %>
           <h3>Check Your Email</h3>
-          <p>A confirmation email was sent to <i><%= @user.email %></i>.</p>
+          <p>A confirmation email was sent to <i><%= @current_user.email %></i>.</p>
           <p>
             color: black;
             font-family: 'Bebas Neue';
@@ -49,6 +49,6 @@ defmodule MkoussaelixirWeb.PageLive do
     IO.inspect(params)
     IO.inspect(session)
     IO.inspect(socket)
-    {:ok, assign(socket, :user, socket.assigns.current_user)}
+    {:ok, assign(socket, :current_user, socket.assigns.current_user)}
   end
 end

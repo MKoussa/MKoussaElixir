@@ -44,7 +44,7 @@
 
       }
       .core-button{
-        font-size: clamp(20px, 3.5vw, 30px);
+        font-size: clamp(16px, 3.5vw, 24px);
         font-family: "Big Shoulders Display";
       }
       .core-list{
@@ -58,6 +58,7 @@
         font-style: italic;
       }
       .core-list-item{
+        text-align: center;
         font-size: clamp(18px, 3.5vw, 40px);
         font-family: 'Six Caps';
       }
@@ -111,13 +112,13 @@
       <div class="nav" style="font-family: 'Six Caps';">
         <a class="navButton" style="font-size: clamp(25px, 3.5vw, 60px);" href={~p"/"}>Home</a>
         <br /><br />
-        <a
+        <.link
           class="navButton"
           style="font-size: clamp(25px, 3.5vw, 50px);"
-          href={~p"/shop/products"}
+          patch={~p"/shop/products"}
         >
           Products
-        </a>
+        </.link>
         <br /><br />
         <%= if is_nil(@current_user) do %>
           <a
@@ -151,7 +152,7 @@
                 <.link
                   class="nav_user_button"
                   style="font-size: clamp(25px, 3.5vw, 50px);"
-                  href={~p"/users/orders/"}
+                  patch={~p"/users/orders/"}
                 >
                   Orders
                 </.link>
@@ -167,13 +168,13 @@
               </li>
             <% end %>
             <li class="nav_user_li">
-              <a
+              <.link
                 class="nav_user_button"
                 style="font-size: clamp(25px, 3.5vw, 50px);"
-                href={~p"/shop/cart/"}
+                patch={~p"/shop/cart/"}
               >
                 Cart
-              </a>
+              </.link>
             </li>
           </ul>
         </div>

@@ -1,0 +1,36 @@
+<.header class="header">
+  <i><%= @product.title %></i>
+  <:subtitle><%= @product.description %></:subtitle>
+  <:actions>
+    <%= if !is_nil(@current_user) && @current_user.admin? do %>
+      <.link patch={~p"/shop/products/#{@product}/edit"}>
+        <.button>Edit product</.button>
+      </.link>
+    <% end %>
+  </:actions>
+</.header>
+<br />
+<.list>
+  <:item title="Views"><%= @product.views %></:item>
+  <:item title="Categories"><%= Enum.map(@product.categories, &" #{&1.title} ") %></:item>
+  <:item title="Product Page">
+    <.link patch={"#{@product.description_link}"}>
+      <.button style="width: 100%;"><%= @product.title %></.button>
+    </.link>
+  </:item>
+  <:item title="Price"><%= MkoussaelixirWeb.CartHTML.currency_to_str(@product.price) %></:item>
+</.list>
+
+<div style="display: flex;">
+  <span style="width: 30%;">
+    <.back navigate={~p"/shop/products"}>
+      <.button style="width: 90%; height: 4rem;">Back</.button>
+    </.back>
+  </span>
+  <span style="width: 70%;">
+    <%!-- <.link navigate={~p"/shop/cart_items?product_id=#{@product.id}"} method="post"> --%>
+    <.button phx-click="put_into_cart" style="width: 96%; height: 4rem;">Add To Cart</.button>
+    <%!-- </.link> --%>
+  </span>
+</div>
+<br /><br />

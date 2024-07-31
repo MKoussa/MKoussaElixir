@@ -33,7 +33,7 @@ defmodule MkoussaelixirWeb.Router do
     pipe_through [:browser, :home]
 
     live_session :default,
-      on_mount: [{MkoussaelixirWeb.UserAuth, :mount_current_user}] do
+      on_mount: [{MkoussaelixirWeb.UserAuth, :mount_current_user_and_uuid}] do
       live "/", PageLive
       live "/mkoussa", AboutLive
       live "/thermostat", ThermostatLive
@@ -79,17 +79,32 @@ defmodule MkoussaelixirWeb.Router do
     plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :shop}
   end
 
-  scope "/shop", MkoussaelixirWeb do
-    pipe_through [:browser, :shop]
+  live_session :shop,
+    root_layout: {MkoussaelixirWeb.Layouts, :shop},
+    on_mount: [{MkoussaelixirWeb.UserAuth, :mount_current_user_and_uuid}] do
+    scope "/shop", MkoussaelixirWeb do
+      pipe_through [:browser, :shop]
 
-    resources "/products", ProductController
-    resources "/cart_items", CartItemController, only: [:create, :delete]
+      live "/products", ShopLive.IndexProductLive
+      live "/products/:id", ShopLive.ShowProductLive
 
-    get "/cart", CartController, :show
-    put "/cart", CartController, :update
-
-    resources "/orders", OrderController, only: [:create, :show]
+      live "/cart", ShopLive.ShowCartLive
+    end
   end
+
+  # scope "/shop", MkoussaelixirWeb do
+  #   pipe_through [:browser, :shop]
+
+  #   # Shop
+
+  #   # resources "/products", ProductController
+  #   resources "/cart_items", CartItemController, only: [:create, :delete]
+
+  #   # get "/cart", CartController, :show
+  #   # put "/cart", CartController, :update
+
+  #   resources "/orders", OrderController, only: [:create, :show]
+  # end
 
   pipeline :loguesdk do
     plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :loguesdk}

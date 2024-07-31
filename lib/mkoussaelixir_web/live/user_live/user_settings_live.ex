@@ -8,11 +8,11 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
   def render(assigns) do
     ~H"""
     <div class="root-transition">
-      <%= if is_nil(assigns.current_user.confirmed_at) do %>
+      <%= if is_nil(@current_user.confirmed_at) do %>
         <h3>Check Your Email</h3>
-        <p>A confirmation email was sent to <i><%= assigns.current_user.email %></i>.</p>
+        <p>A confirmation email was sent to <i><%= @current_user.email %></i>.</p>
         <p>
-          To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= assigns.current_user.email %>.
+          To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @current_user.email %>.
         </p>
       <% else %>
         <.header class="text-center">
@@ -104,6 +104,7 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
 
     socket =
       socket
+      |> assign(:current_user, user)
       |> assign(:current_password, nil)
       |> assign(:email_form_current_password, nil)
       |> assign(:current_email, user.email)

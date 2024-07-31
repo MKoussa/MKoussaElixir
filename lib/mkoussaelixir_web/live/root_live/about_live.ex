@@ -12,16 +12,19 @@ defmodule MkoussaelixirWeb.AboutLive do
         or <a href={~p"/blorp"}>Blorp</a>, a synthesizer built using the p5 Javscript library.
       </p>
       <p>
-        Below is my <a href="https://mkoussa.bandcamp.com">Bandcamp</a>, where you can stream/download/buy my music!
+        Checkout my <a href="https://mkoussa.bandcamp.com">Bandcamp</a>, where you can stream/download/buy my music!
       </p>
       <p>This site is powered by:</p>
       <author>
-        Elixir <%= Application.spec(:elixir, :vsn) %> | Phoenix <%= Application.spec(:phoenix, :vsn) %> | Hosted on
+        Elixir <%= Application.spec(:elixir, :vsn) %> | Phoenix <%= Application.spec(:phoenix, :vsn) %> |
         <a href="https://www.gigalixir.com/">Gigalixir</a>
+        | LiveView <%= Application.spec(:liveview, :vsn) %>
       </author>
-
-      <h2>MKOUSSA</h2>
-      <span style="display: block;">
+      <%!--
+      <.link href="https://mkoussa.bandcamp.com">
+        <h2>MKOUSSA Bandcamp</h2>
+      </.link> --%>
+      <%!-- <span style="display: block;">
         <iframe
           style="border: 0; width: 20vw; height: 20vw;"
           src="https://bandcamp.com/EmbeddedPlayer/album=3490434269/size=large/bgcol=333333/linkcol=e99708/tracklist=true/transparent=true/"
@@ -37,7 +40,7 @@ defmodule MkoussaelixirWeb.AboutLive do
         >
           <a href="https://mkoussa.bandcamp.com/album/intro-birth">Intro//Birth by MKoussa</a>
         </iframe>
-      </span>
+      </span> --%>
       <h3>SITE MAP</h3>
       <.link navigate={~p"/shop/products"}>
         <.button style="width: 30%; background-color: #ffd3e9; color: #394f38; border-color: #ffd3e9; font-family: 'Six Caps'; font-size: clamp(20px, 3.5vw, 30px);">
