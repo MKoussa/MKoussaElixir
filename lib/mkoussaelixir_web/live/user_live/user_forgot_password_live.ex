@@ -5,7 +5,7 @@ defmodule MkoussaelixirWeb.UserForgotPasswordLive do
 
   def render(assigns) do
     ~H"""
-    <div>
+    <div class="root-transition">
       <.header>
         Forgot your password?
         <:subtitle>We'll send a password reset link to your inbox</:subtitle>

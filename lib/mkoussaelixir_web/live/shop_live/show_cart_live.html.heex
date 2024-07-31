@@ -1,0 +1,35 @@
+<%= if @cart.items == [] do %>
+  <.header class="header">
+    Cart
+    <:subtitle>Your cart is empty!</:subtitle>
+  </.header>
+  <.link patch={~p"/shop/products"}>
+    <.button style="width: 80%;">Go To Products</.button>
+  </.link>
+<% else %>
+  <.header>
+    Cart
+  </.header>
+
+  <.simple_form :let={f} for={@changeset} phx-submit="update_cart" action={~p"/shop/cart"}>
+    <.inputs_for :let={item_form} field={f[:items]}>
+      <span style="display: flex;">
+        <% item = item_form.data %>
+        <.input field={item_form[:quantity]} type="number" label={item.product.title} />
+      </span>
+    </.inputs_for>
+    <:actions>
+      <.button style="width: 40%;">Update Cart</.button>
+    </:actions>
+  </.simple_form>
+
+  <%!-- <.list :let={f} for={@changeset}>
+    <:item title={f[:item_form].data.product.title}>Test</:item>
+</.list> --%>
+
+  <.list>
+    <:item title={"Total #{currency_to_str(ShoppingCart.total_cart_price(@cart))}"}>
+      <.button phx-click="complete_order" style="width: 100%;">Complete Order</.button>
+    </:item>
+  </.list>
+<% end %>

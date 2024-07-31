@@ -26,7 +26,7 @@ defmodule Mkoussaelixir.Orders do
   end
 
   @doc """
-  Gets an oder by user_uuid and order_id
+  Gets an order by user_uuid and order_id
   """
   def get_order!(user_uuid, order_id) do
     Order

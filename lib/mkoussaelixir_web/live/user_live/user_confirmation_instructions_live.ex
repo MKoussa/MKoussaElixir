@@ -7,7 +7,7 @@ defmodule MkoussaelixirWeb.UserConfirmationInstructionsLive do
 
   def render(assigns) do
     ~H"""
-    <div>
+    <div class="root-transition">
       <.header class="text-center">
         No confirmation instructions received?
         <:subtitle>We'll send a new confirmation link to your inbox</:subtitle>

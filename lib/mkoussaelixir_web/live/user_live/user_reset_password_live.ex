@@ -7,7 +7,7 @@ defmodule MkoussaelixirWeb.UserResetPasswordLive do
 
   def render(assigns) do
     ~H"""
-    <div>
+    <div class="root-transition">
       <.header>Reset Password</.header>
 
       <.simple_form

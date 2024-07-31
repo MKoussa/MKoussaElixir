@@ -4,6 +4,7 @@ defmodule MkoussaelixirWeb.UserAuth do
   import Plug.Conn
   import Phoenix.Controller
 
+  alias Ecto.UUID
   alias Mkoussaelixir.Accounts
 
   # Make the remember me cookie valid for 60 days.
@@ -209,10 +210,31 @@ defmodule MkoussaelixirWeb.UserAuth do
     end
   end
 
+  def on_mount(:mount_current_user_and_uuid, _params, session, socket) do
+    {:cont, mount_current_user_and_uuid(socket, session)}
+  end
+
   defp mount_current_user(socket, session) do
     Phoenix.Component.assign_new(socket, :current_user, fn ->
       if user_token = session["user_token"] do
         Accounts.get_user_by_session_token(user_token)
+      end
+    end)
+  end
+
+  defp mount_current_user_and_uuid(socket, session) do
+    socket =
+      Phoenix.Component.assign_new(socket, :current_user, fn ->
+        if user_token = session["user_token"] do
+          Accounts.get_user_by_session_token(user_token)
+        end
+      end)
+
+    Phoenix.Component.assign_new(socket, :current_uuid, fn ->
+      if is_nil(socket.assigns.current_user) do
+        UUID.generate()
+      else
+        socket.assigns.current_user.uuid
       end
     end)
   end
