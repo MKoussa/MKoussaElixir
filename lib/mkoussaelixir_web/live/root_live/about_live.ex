@@ -8,8 +8,8 @@ defmodule MkoussaelixirWeb.AboutLive do
       <p>Hello World! I'm Matthew Koussa and this is my site!</p>
       <p>
         Here you'll find my forrays into digital synthesis via the
-        <a href={~p"/loguesdk"}>Korg LogueSDK</a>
-        or <a href={~p"/blorp"}>Blorp</a>, a synthesizer built using the p5 Javscript library.
+        <.link navigate={~p"/loguesdk"}>Korg LogueSDK</.link>
+        or <.link navigate={~p"/blorp"}>Blorp</.link>, a synthesizer built using the p5 Javscript library.
       </p>
       <p>
         Checkout my <a href="https://mkoussa.bandcamp.com">Bandcamp</a>, where you can stream/download/buy my music!
@@ -56,13 +56,7 @@ defmodule MkoussaelixirWeb.AboutLive do
         </.button>
       </.link>
       <p>Precompiled file downloads and Github links to Logue-SDK projects.</p>
-      <.link patch={~p"/mkoussa"}>
-        <.button style="width: 30%;">About</.button>
-      </.link>
-      <p>
-        What does this all even <i>mean</i>? Especially considering this is where you're currently at!
-      </p>
-      <.link href={~p"/blorp"}>
+      <.link navigate={~p"/blorp"}>
         <.button style="width: 50%; background-color: #7091ea; color: #394f38; border-color: #7091ea; font-family: 'Major Mono Display';">
           B L O R P
         </.button>
@@ -78,9 +72,6 @@ defmodule MkoussaelixirWeb.AboutLive do
   end
 
   def mount(params, session, socket) do
-    IO.inspect(params)
-    IO.inspect(session)
-    IO.inspect(socket)
     {:ok, socket}
   end
 end

@@ -93,14 +93,14 @@
         class="nav"
         style=" font: x-large 'Bebas Neue'; animation-name: backColorReverseLogueSDK; background-color: gold;"
       >
-        <a class="navButton" href={~p"/"}>Home</a> <br /><br />
-        <.link class="navButton" navigate={~p"/loguesdk/effects/"}>Effects</.link> <br /><br />
-        <.link class="navButton" navigate={~p"/loguesdk/oscillators/"}>Oscillators</.link>
+        <.link class="navButton" navigate={~p"/"}>Home</.link> <br /><br />
+        <.link class="navButton" patch={~p"/loguesdk/effects/"}>Effects</.link> <br /><br />
+        <.link class="navButton" patch={~p"/loguesdk/oscillators/"}>Oscillators</.link>
         <br /><br />
-        <.link class="navButton" navigate={~p"/loguesdk/resources/"}>Resources</.link>
+        <.link class="navButton" patch={~p"/loguesdk/resources/"}>Resources</.link>
         <br /><br />
         <%= if is_nil(@current_user) do %>
-          <a class="navButton" href={~p"/users/log_in"}>Log In</a> <br /><br />
+          <.link class="navButton" navigate={~p"/users/log_in"}>Log In</.link> <br /><br />
         <% end %>
       </div>
       <div style="grid-column: 3; grid-row: 2;">
@@ -111,15 +111,15 @@
               style="font-family: 'Bebas Neue'; color: gold; background-color: gold; animation-name: backColorReverseLogueSDK;"
             >
               <li class="nav_user_li">
-                <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
+                <.link class="nav_user_button" navigate={~p"/users/log_out"} method="delete">
                   Log Out
                 </.link>
               </li>
               <li class="nav_user_li">
-                <a class="nav_user_button" href={~p"/users/orders/"}>Orders</a>
+                <.link class="nav_user_button" navigate={~p"/users/orders/"}>Orders</.link>
               </li>
               <li class="nav_user_li">
-                <a class="nav_user_button" href={~p"/users/settings/"}>Settings</a>
+                <.link class="nav_user_button" navigate={~p"/users/settings/"}>Settings</.link>
               </li>
             </ul>
           <% end %>

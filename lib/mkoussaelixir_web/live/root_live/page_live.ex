@@ -46,9 +46,6 @@ defmodule MkoussaelixirWeb.PageLive do
   end
 
   def mount(params, session, socket) do
-    IO.inspect(params)
-    IO.inspect(session)
-    IO.inspect(socket)
     {:ok, assign(socket, :current_user, socket.assigns.current_user)}
   end
 end

@@ -74,44 +74,23 @@ defmodule MkoussaelixirWeb.Router do
     get "/project_now", BlorpController, :now
   end
 
-  pipeline :shop do
-    plug :fetch_current_cart
-    plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :shop}
-  end
-
   live_session :shop,
     root_layout: {MkoussaelixirWeb.Layouts, :shop},
     on_mount: [{MkoussaelixirWeb.UserAuth, :mount_current_user_and_uuid}] do
     scope "/shop", MkoussaelixirWeb do
-      pipe_through [:browser, :shop]
+      pipe_through [:browser]
 
       live "/products", ShopLive.IndexProductLive
       live "/products/:id", ShopLive.ShowProductLive
 
       live "/cart", ShopLive.ShowCartLive
+
+      live "/orders/:id", ShopLive.ShowOrdersLive
     end
   end
 
-  # scope "/shop", MkoussaelixirWeb do
-  #   pipe_through [:browser, :shop]
-
-  #   # Shop
-
-  #   # resources "/products", ProductController
-  #   resources "/cart_items", CartItemController, only: [:create, :delete]
-
-  #   # get "/cart", CartController, :show
-  #   # put "/cart", CartController, :update
-
-  #   resources "/orders", OrderController, only: [:create, :show]
-  # end
-
-  pipeline :loguesdk do
-    plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :loguesdk}
-  end
-
   scope "/", MkoussaelixirWeb do
-    pipe_through [:browser, :loguesdk]
+    pipe_through [:browser]
 
     live_session :default_loguesdk,
       root_layout: {MkoussaelixirWeb.Layouts, :loguesdk},

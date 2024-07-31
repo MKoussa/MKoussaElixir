@@ -1,7 +1,7 @@
 <.header class="header">
   <i>MKoussa Marketplace</i>
   <:actions>
-    <%= if @user.admin? do %>
+    <%= if @current_user && @current_user.admin? do %>
       <.link patch={~p"/shop/products/new"}>
         <.button>New Product</.button>
       </.link>

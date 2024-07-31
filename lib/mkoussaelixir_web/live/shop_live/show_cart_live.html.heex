@@ -11,7 +11,7 @@
     Cart
   </.header>
 
-  <.simple_form :let={f} for={@changeset} action={~p"/shop/cart"}>
+  <.simple_form :let={f} for={@changeset} phx-submit="update_cart" action={~p"/shop/cart"}>
     <.inputs_for :let={item_form} field={f[:items]}>
       <span style="display: flex;">
         <% item = item_form.data %>
@@ -29,9 +29,7 @@
 
   <.list>
     <:item title={"Total #{currency_to_str(ShoppingCart.total_cart_price(@cart))}"}>
-      <.link navigate={~p"/shop/orders"} method="post">
-        <.button style="width: 100%;">Complete Order</.button>
-      </.link>
+      <.button phx-click="complete_order" style="width: 100%;">Complete Order</.button>
     </:item>
   </.list>
 <% end %>
