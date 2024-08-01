@@ -38,12 +38,12 @@ defmodule MkoussaelixirWeb.UserLive.UserOrdersLive do
 
   alias Mkoussaelixir.Orders
 
-  def mount(_params, _session, socket) do
-    if is_nil(socket.assigns.current_user) do
+  def mount(_params, %{"current_user" => current_user}, socket) do
+    if is_nil(current_user) do
       redirect(socket, to: ~p"/users/log_in")
       {:ok, socket}
     else
-      orders = Orders.get_orders!(socket.assigns.current_user.uuid)
+      orders = Orders.get_orders!(current_user.uuid)
 
       {:ok,
        socket
