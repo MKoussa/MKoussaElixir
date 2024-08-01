@@ -39,15 +39,14 @@ defmodule MkoussaelixirWeb.Router do
       live "/thermostat", ThermostatLive
 
       ## Authentication routes
+      ## TODO move to seperate live_session scope
       live "/users/log_in", UserLoginLive, :new
       live "/users/register", UserRegistrationLive, :new
       live "/users/reset_password", UserForgotPasswordLive, :new
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
-
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/users/orders", UserLive.UserOrdersLive
-
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
@@ -82,25 +81,23 @@ defmodule MkoussaelixirWeb.Router do
 
       live "/products", ShopLive.IndexProductLive
       live "/products/:id", ShopLive.ShowProductLive
-
       live "/cart", ShopLive.ShowCartLive
-
       live "/orders/:id", ShopLive.ShowOrdersLive
     end
   end
 
-  scope "/", MkoussaelixirWeb do
-    pipe_through [:browser]
+  live_session :default_loguesdk,
+    root_layout: {MkoussaelixirWeb.Layouts, :loguesdk},
+    on_mount: [] do
+    scope "/loguesdk", MkoussaelixirWeb do
+      pipe_through [:browser]
 
-    live_session :default_loguesdk,
-      root_layout: {MkoussaelixirWeb.Layouts, :loguesdk},
-      on_mount: [] do
-      live "/loguesdk", LoguesdkLive.IndexLive
-      live "/loguesdk/stuttermodeffect", LoguesdkLive.StutterModLive
-      live "/loguesdk/reverseechodelayeffect", LoguesdkLive.ReverseEchoDelayLive
-      live "/loguesdk/effects", LoguesdkLive.EffectsLive
-      live "/loguesdk/oscillators", LoguesdkLive.OscillatorsLive
-      live "/loguesdk/resources", LoguesdkLive.ResourcesLive
+      live "/", LoguesdkLive.IndexLive
+      live "/stuttermodeffect", LoguesdkLive.StutterModLive
+      live "/reverseechodelayeffect", LoguesdkLive.ReverseEchoDelayLive
+      live "/effects", LoguesdkLive.EffectsLive
+      live "/oscillators", LoguesdkLive.OscillatorsLive
+      live "/resources", LoguesdkLive.ResourcesLive
     end
   end
 
@@ -120,50 +117,4 @@ defmodule MkoussaelixirWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
-
-  alias Mkoussaelixir.ShoppingCart
-
-  defp fetch_current_cart(conn, _opts) do
-    if cart = ShoppingCart.get_cart_by_user_uuid(conn.assigns.current_uuid) do
-      assign(conn, :cart, cart)
-    else
-      {:ok, new_cart} = ShoppingCart.create_cart(conn.assigns.current_uuid)
-      assign(conn, :cart, new_cart)
-    end
-  end
-
-  ## Authentication routes
-
-  # scope "/", MkoussaelixirWeb do
-  #   pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
-
-  #   get "/users/register", UserController, :new_registration
-  #   post "/users/register", UserController, :create_registration
-  #   live "/users/log_in", RootLive.NewSessionLive
-  #   post "/users/log_in", UserController, :create_session
-  #   get "/users/reset_password", UserController, :new_reset_password
-  #   post "/users/reset_password", UserController, :create_reset_password
-  #   get "/users/reset_password/:token", UserController, :edit_reset_password
-  #   put "/users/reset_password/:token", UserController, :update_reset_password
-  # end
-
-  # scope "/", MkoussaelixirWeb do
-  #   pipe_through [:browser, :require_authenticated_user, :home]
-
-  #   get "/users/settings", UserController, :edit_settings
-  #   put "/users/settings", UserController, :update_settings
-  #   get "/users/settings/confirm_email/:token", UserController, :confirm_email
-
-  #   get "/users/orders", UserController, :show_orders
-  # end
-
-  # scope "/", MkoussaelixirWeb do
-  #   pipe_through [:browser, :home]
-
-  #   delete "/users/log_out", UserController, :delete_session
-  #   get "/users/confirm", UserController, :new_confirmation
-  #   post "/users/confirm", UserController, :create_confirmation
-  #   get "/users/confirm/:token", UserController, :edit_confirmation
-  #   post "/users/confirm/:token", UserController, :update_confirmation
-  # end
 end

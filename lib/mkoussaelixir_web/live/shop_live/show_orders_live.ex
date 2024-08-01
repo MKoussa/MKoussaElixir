@@ -8,7 +8,7 @@ defmodule MkoussaelixirWeb.ShopLive.ShowOrdersLive do
 
     {:ok,
      socket
-     |> assign(page_title: "Order")
+     |> assign(page_title: "Thank You!")
      |> assign(order: order)}
   end
 end

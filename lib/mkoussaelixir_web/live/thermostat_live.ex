@@ -3,6 +3,7 @@ defmodule MkoussaelixirWeb.ThermostatLive do
 
   def render(assigns) do
     ~H"""
+    <h3>LiveView is Wild</h3>
     Curr Temp:<%= @temperature %>
     <.button phx-click="inc_temperature">+</.button>
     <.button phx-click="dec_temperature">-</.button>
