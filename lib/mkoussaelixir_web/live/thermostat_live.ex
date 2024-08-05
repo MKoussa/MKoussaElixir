@@ -14,7 +14,7 @@ defmodule MkoussaelixirWeb.ThermostatLive do
     """
   end
 
-  def mount(_params, session, socket) do
+  def mount(_params, _session, socket) do
     temperature = 70
     {:ok, assign(socket, :temperature, temperature)}
   end

@@ -54,6 +54,16 @@ defmodule MkoussaelixirWeb.Router do
     delete "/users/log_out", UserSessionController, :delete
   end
 
+  scope "/chat", MkoussaelixirWeb do
+    pipe_through [:browser, :home]
+
+    live_session :rooms,
+      on_mount: [{MkoussaelixirWeb.UserAuth, :ensure_authenticated}] do
+      live "/rooms", RootLive.Chat.IndexRoomsLive
+      live "/rooms/:id", RootLive.Chat.ShowRoomsLive
+    end
+  end
+
   ## Authentication routes
   scope "/users", MkoussaelixirWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated, :home]

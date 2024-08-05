@@ -1,0 +1,16 @@
+<section class="root-transition">
+  <div id={"room-#{@room.id}"}>
+    <h4>Room: <%= @room.id %></h4>
+    <MkoussaelixirWeb.ChatLive.Messages.list_messages
+      messages={@streams.messages}
+      scrolled_to_top={@scrolled_to_top}
+    />
+
+    <.live_component
+      module={MkoussaelixirWeb.ChatLive.Message.Form}
+      room_id={@room.id}
+      sender_id={@current_user.id}
+      id={"room-#{@room.id}-message-form"}
+    />
+  </div>
+</section>
