@@ -12,7 +12,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateChat do
     create table(:messages) do
       add :content, :string
       add :sender_id, references(:users), null: false
-      add :room_id, references(:rooms), null: false
+      add :room_id, references(:rooms), null: false, on_delete: :delete_all
 
       timestamps()
     end

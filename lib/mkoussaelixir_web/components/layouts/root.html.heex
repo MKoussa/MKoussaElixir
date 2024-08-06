@@ -138,6 +138,15 @@
             <%!-- SVG End --%>
           </.link>
           <br /><br />
+        <% else %>
+          <.link
+            style="mix-blend-mode: difference; animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;"
+            class="navButton"
+            patch={~p"/chat/rooms"}
+          >
+            Chat
+          </.link>
+          <br /><br />
         <% end %>
       </div>
       <%!-- <div style="grid-column: 3; grid-row: 2;"> --%>

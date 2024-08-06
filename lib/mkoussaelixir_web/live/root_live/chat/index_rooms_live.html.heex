@@ -6,8 +6,9 @@
       <span>
         Name: <%= room.name %> Description: <%= room.description %>
         <.link patch={~p"/chat/rooms/#{room.id}"}>
-          <.button>Enter</.button>
+          <.button>Join</.button>
         </.link>
+        <.button phx-click="delete_room" phx-value-room_id={room.id}>Delete</.button>
       </span>
     </li>
   </ul>

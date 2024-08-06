@@ -6,7 +6,7 @@ defmodule Mkoussaelixir.Chat.Room do
   schema "rooms" do
     field :description, :string
     field :name, :string
-    has_many :messages, Message
+    has_many :messages, Message, on_delete: :delete_all
     timestamps()
   end
 

@@ -1,6 +1,8 @@
 defmodule MkoussaelixirWeb.RootLive.Chat.ShowRoomsLive do
   use MkoussaelixirWeb, :live_view
 
+  on_mount {MkoussaelixirWeb.UserAuth, :ensure_authenticated}
+
   alias Mkoussaelixir.Chat
   alias MkoussaelixirWeb.Endpoint
 

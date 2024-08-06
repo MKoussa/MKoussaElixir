@@ -108,6 +108,11 @@ defmodule Mkoussaelixir.Chat do
     Repo.delete(room)
   end
 
+  def delete_room_by_id(id) do
+    room = Repo.get!(Room, id)
+    Repo.delete(room)
+  end
+
   def delete_message(%Message{} = message) do
     Repo.delete(message)
   end
