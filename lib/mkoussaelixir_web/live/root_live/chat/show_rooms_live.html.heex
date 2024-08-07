@@ -1,8 +1,9 @@
 <section class="root-transition">
-  <div id={"room-#{@room.id}"}>
+  <div id={"room-#{@room.id}"} class="chat-room">
     <h4>Room: <%= @room.id %></h4>
     <MkoussaelixirWeb.ChatLive.Messages.list_messages
       messages={@streams.messages}
+      current_user_uuid={@current_user.uuid}
       scrolled_to_top={@scrolled_to_top}
     />
 

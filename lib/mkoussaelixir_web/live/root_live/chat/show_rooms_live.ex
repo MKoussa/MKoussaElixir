@@ -51,6 +51,18 @@ defmodule MkoussaelixirWeb.RootLive.Chat.ShowRoomsLive do
      |> assign_last_user_message(message)}
   end
 
+  def handle_info(%{event: "updated_message", payload: %{message: message}}, socket) do
+    {:noreply,
+     socket
+     |> insert_updated_message(message)
+     |> assign_last_user_message(message)}
+  end
+
+  def insert_updated_message(socket, message) do
+    socket
+    |> stream_insert(:messages, Chat.preload_message_sender(message), at: -1)
+  end
+
   def insert_new_message(socket, message) do
     socket
     |> stream_insert(:messages, Chat.preload_message_sender(message))

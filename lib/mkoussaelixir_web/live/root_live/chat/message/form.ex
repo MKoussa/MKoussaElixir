@@ -4,17 +4,6 @@ defmodule MkoussaelixirWeb.ChatLive.Message.Form do
   alias Mkoussaelixir.Chat
   alias Mkoussaelixir.Chat.Message
 
-  def update(assigns, socket) do
-    {:ok,
-     socket
-     |> assign(assigns)
-     |> assign_changeset}
-  end
-
-  def assign_changeset(socket) do
-    assign(socket, :changeset, Chat.change_message(%Message{}))
-  end
-
   def render(assigns) do
     ~H"""
     <div>
@@ -45,12 +34,30 @@ defmodule MkoussaelixirWeb.ChatLive.Message.Form do
   end
 
   def handle_event("save", %{"message" => %{"content" => content}}, socket) do
-    Chat.create_message(%{
-      content: content,
-      room_id: socket.assigns.room_id,
-      sender_id: socket.assigns.sender_id
-    })
+    last_message = Chat.last_message_for_room(socket.assigns.room_id)
+
+    if last_message && last_message.sender_id == socket.assigns.sender_id &&
+         String.length(last_message.content <> content) < 250 do
+      Chat.update_message(last_message, %{content: "#{last_message.content}\n#{content}"})
+    else
+      Chat.create_message(%{
+        content: content,
+        room_id: socket.assigns.room_id,
+        sender_id: socket.assigns.sender_id
+      })
+    end
 
     {:noreply, assign_changeset(socket)}
+  end
+
+  def update(assigns, socket) do
+    {:ok,
+     socket
+     |> assign(assigns)
+     |> assign_changeset}
+  end
+
+  def assign_changeset(socket) do
+    assign(socket, :changeset, Chat.change_message(%Message{}))
   end
 end

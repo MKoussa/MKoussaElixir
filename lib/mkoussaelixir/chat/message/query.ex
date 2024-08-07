@@ -8,10 +8,14 @@ defmodule Mkoussaelixir.Chat.Message.Query do
   end
 
   def for_room(query \\ base(), room_id) do
+    for_room(query, room_id, 10)
+  end
+
+  def for_room(query, room_id, n) do
     query
     |> where([m], m.room_id == ^room_id)
     |> order_by([m], {:desc, m.inserted_at})
-    |> limit(10)
+    |> limit(^n)
     |> subquery()
     |> order_by([m], {:asc, m.inserted_at})
   end

@@ -45,6 +45,12 @@ defmodule Mkoussaelixir.Chat do
     Repo.get(Message, id)
   end
 
+  def last_message_for_room(room_id) do
+    Message.Query.for_room(Message, room_id, 1)
+    |> Repo.one()
+    |> Repo.preload(:sender)
+  end
+
   def last_ten_messages_for(room_id) do
     Message.Query.for_room(room_id)
     |> Repo.all()

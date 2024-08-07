@@ -178,6 +178,30 @@ a:visited {
     animation-duration: 0.4s;
 }
 
+.chat-room {
+    border-radius: 15px;
+    border: 5px solid #C46DC4;
+    animation: rainbow-border 7.5s linear;
+    animation-iteration-count: infinite;
+}
+
+.chat-message-me {
+    margin: 2%;
+    padding: 2%;
+    margin-left: 33%;
+    border-radius: 15px;
+    border: 5px solid #C46DC4;
+}
+
+.chat-message-you {
+    background: rgba(196, 109, 196, .6);
+    margin: 2%;
+    padding: 2%;
+    margin-right: 33%;
+    border-radius: 15px;
+    border: 5px solid #C46DC4;
+}
+
 .core-table {
     width: 100%;
 }
@@ -525,6 +549,58 @@ a:visited {
 
     91% {
         fill: rgb(127, 255, 0);
+    }
+}
+
+@keyframes rainbow-border {
+
+    100%,
+    0% {
+        border-color: rgb(0, 255, 0);
+    }
+
+    8% {
+        border-color: rgb(0, 255, 127);
+    }
+
+    16% {
+        border-color: rgb(0, 255, 255);
+    }
+
+    25% {
+        border-color: rgb(0, 127, 255);
+    }
+
+    33% {
+        border-color: rgb(0, 0, 255);
+    }
+
+    41% {
+        border-color: #C46DC4;
+    }
+
+    50% {
+        border-color: rgb(255, 0, 255);
+    }
+
+    58% {
+        border-color: rgb(255, 0, 127);
+    }
+
+    66% {
+        border-color: rgb(255, 0, 0);
+    }
+
+    74% {
+        border-color: rgb(255, 127, 0);
+    }
+
+    84% {
+        border-color: rgb(255, 255, 0);
+    }
+
+    91% {
+        border-color: rgb(127, 255, 0);
     }
 }
 
