@@ -18,7 +18,7 @@ defmodule MkoussaelixirWeb.AboutLive do
       <author>
         Elixir <%= Application.spec(:elixir, :vsn) %> | Phoenix <%= Application.spec(:phoenix, :vsn) %> |
         <a href="https://www.gigalixir.com/">Gigalixir</a>
-        | LiveView <%= Application.spec(:liveview, :vsn) %>
+        | LiveView <%= Application.spec(:live_view, :vsn) %>
       </author>
       <%!--
       <.link href="https://mkoussa.bandcamp.com">
@@ -71,7 +71,10 @@ defmodule MkoussaelixirWeb.AboutLive do
     """
   end
 
-  def mount(params, session, socket) do
+  def mount(_params, _session, socket) do
     {:ok, socket}
   end
+
+  # def handle_event("connected", _, socket) do
+  # end
 end

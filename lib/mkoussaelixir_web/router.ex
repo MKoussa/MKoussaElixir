@@ -49,10 +49,23 @@ defmodule MkoussaelixirWeb.Router do
       live "/users/orders", UserLive.UserOrdersLive
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
+
+      live "/chat/rooms", RootLive.Chat.IndexRoomsLive
+      live "/chat/rooms/:id", RootLive.Chat.ShowRoomsLive
     end
 
     delete "/users/log_out", UserSessionController, :delete
   end
+
+  # scope "/chat", MkoussaelixirWeb do
+  #   pipe_through [:browser, :home]
+
+  #   live_session :rooms,
+  #     on_mount: [{MkoussaelixirWeb.UserAuth, :ensure_authenticated}] do
+  #     live "/rooms", RootLive.Chat.IndexRoomsLive
+  #     live "/rooms/:id", RootLive.Chat.ShowRoomsLive
+  #   end
+  # end
 
   ## Authentication routes
   scope "/users", MkoussaelixirWeb do

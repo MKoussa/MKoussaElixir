@@ -8,7 +8,7 @@ vars:
 tasks:
   start_dev:
     cmds:
-      - docker container start mkelixir
+      - docker container start mkpostgres
       - mix format
       - mix deps.get
       - mix deps.compile

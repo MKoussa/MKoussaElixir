@@ -1,0 +1,17 @@
+<section class="root-transition">
+  <h2>Your Chat Rooms</h2>
+
+  <ul>
+    <li :for={room <- @rooms}>
+      <span>
+        Name: <%= room.name %> Description: <%= room.description %>
+        <.link patch={~p"/chat/rooms/#{room.id}"}>
+          <.button>Join</.button>
+        </.link>
+        <.button phx-click="delete_room" phx-value-room_id={room.id}>Delete</.button>
+      </span>
+    </li>
+  </ul>
+
+  <.button phx-click="new_room">Create New Room</.button>
+</section>

@@ -26,9 +26,7 @@ defmodule MkoussaelixirWeb.PageLive do
           <h3>Check Your Email</h3>
           <p>A confirmation email was sent to <i><%= @current_user.email %></i>.</p>
           <p>
-            color: black;
-            font-family: 'Bebas Neue';
-            To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @user.email %>.
+            To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @current_user.email %>.
           </p>
         <% else %>
           <h2>Hello Again!</h2>
