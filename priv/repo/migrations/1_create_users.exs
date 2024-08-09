@@ -5,12 +5,6 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
   def change do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
 
-    create table(:public_profile) do
-      add :username, :string
-      add :bio, :string
-      add :online?, :boolean
-    end
-
     create table(:users) do
       add :uuid, :uuid
       add :email, :citext, null: false
