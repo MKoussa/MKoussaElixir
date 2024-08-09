@@ -60,6 +60,20 @@ defmodule Mkoussaelixir.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  # @doc """
+  # Unsure if this is even a good idea....
+  # """
+  # def list_users(), do: Mkoussaelixir.Repo.all(User)
+
+  def get_public_profile_by_user_uuid(uuid) do
+    query =
+      from u in User,
+        where: u.uuid == ^uuid,
+        select: u.public_profile
+
+    Repo.one(query)
+  end
+
   ## User registration
 
   @doc """

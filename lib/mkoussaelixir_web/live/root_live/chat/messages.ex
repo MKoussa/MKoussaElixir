@@ -27,12 +27,12 @@ defmodule MkoussaelixirWeb.ChatLive.Messages do
     ~H"""
     <%= if @message.sender.uuid == @current_user_uuid do %>
       <div class="chat-message-me" style="text-align: right;">
-        <.message_meta message={@message} current_user_uuid={@current_user_uuid} />
+        <.message_meta message={@message} me?={true} />
         <.message_content message={@message} />
       </div>
     <% else %>
       <div class="chat-message-you" style="text-align: left;">
-        <.message_meta message={@message} current_user_uuid={@current_user_uuid} />
+        <.message_meta message={@message} me?={false} />
         <.message_content message={@message} />
       </div>
     <% end %>
@@ -45,14 +45,19 @@ defmodule MkoussaelixirWeb.ChatLive.Messages do
       <div>
         <dt style="font-weight: 900">
           <span style="font-weight: 300;">
-            <%= if @message.sender.uuid == @current_user_uuid do %>
+            <%= if @me? do %>
               <span style="font-size: 8px;">
                 <time datetime={@message.inserted_at}>
                   <%= @message.inserted_at %>
                 </time>
               </span>
               <br />
-              <span>You said:</span>
+              <span>
+                <.link patch={~p"/users/public_profile/#{@message.sender.uuid}"}>
+                  You
+                </.link>
+                said:
+              </span>
             <% else %>
               <span style="font-size: 8px;">
                 <time datetime={@message.inserted_at}>
@@ -60,7 +65,12 @@ defmodule MkoussaelixirWeb.ChatLive.Messages do
                 </time>
               </span>
               <br />
-              <span><%= @message.sender.public_profile.username %> said:</span>
+              <span>
+                <.link patch={~p"/users/public_profile/#{@message.sender.uuid}"}>
+                  <%= @message.sender.public_profile.username %>
+                </.link>
+                said:
+              </span>
             <% end %>
           </span>
         </dt>

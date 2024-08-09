@@ -37,7 +37,7 @@ defmodule MkoussaelixirWeb.Router do
       live "/", PageLive
       live "/mkoussa", AboutLive
       live "/thermostat", ThermostatLive
-
+      live "/users/public_profile/:uuid", UserPublicProfileLive
       ## Authentication routes
       ## TODO move to seperate live_session scope
       live "/users/log_in", UserLoginLive, :new
