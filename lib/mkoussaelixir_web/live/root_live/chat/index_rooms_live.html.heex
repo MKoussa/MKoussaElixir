@@ -1,17 +1,50 @@
 <section class="root-transition">
-  <h2>Your Chat Rooms</h2>
+  <h2>Public Chat Rooms</h2>
 
-  <ul>
-    <li :for={room <- @rooms}>
-      <span>
-        Name: <%= room.name %> Description: <%= room.description %>
-        <.link patch={~p"/chat/rooms/#{room.id}"}>
-          <.button>Join</.button>
-        </.link>
-        <.button phx-click="delete_room" phx-value-room_id={room.id}>Delete</.button>
-      </span>
-    </li>
-  </ul>
+  <div :for={room <- @rooms} class="chat-rooms">
+    <span>
+      <h3 style="overflow-x: auto;"><%= room.name %></h3>
+      <div style="width: 100%; overflow: scroll; margin: 1%;">
+        <span style="width: 50%; float: left;">
+          <%= room.description %>
+        </span>
+        <div style="margin-left: 50%;">
+          <.button phx-click="join_room" phx-value-room_id={room.id}>Join</.button>
+          <.button style="margin: 5%;" phx-click="delete_room" phx-value-room_id={room.id}>
+            Delete
+          </.button>
+        </div>
+      </div>
+    </span>
+  </div>
+  <br />
+  <%= if Enum.count(@rooms) < 10 do %>
+    <h3>New Room</h3>
+    <div class="chat-rooms">
+      <.simple_form for={@new_room_form} id="new_room_form" phx-submit="new_room">
+        <.input
+          field={@new_room_form[:name]}
+          label="Room Name"
+          name="name"
+          placeholder="Up to 24 character length."
+          value={@new_room_form.data.name}
+          type="text"
+        />
+        <.input
+          field={@new_room_form[:description]}
+          label="Room Description"
+          name="description"
+          placeholder="Cannot be empty."
+          value={@new_room_form.data.description}
+          type="text"
+        />
 
-  <.button phx-click="new_room">Create New Room</.button>
+        <:actions>
+          <.button phx-disable-with="Creating Room...">Create New Room</.button>
+        </:actions>
+      </.simple_form>
+    </div>
+  <% else %>
+    <h3>Only 10 Rooms Allowed</h3>
+  <% end %>
 </section>

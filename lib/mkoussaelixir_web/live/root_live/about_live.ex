@@ -43,12 +43,12 @@ defmodule MkoussaelixirWeb.AboutLive do
       </span> --%>
       <h3>SITE MAP</h3>
       <.link navigate={~p"/shop/products"}>
-        <.button style="width: 30%; background-color: #ffd3e9; color: #394f38; border-color: #ffd3e9; font-family: 'Six Caps'; font-size: clamp(20px, 3.5vw, 30px);">
-          Shop
+        <.button style="width: 70%; background-color: #ffd3e9; color: #394f38; border-color: #ffd3e9; font-family: 'Six Caps'; font-size: clamp(20px, 3.5vw, 30px);">
+          🗡 Shop 🗡
         </.button>
       </.link>
       <p>
-        Give me your <i>money</i>. I mean, in a way. Here you can buy Korg LogueSDK pre-compiled binary files of FX.
+        Give me your <i>money</i>. I mean, in a way. Here you can buy Korg LogueSDK pre-compiled binary files of FX. Or at least, you will be once I integrate with Shopify or Stripe, lol!
       </p>
       <.link href={~p"/loguesdk"}>
         <.button style="width: 40%; background-color: gold; border-color: gold; color: black; font-family: 'Bebas Neue';">
@@ -62,17 +62,24 @@ defmodule MkoussaelixirWeb.AboutLive do
         </.button>
       </.link>
       <p>Browser Based Synthesizer using the p5 JS Library.</p>
-    </section>
 
-    <.link patch={~p"/thermostat"}>
-      <.button>Thermostat</.button>
-    </.link>
-    <br /><br />
+      <.link patch={~p"/chat/rooms"}>
+        <.button style="animation: rainbow 45s linear; animation-iteration-count: infinite; animation-timing-function: linear;">
+          <h3>WORLD CHAT<br />🌍 🌏 🌎</h3>
+        </.button>
+      </.link>
+      <p>Chat Rooms! You'll need an account though.</p>
+      <.link patch={~p"/thermostat"}>
+        <.button>Thermostat (IYKYK)</.button>
+      </.link>
+      <br /><br />
+    </section>
     """
   end
 
   def mount(_params, _session, socket) do
     {:ok, socket}
+    |> IO.inspect()
   end
 
   # def handle_event("connected", _, socket) do

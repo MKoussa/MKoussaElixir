@@ -46,9 +46,21 @@ defmodule MkoussaelixirWeb.ChatLive.Messages do
         <dt style="font-weight: 900">
           <span style="font-weight: 300;">
             <%= if @message.sender.uuid == @current_user_uuid do %>
-              <%= @message.inserted_at.year %> you said:
+              <span style="font-size: 8px;">
+                <time datetime={@message.inserted_at}>
+                  <%= @message.inserted_at %>
+                </time>
+              </span>
+              <br />
+              <span>You said:</span>
             <% else %>
-              <%= @message.inserted_at.year %> <%= String.slice(@message.sender.uuid, 1..4) %> said:
+              <span style="font-size: 8px;">
+                <time datetime={@message.inserted_at}>
+                  <%= @message.inserted_at %>
+                </time>
+              </span>
+              <br />
+              <span><%= @message.sender.public_profile.username %> said:</span>
             <% end %>
           </span>
         </dt>
@@ -59,9 +71,9 @@ defmodule MkoussaelixirWeb.ChatLive.Messages do
 
   def message_content(assigns) do
     ~H"""
-    <dl class="-my-4 divide-y divide-zinc-100">
-      <div class="flex gap-4 py-4 sm:gap-2">
-        <dd style="margin-left: 3%;margin-top: -1%; white-space: pre-line;">
+    <dl>
+      <div>
+        <dd>
           <%= @message.content %>
         </dd>
       </div>

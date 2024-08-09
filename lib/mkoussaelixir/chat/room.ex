@@ -15,5 +15,7 @@ defmodule Mkoussaelixir.Chat.Room do
     room
     |> cast(attrs, [:name, :description])
     |> validate_required([:name, :description])
+    |> validate_length(:name, min: 3, max: 24)
+    |> validate_length(:description, min: 3, max: 200)
   end
 end

@@ -1,6 +1,8 @@
 <section class="root-transition">
   <div id={"room-#{@room.id}"} class="chat-room">
-    <h4>Room: <%= @room.id %></h4>
+    <h3><%= @room.name %></h3>
+    <p><%= @room.name %></p>
+    <p>Created: <%= @room.inserted_at %></p>
     <MkoussaelixirWeb.ChatLive.Messages.list_messages
       messages={@streams.messages}
       current_user_uuid={@current_user.uuid}

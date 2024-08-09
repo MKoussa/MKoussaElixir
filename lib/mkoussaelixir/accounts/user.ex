@@ -2,6 +2,8 @@ defmodule Mkoussaelixir.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Mkoussaelixir.Accounts.PublicProfile
+
   schema "users" do
     field :uuid, Ecto.UUID
     field :email, :string
@@ -10,6 +12,17 @@ defmodule Mkoussaelixir.Accounts.User do
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
     field :admin?, :boolean
+
+    embeds_one :public_profile,
+               PublicProfile,
+               on_replace: :delete
+
+    #   on_replace: :delete,
+    #   primary_key: false do
+    #   field :username, :string, default: "New User"
+    #   field :bio, :string, default: "There's nothing here..."
+    #   field :online?, :boolean, default: false
+    # end
 
     timestamps(type: :utc_datetime)
   end
@@ -40,6 +53,7 @@ defmodule Mkoussaelixir.Accounts.User do
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email, :password])
+    |> put_embed(:public_profile, %PublicProfile{})
     |> validate_email(opts)
     |> validate_password(opts)
   end
@@ -130,6 +144,12 @@ defmodule Mkoussaelixir.Accounts.User do
   def confirm_changeset(user) do
     now = DateTime.utc_now() |> DateTime.truncate(:second)
     change(user, confirmed_at: now)
+  end
+
+  def public_profile_changeset(user, attrs \\ %{}) do
+    user
+    |> change(%{public_profile: attrs})
+    |> cast_embed(:public_profile)
   end
 
   def make_admin?(user, boolean) do
