@@ -5,29 +5,41 @@ defmodule Mkoussaelixir.Accounts.UserNotifier do
 
   @doc """
   Deliver instructions to confirm account.
+
+  If MIX_ENV is "dev", it will instead just print the url to console.
+
+  Sending real emails during testing is probably bad, lol.
   """
   def deliver_confirmation_instructions(user, url) do
-    deliver(
-      user.email,
-      "New Account Registration Confirmation Instructions",
-      email_html_template(
-        "MKoussa Confirm Account",
-        """
-        <h3>Hello #{user.email},</h3>
-        <p>Thank you for creating a new user account.</p>
+    if(System.get_env("MIX_ENV") == "dev") do
+      IO.puts("-=_`=-=_`=-=_`=-=_`= URL BELOW -=_`=-=_`=-=_`=-=_`||||||||||||||||||||")
+      IO.puts(url)
+      IO.puts("-=_`=-=_`=-=_`=-=_`= URL ABOVE =-=-``-=_`=-=_`=-=_`=-=_`=|||||||||||||")
 
-        <p>Before you can fully utilize your new account, you need to confirm your account by visiting the link below:</p>
-        <a href=#{url}>Confirm Account</a>
-        <br />
-        <p>Or copy the link into your browser:</p>
-        <p>#{url}</p>
+      {:ok, url}
+    else
+      deliver(
+        user.email,
+        "New Account Registration Confirmation Instructions",
+        email_html_template(
+          "MKoussa Confirm Account",
+          """
+          <h3>Hello #{user.email},</h3>
+          <p>Thank you for creating a new user account.</p>
 
-        <p>If you didn't create an account with us, please ignore this.</p>
-        """
-      ),
-      "MKoussa Registration Confirmation",
-      "regconf"
-    )
+          <p>Before you can fully utilize your new account, you need to confirm your account by visiting the link below:</p>
+          <a href=#{url}>Confirm Account</a>
+          <br />
+          <p>Or copy the link into your browser:</p>
+          <p>#{url}</p>
+
+          <p>If you didn't create an account with us, please ignore this.</p>
+          """
+        ),
+        "MKoussa Registration Confirmation",
+        "regconf"
+      )
+    end
   end
 
   @doc """

@@ -63,6 +63,12 @@ tasks:
       - git push
       - git push gigalixir
       # - gigalixir run mix ecto.migrate
+  up_down_gigalixir:
+    cmds:
+      - gigalixir ps:remote_console
+      - path = Application.app_dir(:mkoussaelixir, "priv/repo/migrations")
+      - Ecto.Migrator.run(Mkoussaelixir.Repo, path, :down, all: true)
+      - Ecto.Migrator.run(Mkoussaelixir.Repo, path, :up, all: true)
   default:
     cmds:
       - echo "{{.GREETING}}"

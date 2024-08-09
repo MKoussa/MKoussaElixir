@@ -49,6 +49,12 @@ Considering what was done with **[LiveBeats](https://fly.io/blog/livebeats/)**, 
 - ability to turn off all visual/graphical elements
 - support features for those with disabilities
 
+#### TODO minor
+
+- temporary_assigns
+- virtual fields
+    - public profile created at
+
 ### DONE
 
 - move /shop to liveview
