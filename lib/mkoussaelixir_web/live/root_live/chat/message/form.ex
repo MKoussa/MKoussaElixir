@@ -19,6 +19,7 @@ defmodule MkoussaelixirWeb.ChatLive.Message.Form do
           phx-keydown={show_modal("edit_message")}
           phx-key="ArrowUp"
           phx-focus="unpin_scrollbar_from_top"
+          placeholder="Say your peace..."
           field={{f, :content}}
         />
         <:actions>

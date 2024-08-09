@@ -1,8 +1,15 @@
 defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
+  alias Mkoussaelixir.Accounts.PublicProfile
   use Ecto.Migration
 
   def change do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
+
+    create table(:public_profile) do
+      add :username, :string
+      add :bio, :string
+      add :online?, :boolean
+    end
 
     create table(:users) do
       add :uuid, :uuid
@@ -10,6 +17,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateUsersAuthTables do
       add :admin?, :boolean
       add :hashed_password, :string, null: false
       add :confirmed_at, :utc_datetime
+      add :public_profile, :map, null: false
 
       timestamps(type: :utc_datetime)
     end

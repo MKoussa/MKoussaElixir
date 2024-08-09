@@ -1,88 +1,10 @@
 defmodule MkoussaelixirWeb.UserSettingsLive do
+  alias Mkoussaelixir.Accounts.PublicProfile
   use MkoussaelixirWeb, :live_view
 
   on_mount {MkoussaelixirWeb.UserAuth, :ensure_authenticated}
 
   alias Mkoussaelixir.Accounts
-
-  def render(assigns) do
-    ~H"""
-    <div class="root-transition">
-      <%= if is_nil(@current_user.confirmed_at) do %>
-        <h3>Check Your Email</h3>
-        <p>A confirmation email was sent to <i><%= @current_user.email %></i>.</p>
-        <p>
-          To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @current_user.email %>.
-        </p>
-      <% else %>
-        <.header class="text-center">
-          Account Settings
-          <:subtitle>Manage your account email address and password settings</:subtitle>
-        </.header>
-        <div>
-          <div>
-            <.simple_form
-              for={@email_form}
-              id="email_form"
-              phx-submit="update_email"
-              phx-change="validate_email"
-            >
-              <.input field={@email_form[:email]} type="email" label="Email" required />
-              <.input
-                field={@email_form[:current_password]}
-                name="current_password"
-                id="current_password_for_email"
-                type="password"
-                label="Current password"
-                value={@email_form_current_password}
-                required
-              />
-              <:actions>
-                <.button phx-disable-with="Changing...">Change Email</.button>
-              </:actions>
-            </.simple_form>
-          </div>
-          <div>
-            <.simple_form
-              for={@password_form}
-              id="password_form"
-              action={~p"/users/log_in?_action=password_updated"}
-              method="post"
-              phx-change="validate_password"
-              phx-submit="update_password"
-              phx-trigger-action={@trigger_submit}
-            >
-              <input
-                name={@password_form[:email].name}
-                type="hidden"
-                id="hidden_user_email"
-                value={@current_email}
-              />
-              <.input field={@password_form[:password]} type="password" label="New password" required />
-              <.input
-                field={@password_form[:password_confirmation]}
-                type="password"
-                label="Confirm new password"
-              />
-              <.input
-                field={@password_form[:current_password]}
-                name="current_password"
-                type="password"
-                label="Current password"
-                id="current_password_for_password"
-                value={@current_password}
-                required
-              />
-              <:actions>
-                <.button phx-disable-with="Changing...">Change Password</.button>
-              </:actions>
-            </.simple_form>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    """
-  end
 
   def mount(%{"token" => token}, _session, socket) do
     socket =
@@ -102,6 +24,7 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
       user = socket.assigns.current_user
       email_changeset = Accounts.change_user_email(user)
       password_changeset = Accounts.change_user_password(user)
+      public_profile_changeset = PublicProfile.changeset(user.public_profile)
 
       socket =
         socket
@@ -111,7 +34,9 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
         |> assign(:current_email, user.email)
         |> assign(:email_form, to_form(email_changeset))
         |> assign(:password_form, to_form(password_changeset))
+        |> assign(:public_profile_form, to_form(public_profile_changeset))
         |> assign(:trigger_submit, false)
+        |> IO.inspect()
 
       {:ok, socket}
     else
@@ -150,6 +75,28 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
 
       {:error, changeset} ->
         {:noreply, assign(socket, :email_form, to_form(Map.put(changeset, :action, :insert)))}
+    end
+  end
+
+  def handle_event(
+        "update_public_profile",
+        %{"username" => username, "bio" => bio},
+        socket
+      ) do
+    user = socket.assigns.current_user
+
+    case Accounts.update_user_public_profile(user, %{username: username, bio: bio}) do
+      {:ok, _profile} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "Your profile was successfully updated!")}
+        |> IO.inspect()
+
+      {:error, _changeset} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, "Error Updating Profile.")
+         |> push_navigate(to: ~p"/users/settings")}
     end
   end
 

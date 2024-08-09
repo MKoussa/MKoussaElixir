@@ -48,7 +48,10 @@ tasks:
       - pip3 install gigalixir --user
       - echo "export PATH=\$PATH:$(python3 -m site --user-base)/bin" >> ~/.profile
       - source ~/.profile
-      - gigalixer login    
+      - gigalixer login   
+  setup_remote_gigalixir:
+    cmds:
+      - gigalixir git:remote mkelixir 
   seed_gigalixir:
     cmds:
       - gigalixir run -- mix run priv/repo/seeds.exs

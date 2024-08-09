@@ -94,6 +94,17 @@ defmodule Mkoussaelixir.Accounts do
     User.registration_changeset(user, attrs, hash_password: false, validate_email: false)
   end
 
+  def change_user_public_profile(user, attrs \\ %{}) do
+    User.public_profile_changeset(user, attrs)
+  end
+
+  def update_user_public_profile(%User{} = user, attrs) do
+    user
+    |> User.public_profile_changeset(attrs)
+    |> IO.inspect()
+    |> Repo.update()
+  end
+
   ## Settings
 
   @doc """
