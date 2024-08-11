@@ -14,23 +14,19 @@ defmodule MkoussaelixirWeb.PageLive do
       <%= if @current_user do %>
         <%= if @current_user.confirmed_at do %>
           <h2>Hello Again!</h2>
-          <p>It's <i>so</i> good to see you again!</p>
-          <br />
-          <p>Thank you for being a member and for being you!</p>
-          <br />
+          <p>It's <i>so</i> good to see you again! Thank you for being a member and for being you!</p>
           <h3 style="animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
             _~♥- YOU ARE LOVED -♥~_
           </h3>
           <section class="chat-room">
-            <h3>Public Feeeeeeed</h3>
-            <p>this is the feed</p>
-            <MkoussaelixirWeb.RootLive.PublicFeed.Posts.list_posts posts={@streams.posts} />
+            <h3>Public <i>Feeeeeeed</i></h3>
             <.live_component
               module={MkoussaelixirWeb.RootLive.PublicFeed.Post.Form}
               poster={@current_user}
               new_post_form={@new_post_form}
               id="public-post-feed"
             />
+            <MkoussaelixirWeb.RootLive.PublicFeed.Posts.list_posts posts={@streams.posts} />
           </section>
         <% else %>
           <h3>Check Your Email</h3>

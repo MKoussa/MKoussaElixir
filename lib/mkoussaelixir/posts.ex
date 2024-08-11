@@ -21,6 +21,7 @@ defmodule Mkoussaelixir.Posts do
     Post
     |> order_by([p], {:desc, p.inserted_at})
     |> limit(10)
+    |> preload(:poster)
     |> Repo.all()
   end
 
