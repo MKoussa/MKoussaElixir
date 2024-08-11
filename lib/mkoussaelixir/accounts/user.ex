@@ -3,6 +3,7 @@ defmodule Mkoussaelixir.Accounts.User do
   import Ecto.Changeset
 
   alias Mkoussaelixir.Accounts.PublicProfile
+  alias Mkoussaelixir.Posts.Post
 
   schema "users" do
     field :uuid, Ecto.UUID
@@ -16,6 +17,8 @@ defmodule Mkoussaelixir.Accounts.User do
     embeds_one :public_profile,
                PublicProfile,
                on_replace: :delete
+
+    has_many :posts, Post
 
     #   on_replace: :delete,
     #   primary_key: false do

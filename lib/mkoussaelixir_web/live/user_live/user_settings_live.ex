@@ -36,7 +36,6 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
         |> assign(:password_form, to_form(password_changeset))
         |> assign(:public_profile_form, to_form(public_profile_changeset))
         |> assign(:trigger_submit, false)
-        |> IO.inspect()
 
       {:ok, socket}
     else
