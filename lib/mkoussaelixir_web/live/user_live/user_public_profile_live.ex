@@ -5,7 +5,7 @@ defmodule MkoussaelixirWeb.UserPublicProfileLive do
 
   def render(assigns) do
     ~H"""
-    <section>
+    <section style={"background-color: #{@public_profile.public_post_background_color}; color: #{@public_profile.public_post_foreground_color};"}>
       <h3><%= @public_profile.username %></h3>
       <p><%= @public_profile.bio %></p>
     </section>

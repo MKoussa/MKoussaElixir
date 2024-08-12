@@ -10,6 +10,8 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
           poster_username={post.poster.public_profile.username}
           post_date={post.inserted_at}
           poster_profile={post.poster.uuid}
+          background_color={post.poster.public_profile.public_post_background_color}
+          color={post.poster.public_profile.public_post_foreground_color}
         />
       </div>
     </div>
@@ -18,7 +20,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
 
   def post_details(assigns) do
     ~H"""
-    <div style="display: block; border: 2px dotted var(--base-purple); border-radius: 5px; margin: 1%; padding: 1%;">
+    <div style={"display: block; border: 2px dotted var(--base-purple); border-radius: 5px; margin: 1%; padding: 1%; background-color: #{@background_color}; color: #{@color}"}>
       <span>
         On <%= @post_date %>,
         <strong>

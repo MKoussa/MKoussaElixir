@@ -358,6 +358,14 @@ a:visited {
     width: 70%;
 }
 
+.core-input-color {
+    border: 5px solid inherit;
+    border-radius: 0 5px 5px 0;
+    background-color: inherit;
+    height: auto;
+    width: 100%;
+}
+
 @keyframes backColor {
     0% {
         color: #0f0d07;

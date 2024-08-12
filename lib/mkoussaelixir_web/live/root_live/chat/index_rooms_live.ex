@@ -12,7 +12,6 @@ defmodule MkoussaelixirWeb.RootLive.Chat.IndexRoomsLive do
      socket
      |> assign_rooms()
      |> assign(:new_room_form, to_form(new_room_changeset))}
-    |> IO.inspect()
   end
 
   def handle_event("new_room", %{"name" => name, "description" => description}, socket) do

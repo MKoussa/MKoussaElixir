@@ -323,6 +323,26 @@ defmodule MkoussaelixirWeb.CoreComponents do
     """
   end
 
+  def input(%{type: "color"} = assigns) do
+    ~H"""
+    <div class="core-input-default">
+      <span class="core-input-span">
+        <label for={@id} class="core-input-label"><%= @label %></label>
+        <input
+          type={@type}
+          name={@name}
+          id={@id}
+          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+          {@rest}
+          class="core-input-color"
+        />
+        <p style="rotate: 90deg;"><%= @value %></p>
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </span>
+    </div>
+    """
+  end
+
   def input(%{type: "select"} = assigns) do
     ~H"""
     <div>

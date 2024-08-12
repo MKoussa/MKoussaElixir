@@ -20,13 +20,6 @@ defmodule Mkoussaelixir.Accounts.User do
 
     has_many :posts, Post
 
-    #   on_replace: :delete,
-    #   primary_key: false do
-    #   field :username, :string, default: "New User"
-    #   field :bio, :string, default: "There's nothing here..."
-    #   field :online?, :boolean, default: false
-    # end
-
     timestamps(type: :utc_datetime)
   end
 
