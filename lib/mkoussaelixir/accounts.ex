@@ -115,7 +115,6 @@ defmodule Mkoussaelixir.Accounts do
   def update_user_public_profile(%User{} = user, attrs) do
     user
     |> User.public_profile_changeset(attrs)
-    |> IO.inspect()
     |> Repo.update()
   end
 

@@ -3,6 +3,7 @@ defmodule Mkoussaelixir.Accounts.User do
   import Ecto.Changeset
 
   alias Mkoussaelixir.Accounts.PublicProfile
+  alias Mkoussaelixir.Posts.Post
 
   schema "users" do
     field :uuid, Ecto.UUID
@@ -17,12 +18,7 @@ defmodule Mkoussaelixir.Accounts.User do
                PublicProfile,
                on_replace: :delete
 
-    #   on_replace: :delete,
-    #   primary_key: false do
-    #   field :username, :string, default: "New User"
-    #   field :bio, :string, default: "There's nothing here..."
-    #   field :online?, :boolean, default: false
-    # end
+    has_many :posts, Post
 
     timestamps(type: :utc_datetime)
   end

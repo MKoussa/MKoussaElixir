@@ -79,7 +79,6 @@ defmodule MkoussaelixirWeb.AboutLive do
 
   def mount(_params, _session, socket) do
     {:ok, socket}
-    |> IO.inspect()
   end
 
   # def handle_event("connected", _, socket) do

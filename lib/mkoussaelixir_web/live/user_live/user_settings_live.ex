@@ -36,7 +36,6 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
         |> assign(:password_form, to_form(password_changeset))
         |> assign(:public_profile_form, to_form(public_profile_changeset))
         |> assign(:trigger_submit, false)
-        |> IO.inspect()
 
       {:ok, socket}
     else
@@ -80,17 +79,26 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
 
   def handle_event(
         "update_public_profile",
-        %{"username" => username, "bio" => bio},
+        %{
+          "username" => username,
+          "bio" => bio,
+          "public_post_background_color" => public_post_background_color,
+          "public_post_foreground_color" => public_post_foreground_color
+        },
         socket
       ) do
     user = socket.assigns.current_user
 
-    case Accounts.update_user_public_profile(user, %{username: username, bio: bio}) do
+    case Accounts.update_user_public_profile(user, %{
+           username: username,
+           bio: bio,
+           public_post_background_color: public_post_background_color,
+           public_post_foreground_color: public_post_foreground_color
+         }) do
       {:ok, _profile} ->
         {:noreply,
          socket
          |> put_flash(:info, "Your profile was successfully updated!")}
-        |> IO.inspect()
 
       {:error, _changeset} ->
         {:noreply,

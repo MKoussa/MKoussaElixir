@@ -13,10 +13,6 @@ for catTitle <- ["LogueSDK", "Modulation", "Delay", "Reverb", "Oscillator"] do
   {:ok, _} = Mkoussaelixir.Catalog.create_category(%{title: catTitle})
 end
 
-alias Mkoussaelixir.Catalog.Category
-alias Mkoussaelixir.Catalog
-alias Mkoussaelixir.Catalog.Product
-
 for product <- [
       %{
         title: "Stutter",

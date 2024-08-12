@@ -6,6 +6,8 @@ defmodule Mkoussaelixir.Repo.Migrations.CreatePublicProfileTable do
       add :username, :string
       add :bio, :string
       add :online?, :boolean
+      add :public_post_background_color, :string
+      add :public_post_foreground_color, :string
     end
   end
 end

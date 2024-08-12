@@ -32,7 +32,20 @@
             value={@current_user.public_profile.bio}
             type="textarea"
           />
-
+          <.input
+            field={@public_profile_form[:public_post_foreground_color]}
+            label="Public Foreground Color"
+            name="public_post_foreground_color"
+            value={@current_user.public_profile.public_post_foreground_color}
+            type="color"
+          />
+          <.input
+            field={@public_profile_form[:public_post_background_color]}
+            label="Public Background Color"
+            name="public_post_background_color"
+            value={@current_user.public_profile.public_post_background_color}
+            type="color"
+          />
           <:actions>
             <.button phx-disable-with="Changing...">Change Profile</.button>
           </:actions>
