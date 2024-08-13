@@ -83,7 +83,14 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
           "username" => username,
           "bio" => bio,
           "public_post_background_color" => public_post_background_color,
-          "public_post_foreground_color" => public_post_foreground_color
+          "public_post_foreground_color" => public_post_foreground_color,
+          "public_post_border_size" => public_post_border_size,
+          "public_post_border_type" => public_post_border_type,
+          "public_post_border_color" => public_post_border_color,
+          "chat_background_color_me" => chat_background_color_me,
+          "chat_foreground_color_me" => chat_foreground_color_me,
+          "chat_background_color_them" => chat_background_color_them,
+          "chat_foreground_color_them" => chat_foreground_color_them
         },
         socket
       ) do
@@ -93,7 +100,14 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
            username: username,
            bio: bio,
            public_post_background_color: public_post_background_color,
-           public_post_foreground_color: public_post_foreground_color
+           public_post_foreground_color: public_post_foreground_color,
+           public_post_border_size: public_post_border_size,
+           public_post_border_type: public_post_border_type,
+           public_post_border_color: public_post_border_color,
+           chat_background_color_me: chat_background_color_me,
+           chat_foreground_color_me: chat_foreground_color_me,
+           chat_background_color_them: chat_background_color_them,
+           chat_foreground_color_them: chat_foreground_color_them
          }) do
       {:ok, _profile} ->
         {:noreply,

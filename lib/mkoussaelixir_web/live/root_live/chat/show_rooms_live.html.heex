@@ -6,6 +6,10 @@
       messages={@streams.messages}
       current_user_uuid={@current_user.uuid}
       scrolled_to_top={@scrolled_to_top}
+      background_color_me={@current_user.public_profile.chat_background_color_me}
+      foreground_color_me={@current_user.public_profile.chat_foreground_color_me}
+      background_color_them={@current_user.public_profile.chat_background_color_them}
+      foreground_color_them={@current_user.public_profile.chat_foreground_color_them}
     />
 
     <.live_component
