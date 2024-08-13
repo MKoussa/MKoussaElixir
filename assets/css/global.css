@@ -196,17 +196,15 @@ a:visited {
 }
 
 .chat-message-me {
-    margin: 2%;
-    padding: 2%;
+    padding-right: 4%;
     margin-left: 33%;
     border-radius: 15px;
     border: 5px solid #C46DC4;
 }
 
-.chat-message-you {
+.chat-message-them {
     background: rgba(196, 109, 196, .6);
-    margin: 2%;
-    padding: 2%;
+    padding-left: 4%;
     margin-right: 33%;
     border-radius: 15px;
     border: 5px solid #C46DC4;
