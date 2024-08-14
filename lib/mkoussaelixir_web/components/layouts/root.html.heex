@@ -39,9 +39,9 @@
         mix-blend-mode: difference;
       }
       body  {
+        background-repeat: no-repeat;
         background-color: #0f070b;
         background-image: url(/images/purp-opt-darker.jpg);
-        background-size: fill;
         background-position: center;
         -webkit-animation: slidein 30s;
         animation: slidein 30s;
@@ -70,12 +70,12 @@
                     mix-blend-mode: difference;
       }
       @-webkit-keyframes slidein {
-        from {background-position: -2200px -2600px; background-size: 9264px; }
-        to {background-position: center; background-size: 6264px;}
+        from {background-position: 0% 10%; background-size: 6264px; }
+        to {background-position: right; background-size: 6264px;}
       }
       @keyframes slidein {
-        from {background-position: -2200px -2600px; background-size: 9264px; }
-        to {background-position: center; background-size: 6264px;}
+        from {background-position: 0% 10%; background-size: 6264px;}
+        to {background-position: right; background-size: 6264px;}
       }                   
     </style>
   </head>
@@ -97,7 +97,7 @@
 
       <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 5; rotate: 180deg;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..12}>MKOUSSA&nbsp;</span>
         </h1>
       </div>
 
@@ -174,7 +174,7 @@
       </div>
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 5;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          <span :for={_n <- 1..7}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..12}>MKOUSSA&nbsp;</span>
         </h1>
       </div>
 

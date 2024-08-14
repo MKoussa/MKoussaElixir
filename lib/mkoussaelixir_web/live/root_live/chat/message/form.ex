@@ -23,7 +23,7 @@ defmodule MkoussaelixirWeb.ChatLive.Message.Form do
           field={{f, :content}}
         />
         <:actions>
-          <.button>send</.button>
+          <.button>Send</.button>
         </:actions>
       </.simple_form>
     </div>

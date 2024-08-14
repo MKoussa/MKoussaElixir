@@ -38,7 +38,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
         posted:
       </span>
       <br />
-      <p><%= @content %></p>
+      <p style="white-space: pre-line;"><%= @content %></p>
     </div>
     """
   end
