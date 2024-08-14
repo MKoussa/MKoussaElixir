@@ -8,7 +8,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
     ~H"""
     <div>
       <.simple_form
-        for={@new_post_form}
+        for={@changeset}
         id="new_post_form"
         phx-submit="post"
         phx-change="update"
@@ -32,9 +32,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
   def handle_event("post", %{"post" => %{"content" => content}}, socket) do
     Posts.create_post(%{content: content, poster_id: socket.assigns.poster.id})
 
-    {:noreply,
-     socket
-     |> assign(:changeset, assign_changeset(socket))}
+    {:noreply, assign_changeset(socket)}
   end
 
   def update(assigns, socket) do

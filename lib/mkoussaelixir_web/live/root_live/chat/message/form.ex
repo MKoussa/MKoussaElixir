@@ -31,7 +31,9 @@ defmodule MkoussaelixirWeb.ChatLive.Message.Form do
   end
 
   def handle_event("update", %{"message" => %{"content" => content}}, socket) do
-    {:noreply, socket |> assign(:changeset, Chat.change_message(%Message{content: content}))}
+    {:noreply,
+     socket
+     |> assign(:changeset, Chat.change_message(%Message{content: content}))}
   end
 
   def handle_event("save", %{"message" => %{"content" => content}}, socket) do

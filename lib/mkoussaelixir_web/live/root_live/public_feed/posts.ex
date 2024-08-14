@@ -3,7 +3,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
 
   def list_posts(assigns) do
     ~H"""
-    <div style="height: calc(60vh - 10rem); overflow: scroll;">
+    <div id="posts" style="height: calc(60vh - 10rem); overflow: scroll;" phx-update="stream">
       <div :for={{dom_id, post} <- @posts} id={dom_id}>
         <.post_details
           content={post.content}

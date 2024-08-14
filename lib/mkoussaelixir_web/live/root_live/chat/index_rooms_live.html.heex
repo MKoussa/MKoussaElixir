@@ -6,7 +6,14 @@
       <h3 style="overflow-x: auto;"><%= room.name %></h3>
       <div style="width: 100%; overflow: scroll; margin: 1%;">
         <span style="width: 50%; float: left;">
-          <%= room.description %>
+          <%= room.description %><br />
+          <%= if last_message = Mkoussaelixir.Chat.last_message_for_room(room.id) do %>
+            Last message:
+            <time datetime={last_message.inserted_at}>
+              <%= Calendar.strftime(last_message.inserted_at, "%A, %B %d %Y at %I:%M %P") %>
+            </time>
+            <br />By: <%= last_message.sender.public_profile.username %>
+          <% end %>
         </span>
         <div style="margin-left: 50%;">
           <.button phx-click="join_room" phx-value-room_id={room.id}>Join</.button>
