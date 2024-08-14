@@ -18,5 +18,6 @@ defmodule Mkoussaelixir.Posts.Post do
     post
     |> cast(attrs, [:poster_id, :content, :likes])
     |> validate_required([:poster_id, :content])
+    |> validate_length(:content, min: 3, max: 140)
   end
 end

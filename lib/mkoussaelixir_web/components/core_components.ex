@@ -123,7 +123,7 @@ defmodule MkoussaelixirWeb.CoreComponents do
       </p>
       <p class="mt-2 text-sm leading-5"><%= msg %></p>
       <button type="button" aria-label={gettext("close")} style="height: 30px; width: 80px;">
-        <.icon name="hero-x-mark-solid" />
+        <.icon name="hero-x-mark-solid" />test
       </button>
     </div>
     """
@@ -141,37 +141,34 @@ defmodule MkoussaelixirWeb.CoreComponents do
 
   def flash_group(assigns) do
     ~H"""
+    <div id={@id}>
+      <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
+      <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
+      <.flash
+        id="client-error"
+        kind={:error}
+        title={gettext("We can't find the internet")}
+        phx-disconnected={show(".phx-client-error #client-error")}
+        phx-connected={hide("#client-error")}
+        hidden
+      >
+        <%= gettext("Attempting to reconnect") %>
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+      </.flash>
+
+      <.flash
+        id="server-error"
+        kind={:error}
+        title={gettext("Something went wrong!")}
+        phx-disconnected={show(".phx-server-error #server-error")}
+        phx-connected={hide("#server-error")}
+        hidden
+      >
+        <%= gettext("Hang in there while we get back on track") %>
+        <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
+      </.flash>
+    </div>
     """
-
-    # ~H"""
-    # <div id={@id}>
-    #   <.flash kind={:info} title={gettext("Success!")} flash={@flash} />
-    #   <.flash kind={:error} title={gettext("Error!")} flash={@flash} />
-    #   <.flash
-    #     id="client-error"
-    #     kind={:error}
-    #     title={gettext("We can't find the internet")}
-    #     phx-disconnected={show(".phx-client-error #client-error")}
-    #     phx-connected={hide("#client-error")}
-    #     hidden
-    #   >
-    #     <%= gettext("Attempting to reconnect") %>
-    #     <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
-    #   </.flash>
-
-    #   <.flash
-    #     id="server-error"
-    #     kind={:error}
-    #     title={gettext("Something went wrong!")}
-    #     phx-disconnected={show(".phx-server-error #server-error")}
-    #     phx-connected={hide("#server-error")}
-    #     hidden
-    #   >
-    #     <%= gettext("Hang in there while we get back on track") %>
-    #     <.icon name="hero-arrow-path" class="ml-1 h-3 w-3 animate-spin" />
-    #   </.flash>
-    # </div>
-    # """
   end
 
   @doc """
@@ -266,7 +263,7 @@ defmodule MkoussaelixirWeb.CoreComponents do
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file month number password
-               range search select tel text textarea time url week)
+               range search select tel text textarea time url week post)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -362,6 +359,26 @@ defmodule MkoussaelixirWeb.CoreComponents do
       <.label for={@id}><%= @label %></.label>
       <textarea id={@id} name={@name} {@rest}><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
       <.error :for={msg <- @errors}><%= msg %></.error>
+    </div>
+    """
+  end
+
+  def input(%{type: "post"} = assigns) do
+    ~H"""
+    <div>
+      <span>
+        <textarea
+          name={@name}
+          id={@id}
+          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+          {@rest}
+          rows="3"
+          minlength="3"
+          maxlength="140"
+          class="core-textarea-input"
+        />
+        <p :for={msg <- @errors}><%= msg %></p>
+      </span>
     </div>
     """
   end

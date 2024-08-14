@@ -6,7 +6,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
 
   def render(assigns) do
     ~H"""
-    <div>
+    <span>
       <.simple_form
         for={@changeset}
         id="new_post_form"
@@ -14,12 +14,12 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
         phx-change="update"
         phx-target={@myself}
       >
-        <.input placeholder="Post to Public Feed..." field={@new_post_form[:content]} />
+        <.input placeholder="Post to Public Feed..." field={@new_post_form[:content]} type="post" />
         <:actions>
-          <.button>Post</.button>
+          <.button style="width: 80%;">Post</.button>
         </:actions>
       </.simple_form>
-    </div>
+    </span>
     """
   end
 
@@ -30,9 +30,15 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
   end
 
   def handle_event("post", %{"post" => %{"content" => content}}, socket) do
-    Posts.create_post(%{content: content, poster_id: socket.assigns.poster.id})
+    case Posts.create_post(%{content: content, poster_id: socket.assigns.poster.id}) do
+      {:ok, _} ->
+        {:noreply, assign_changeset(socket)}
 
-    {:noreply, assign_changeset(socket)}
+      {:error, error} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, error)}
+    end
   end
 
   def update(assigns, socket) do

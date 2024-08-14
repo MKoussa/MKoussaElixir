@@ -1,5 +1,6 @@
 :root {
     --base-purple: #C46DC4;
+    --super-light-purple: #ffc7ff;
 }
 
 html,
@@ -362,6 +363,22 @@ a:visited {
     background-color: inherit;
     height: auto;
     width: 100%;
+}
+
+.core-textarea-input {
+    resize: none;
+    background-color: inherit;
+    margin-bottom: 1%;
+    font-size: clamp(0.3em, 1rem, 2em);
+    color: var(--super-light-purple);
+    width: 90%;
+    border-radius: 5px;
+    border: 5px solid var(--base-purple);
+}
+
+.core-textarea-input:invalid {
+    border-radius: 5px;
+    border: 5px solid red;
 }
 
 @keyframes backColor {
