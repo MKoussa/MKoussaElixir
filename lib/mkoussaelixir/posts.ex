@@ -3,6 +3,7 @@ defmodule Mkoussaelixir.Posts do
   alias Mkoussaelixir.Repo
 
   alias Mkoussaelixir.Posts.Post
+  alias MkoussaelixirWeb.Endpoint
 
   @doc """
   Returns the list of posts.
@@ -57,6 +58,19 @@ defmodule Mkoussaelixir.Posts do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+    |> publish_post_created()
+  end
+
+  def publish_post_created({:ok, post} = result) do
+    Endpoint.broadcast("public_post_feed", "post", %{post: post})
+    result
+  end
+
+  def publish_post_created(result), do: result
+
+  def preload_post_sender(post) do
+    post
+    |> Repo.preload(:poster)
   end
 
   @doc """

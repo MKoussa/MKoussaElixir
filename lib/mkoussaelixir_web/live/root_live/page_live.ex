@@ -3,6 +3,7 @@ defmodule MkoussaelixirWeb.PageLive do
 
   alias Mkoussaelixir.Posts
   alias Mkoussaelixir.Posts.Post
+  alias MkoussaelixirWeb.Endpoint
 
   on_mount {MkoussaelixirWeb.UserAuth, :mount_current_user}
 
@@ -55,6 +56,8 @@ defmodule MkoussaelixirWeb.PageLive do
 
   def mount(_, _, socket) do
     if socket.assigns.current_user do
+      if connected?(socket), do: Endpoint.subscribe("public_post_feed")
+
       new_post_form = Posts.change_post(%Post{})
 
       {:ok,
@@ -64,6 +67,17 @@ defmodule MkoussaelixirWeb.PageLive do
     else
       {:ok, socket}
     end
+  end
+
+  def handle_info(%{event: "post", payload: %{post: post}}, socket) do
+    {:noreply,
+     socket
+     |> insert_new_post(post)}
+  end
+
+  def insert_new_post(socket, post) do
+    socket
+    |> stream_insert(:posts, Posts.preload_post_sender(post), at: 0)
   end
 
   def assign_posts(socket) do
