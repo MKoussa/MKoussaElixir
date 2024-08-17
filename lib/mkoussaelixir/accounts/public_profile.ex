@@ -46,5 +46,11 @@ defmodule Mkoussaelixir.Accounts.PublicProfile do
       :chat_background_color_them,
       :chat_foreground_color_them
     ])
+    |> validate_length(:public_post_background_color, is: 7)
+    |> validate_length(:public_post_foreground_color, is: 7)
+    |> validate_length(:chat_background_color_me, is: 7)
+    |> validate_length(:chat_foreground_color_me, is: 7)
+    |> validate_length(:chat_background_color_them, is: 7)
+    |> validate_length(:chat_foreground_color_them, is: 7)
   end
 end

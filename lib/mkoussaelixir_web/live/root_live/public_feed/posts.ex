@@ -1,45 +1,94 @@
 defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
-  use MkoussaelixirWeb, :html
+  use MkoussaelixirWeb, :live_component
 
-  def list_posts(assigns) do
+  alias Mkoussaelixir.Posts.Like
+  alias Mkoussaelixir.Posts
+  alias MkoussaelixirWeb.Endpoint
+
+  def render(assigns) do
     ~H"""
-    <div id="posts" style="height: calc(60vh - 10rem); overflow: scroll;" phx-update="stream">
-      <div :for={{dom_id, post} <- @posts} id={dom_id}>
-        <.post_details
-          content={post.content}
-          poster_username={post.poster.public_profile.username}
-          post_date={post.inserted_at}
-          poster_profile={post.poster.uuid}
-          background_color={post.poster.public_profile.public_post_background_color}
-          color={post.poster.public_profile.public_post_foreground_color}
-          border_size={post.poster.public_profile.public_post_border_size}
-          border_type={post.poster.public_profile.public_post_border_type}
-          border_color={post.poster.public_profile.public_post_border_color}
-        />
-      </div>
+    <div
+      class="root-transition"
+      style={"display: block;
+              margin: 1%;
+              padding: 1%;
+              word-break: break-word;
+              background-color: #{@public_profile.public_post_background_color};
+              color: #{@public_profile.public_post_foreground_color};
+              border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}
+    >
+      <span>
+        <%= @post.inserted_at %>,
+        <strong>
+          <.link patch={~p"/users/public_profile/#{@poster_uuid}"}>
+            <%= @public_profile.username %>
+          </.link>
+        </strong>
+        :
+      </span>
+      <p style="white-space: pre-line;"><%= @post.content %></p>
+      <%= if @poster_uuid == @liker.uuid or Posts.already_liked?(@post, @liker) do %>
+        <span>
+          <div style={"background-color: ##{ Posts.average_like_color(@post) };
+                       text-align: left;
+                       border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"
+                       }>
+            <span style="filter: invert(1);">
+              Boops: <%= Posts.like_count(@post) %>
+            </span>
+          </div>
+        </span>
+      <% else %>
+        <.simple_form
+          :let={f}
+          type="boop"
+          for={@changeset}
+          phx-submit="submit-like"
+          phx-target={@myself}
+          style={"border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}
+        >
+          <.input
+            label="vibe check"
+            id={"color-vibe-check:#{@post.id }"}
+            name="color-vibe-check"
+            type="boop"
+            field={f[:like_color]}
+          />
+          <:actions>
+            <.button>Boop</.button>
+          </:actions>
+        </.simple_form>
+      <% end %>
     </div>
     """
   end
 
-  def post_details(assigns) do
-    ~H"""
-    <div style={"display: block;
-                 margin: 1%;
-                 padding: 1%;
-                 word-break: break-word;
-                 background-color: #{@background_color};
-                 color: #{@color};
-                 border: #{@border_size}px #{@border_type} #{@border_color};"}>
-      <span>
-        On <%= @post_date %>,
-        <strong>
-          <.link patch={~p"/users/public_profile/#{@poster_profile}"}><%= @poster_username %></.link>
-        </strong>
-        posted:
-      </span>
-      <br />
-      <p style="white-space: pre-line;"><%= @content %></p>
-    </div>
-    """
+  def update(assigns, socket) do
+    if connected?(socket), do: Endpoint.subscribe("post:#{assigns.post.id}")
+
+    {:ok,
+     socket
+     |> assign(assigns)
+     |> assign_changeset()}
+  end
+
+  def handle_event("submit-like", %{"color-vibe-check" => color}, socket) do
+    case Posts.create_like(%{
+           like_color: color,
+           liker_id: socket.assigns.liker.id,
+           post_id: socket.assigns.post.id
+         }) do
+      {:ok, _} ->
+        {:noreply, assign_changeset(socket)}
+
+      {:error, error} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, error)}
+    end
+  end
+
+  def assign_changeset(socket) do
+    assign(socket, :changeset, Posts.like_changeset(%Like{}))
   end
 end

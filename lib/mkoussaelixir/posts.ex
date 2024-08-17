@@ -2,7 +2,8 @@ defmodule Mkoussaelixir.Posts do
   import Ecto.Query
   alias Mkoussaelixir.Repo
 
-  alias Mkoussaelixir.Posts.Post
+  alias Mkoussaelixir.Accounts.User
+  alias Mkoussaelixir.Posts.{Post, Like}
   alias MkoussaelixirWeb.Endpoint
 
   @doc """
@@ -18,10 +19,16 @@ defmodule Mkoussaelixir.Posts do
     Repo.all(Post)
   end
 
-  def last_ten_public_posts do
+  def like_count(%Post{} = post) do
+    Like
+    |> where([like], like.post_id == ^post.id)
+    |> Repo.aggregate(:count)
+  end
+
+  def last_twenty_public_posts do
     Post
     |> order_by([p], {:desc, p.inserted_at})
-    |> limit(10)
+    |> limit(20)
     |> preload(:poster)
     |> Repo.all()
   end
@@ -61,12 +68,54 @@ defmodule Mkoussaelixir.Posts do
     |> publish_post_created()
   end
 
+  def create_like(attrs \\ %{}) do
+    %Like{}
+    |> Like.changeset(attrs)
+    |> Repo.insert()
+    |> publish_like_created()
+  end
+
+  def already_liked?(%Post{} = post, %User{} = user) do
+    IO.inspect(Post)
+    query = from l in Like, where: l.liker_id == ^user.id and l.post_id == ^post.id
+    Repo.exists?(query)
+  end
+
+  def average_like_color(%Post{} = post) do
+    list_of_colors =
+      Like
+      |> where([like], like.post_id == ^post.id)
+      |> Repo.all()
+      |> Enum.map(fn like ->
+        Integer.parse(String.slice(like.like_color, 1..6), 16) |> Tuple.to_list()
+      end)
+      |> List.flatten()
+      |> Enum.filter(fn x -> x != "" end)
+
+    avg_color = Statistics.median(list_of_colors)
+
+    # Decimal.round(Decimal.new(avg_color)) |> IO.inspect()
+    if is_nil(avg_color) do
+      "888888"
+    else
+      Integer.to_string(trunc(avg_color), 16)
+      |> String.pad_leading(6, "0")
+    end
+  end
+
   def publish_post_created({:ok, post} = result) do
     Endpoint.broadcast("public_post_feed", "post", %{post: post})
     result
   end
 
   def publish_post_created(result), do: result
+
+  def publish_like_created({:ok, like} = result) do
+    Endpoint.broadcast("post:#{like.post_id}", "like", %{like: like})
+    result
+  end
+
+  def publish_like_created(result), do: result
 
   def preload_post_sender(post) do
     post
@@ -118,5 +167,9 @@ defmodule Mkoussaelixir.Posts do
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
     Post.changeset(post, attrs)
+  end
+
+  def like_changeset(%Like{} = like, attrs \\ %{}) do
+    Like.changeset(like, attrs)
   end
 end

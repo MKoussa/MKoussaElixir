@@ -14,9 +14,15 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
         phx-change="update"
         phx-target={@myself}
       >
-        <.input placeholder="Post to Public Feed..." field={@new_post_form[:content]} type="post" />
+        <.input placeholder="
+
+
+    Your thoughts?" field={@new_post_form[:content]} type="post" />
         <:actions>
-          <.button style="width: 80%;">Post</.button>
+          <span>
+            <.button type="reset" name="reset" style="width: 30%;">Reset</.button>
+            <.button style="width: 60%;">Post</.button>
+          </span>
         </:actions>
       </.simple_form>
     </span>
