@@ -115,7 +115,12 @@
             type="color"
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Profile</.button>
+            <.button
+              phx-disable-with="Redirecting to Bio..."
+              style="width: 80%; height: clamp(3rem, 5em, 8rem);"
+            >
+              Change Profile
+            </.button>
           </:actions>
         </.simple_form>
       </div>
@@ -137,7 +142,12 @@
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Email</.button>
+            <.button
+              phx-disable-with="Changing..."
+              style="width: 80%; height: clamp(3rem, 5em, 8rem);"
+            >
+              Change Email
+            </.button>
           </:actions>
         </.simple_form>
       </div>
@@ -173,7 +183,12 @@
             required
           />
           <:actions>
-            <.button phx-disable-with="Changing...">Change Password</.button>
+            <.button
+              phx-disable-with="Changing..."
+              style="width: 80%; height: clamp(3rem, 5em, 8rem);"
+            >
+              Change Password
+            </.button>
           </:actions>
         </.simple_form>
       </div>

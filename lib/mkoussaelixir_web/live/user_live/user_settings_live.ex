@@ -112,7 +112,8 @@ defmodule MkoussaelixirWeb.UserSettingsLive do
       {:ok, _profile} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Your profile was successfully updated!")}
+         |> put_flash(:info, "Your profile was successfully updated!")
+         |> redirect(to: ~p"/users/public_profile/#{user.uuid}")}
 
       {:error, _changeset} ->
         {:noreply,

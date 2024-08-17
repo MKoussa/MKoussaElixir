@@ -25,7 +25,7 @@
       }
       .navButton {
         font-size: clamp(0.7rem, 2vw, 1.2rem);
-        color: #ffc7ff; 
+        color: #ffc7ff;
       }
       .core-input-label {
         background-color: #C46DC4;
@@ -53,19 +53,19 @@
         animation-iteration-count: infinite;
 
         -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+        animation-direction: alternate;
       }
       h1, h2, h3 {
         font-family: Sixtyfour, Helvetica, sans-serif;
       }
       h1 {
-        font-size: clamp(0.4rem, 3vw, 2.4rem);  
+        font-size: clamp(0.4rem, 3vw, 2.4rem);
       }
       h2, h3 {
         mix-blend-mode: difference;
       }
       .nav-button-svg {
-        animation: rainbow-svg 14s ease-in; 
+        animation: rainbow-svg 14s ease-in;
         animation-iteration-count: infinite;
         mix-blend-mode: difference;
       }
@@ -76,7 +76,7 @@
       @keyframes slidein {
         from {background-position: 0% 10%; background-size: 6264px;}
         to {background-position: right; background-size: 6264px;}
-      }                   
+      }
     </style>
   </head>
   <body>
@@ -152,10 +152,15 @@
                 </.link>
               </li>
               <li class="nav_user_li">
-                <.link class="nav_user_button" patch={~p"/users/orders/"}>Orders</.link>
+                <.link class="nav_user_button" patch={~p"/users/settings/"}>Settings</.link>
               </li>
               <li class="nav_user_li">
-                <.link class="nav_user_button" patch={~p"/users/settings/"}>Settings</.link>
+                <.link
+                  class="nav_user_button"
+                  patch={~p"/users/public_profile/#{@current_user.uuid}"}
+                >
+                  Bio
+                </.link>
               </li>
             </ul>
           <% end %>

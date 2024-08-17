@@ -1,5 +1,6 @@
 defmodule Mkoussaelixir.Posts do
   import Ecto.Query
+  alias Mkoussaelixir.Accounts
   alias Mkoussaelixir.Repo
 
   alias Mkoussaelixir.Accounts.User
@@ -29,6 +30,17 @@ defmodule Mkoussaelixir.Posts do
     Post
     |> order_by([p], {:desc, p.inserted_at})
     |> limit(20)
+    |> preload(:poster)
+    |> Repo.all()
+  end
+
+  def last_ten_public_posts_by_user_uuid(uuid) do
+    poster = Accounts.get_user_by_uuid(uuid)
+
+    Post
+    |> where([p], p.poster_id == ^poster.id)
+    |> order_by([p], {:desc, p.inserted_at})
+    |> limit(10)
     |> preload(:poster)
     |> Repo.all()
   end
@@ -76,7 +88,6 @@ defmodule Mkoussaelixir.Posts do
   end
 
   def already_liked?(%Post{} = post, %User{} = user) do
-    IO.inspect(Post)
     query = from l in Like, where: l.liker_id == ^user.id and l.post_id == ^post.id
     Repo.exists?(query)
   end

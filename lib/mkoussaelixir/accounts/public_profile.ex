@@ -7,8 +7,8 @@ defmodule Mkoussaelixir.Accounts.PublicProfile do
     field :bio, :string, default: "There's nothing here..."
     field :online?, :boolean, default: false
 
-    field :public_post_background_color, :string
-    field :public_post_foreground_color, :string
+    field :public_post_background_color, :string, default: "#C46DC4"
+    field :public_post_foreground_color, :string, default: "#ffc7ff"
     field :public_post_border_size, :integer
 
     field :public_post_border_type, Ecto.Enum,
@@ -27,10 +27,10 @@ defmodule Mkoussaelixir.Accounts.PublicProfile do
 
     field :public_post_border_color, :string
 
-    field :chat_background_color_me, :string
-    field :chat_foreground_color_me, :string
-    field :chat_background_color_them, :string
-    field :chat_foreground_color_them, :string
+    field :chat_background_color_me, :string, default: "#00374a"
+    field :chat_foreground_color_me, :string, default: "#cbf0ff"
+    field :chat_background_color_them, :string, default: "#3c071b"
+    field :chat_foreground_color_them, :string, default: "#f9d3e0"
   end
 
   def changeset(profile, attrs \\ %{}) do
