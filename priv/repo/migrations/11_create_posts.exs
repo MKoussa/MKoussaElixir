@@ -5,7 +5,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreatePosts do
     create table(:posts) do
       add :content, :string
       add :poster_id, references(:users), null: false, on_delete: :delete_all
-      add :likes, :map
+      add :likes, :map, default: %{}
 
       timestamps(type: :utc_datetime)
     end

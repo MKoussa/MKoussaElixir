@@ -122,9 +122,9 @@ defmodule MkoussaelixirWeb.CoreComponents do
         <%= @title %>
       </p>
       <p class="mt-2 text-sm leading-5"><%= msg %></p>
-      <button type="button" aria-label={gettext("close")} style="height: 30px; width: 80px;">
-        <.icon name="hero-x-mark-solid" />test
-      </button>
+      <.button type="button" aria-label={gettext("close")}>
+        ok
+      </.button>
     </div>
     """
   end
@@ -191,8 +191,29 @@ defmodule MkoussaelixirWeb.CoreComponents do
     include: ~w(autocomplete name rel action enctype method novalidate target multipart),
     doc: "the arbitrary HTML attributes to apply to the form tag"
 
+  attr :type, :string,
+    default: "normal",
+    values: ~w(boop normal)
+
   slot :inner_block, required: true
   slot :actions, doc: "the slot for form actions, such as a submit button"
+
+  def simple_form(%{type: "boop"} = assigns) do
+    ~H"""
+    <span style="  display: block;
+                   margin: 0 auto;
+                   justify-content: center;
+                   align-items: end;
+                   ">
+      <.form :let={f} for={@for} as={@as} {@rest}>
+        <%= render_slot(@inner_block, f) %>
+        <span :for={action <- @actions}>
+          <%= render_slot(action, f) %>
+        </span>
+      </.form>
+    </span>
+    """
+  end
 
   def simple_form(assigns) do
     ~H"""
@@ -263,7 +284,7 @@ defmodule MkoussaelixirWeb.CoreComponents do
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file month number password
-               range search select tel text textarea time url week post)
+               range search select tel text textarea time url week post boop)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -320,6 +341,23 @@ defmodule MkoussaelixirWeb.CoreComponents do
     """
   end
 
+  def input(%{type: "boop"} = assigns) do
+    ~H"""
+    <span>
+      <input
+        type="color"
+        name={@name}
+        id={@id}
+        value={Phoenix.HTML.Form.normalize_value("color", @value)}
+        {@rest}
+        style="background-color: inherit;"
+      />
+      <%!-- <p style="rotate: 90deg;"><%= @value %></p> --%>
+      <.error :for={msg <- @errors}><%= msg %></.error>
+    </span>
+    """
+  end
+
   def input(%{type: "color"} = assigns) do
     ~H"""
     <div class="core-input-default">
@@ -372,7 +410,7 @@ defmodule MkoussaelixirWeb.CoreComponents do
           id={@id}
           value={Phoenix.HTML.Form.normalize_value(@type, @value)}
           {@rest}
-          rows="3"
+          rows="4"
           minlength="3"
           maxlength="140"
           class="core-textarea-input"

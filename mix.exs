@@ -54,6 +54,7 @@ defmodule Mkoussaelixir.MixProject do
       {:hackney, "~> 1.20"},
       {:gen_smtp, "~> 1.2.0"},
       {:swoosh, "~> 1.16.9"},
+      {:statistics, "~> 0.6.3"},
       {:finch, "~> 0.13"},
       {:multipart, "~> 0.4.0"},
       {:telemetry_metrics, "~> 1.0"},
