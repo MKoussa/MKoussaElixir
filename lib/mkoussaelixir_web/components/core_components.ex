@@ -380,23 +380,81 @@ defmodule MkoussaelixirWeb.CoreComponents do
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div>
-      <.label for={@id}><%= @label %></.label>
-      <select id={@id} name={@name} multiple={@multiple} {@rest}>
-        <option :if={@prompt} value=""><%= @prompt %></option>
-        <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
-      </select>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+    <div
+      class="core-input-default"
+      style="background-color: var(--base-purple);
+             border: 0.3rem solid var(--base-purple);
+             border-radius: 0.3rem;"
+    >
+      <span
+        class="core-input-span"
+        style="border: 0.3rem solid var(--base-purple);
+               border-radius: 0.3rem;"
+      >
+        <label for={@id} class="core-input-label" style="border-radius: 0;"><%= @label %></label>
+        <select
+          id={@id}
+          name={@name}
+          style="width: 60%;
+                 background-color: var(--super-light-purple);
+                 font-size: clamp(1rem, 1em, 3rem);
+                 text-align: center;
+                 border-radius: 0.3rem;"
+          multiple={@multiple}
+          {@rest}
+        >
+          <option :if={@prompt} value=""><%= @prompt %></option>
+          <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
+        </select>
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </span>
     </div>
+
+    <%!-- <div class="core-input-default">
+      <span
+        class="core-input-span"
+        style="border: 0.3rem solid var(--base-purple);
+               border-radius: 0.3rem;"
+      >
+        <label for={@id} class="core-input-label" style="border-radius: 0;"><%= @label %></label>
+        <input
+          type={@type}
+          name={@name}
+          id={@id}
+          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+          {@rest}
+          class="core-input-input"
+        />
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </span>
+    </div> --%>
     """
   end
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div>
-      <.label for={@id}><%= @label %></.label>
-      <textarea id={@id} name={@name} {@rest}><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+    <div class="core-input-default">
+      <span
+        class="core-input-span"
+        style="border: 0.3rem solid var(--base-purple);
+               border-radius: 0.3rem;"
+      >
+        <label for={@id} class="core-input-label" style="border-radius: 0;"><%= @label %></label>
+        <textarea
+          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+          placeholder="Who are you?"
+          rows="6"
+          id={@id}
+          name={@name}
+          {@rest}
+          minlength="3"
+          maxlength="250"
+          class="core-textarea-input"
+          style="border-radius:0;
+                 border: 0;"
+        ><%= @value %></textarea>
+        <.error :for={msg <- @errors}><%= msg %></.error>
+      </span>
     </div>
     """
   end

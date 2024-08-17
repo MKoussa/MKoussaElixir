@@ -60,6 +60,14 @@ defmodule Mkoussaelixir.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_user_by_uuid(uuid) do
+    query =
+      from u in User,
+        where: u.uuid == ^uuid
+
+    Repo.one(query)
+  end
+
   # @doc """
   # Unsure if this is even a good idea....
   # """
