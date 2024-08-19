@@ -20,6 +20,10 @@ defmodule Mkoussaelixir.Posts do
     Repo.all(Post)
   end
 
+  def get_post_count() do
+    Repo.aggregate(Post, :count)
+  end
+
   def like_count(%Post{} = post) do
     Like
     |> where([like], like.post_id == ^post.id)
@@ -60,6 +64,12 @@ defmodule Mkoussaelixir.Posts do
 
   """
   def get_post!(id), do: Repo.get!(Post, id)
+
+  def get_repost!(id) do
+    Post
+    |> preload(:poster)
+    |> Repo.get(id)
+  end
 
   @doc """
   Creates a post.

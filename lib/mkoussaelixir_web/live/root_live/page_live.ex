@@ -15,19 +15,14 @@ defmodule MkoussaelixirWeb.PageLive do
     <div class="root-transition">
       <%= if @current_user do %>
         <%= if @current_user.confirmed_at do %>
-          <%!-- <h2>Hello Again!</h2>
-          <p>It's <i>so</i> good to see you again! Thank you for being a member and for being you!</p>
-          <h3 style="animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
-            ~♥ YOU ARE LOVED ♥~
-          </h3> --%>
           <h3>Public <i>Feeeeeeed</i></h3>
           <section class="chat-room">
             <div
               id="posts"
               style="height: calc(70vh - 10rem);
                      overflow: scroll;
-                     padding-left: 1rem;
-                     padding-right: 1rem;
+                     padding-left: 0.2rem;
+                     padding-right: 0.2rem;
                      border-bottom: 1rem solid var(--base-purple);
                      animation: rainbow-border 7.5s linear;
                      animation-iteration-count: infinite;"
@@ -38,6 +33,7 @@ defmodule MkoussaelixirWeb.PageLive do
                   id={"public-post:#{post.id}"}
                   module={MkoussaelixirWeb.RootLive.PublicFeed.Posts}
                   liker={@current_user}
+                  repost_id={post.repost_id}
                   post={post}
                   poster_uuid={post.poster.uuid}
                   public_profile={post.poster.public_profile}
@@ -63,16 +59,19 @@ defmodule MkoussaelixirWeb.PageLive do
       <% else %>
         <h2>Welcome, <i>Friend</i></h2>
         <br />
-        <.link patch={~p"/users/log_in"}>
-          <.button>Log In</.button>
-        </.link>
-        <br />
-        <br />
-        <br />
+        <p>
+          Build community with <%= @user_count %>+ unique and compelling users.
+        </p>
+        <p>Read, repost and boop over <%= @post_count %> posts.</p>
+        <p>Live chat in one of 10 public rooms.</p>
+        <p>Customizable posts and bio.</p>
+        <p><i>This</i> is Web 3.0</p>
+        <p><i>You</i> create your own experience.</p>
+        <p><i>This is You.</i></p>
+
         <.link patch={~p"/users/register"}>
-          <.button>Create an Account</.button>
+          <.button>Join Us Today</.button>
         </.link>
-        <br />
       <% end %>
     </div>
     """
@@ -89,7 +88,10 @@ defmodule MkoussaelixirWeb.PageLive do
        |> assign_posts()
        |> assign(:new_post_form, to_form(new_post_form))}
     else
-      {:ok, socket}
+      {:ok,
+       socket
+       |> assign(user_count: Accounts.get_user_count())
+       |> assign(post_count: Posts.get_post_count())}
     end
   end
 
@@ -112,6 +114,24 @@ defmodule MkoussaelixirWeb.PageLive do
     )
 
     {:noreply, socket}
+  end
+
+  def handle_event("flip", %{"repost_id" => repost_id}, socket) do
+    case Posts.create_post(%{
+           poster_id: socket.assigns.current_user.id,
+           content: "Repost",
+           repost_id: String.to_integer(repost_id)
+         }) do
+      {:ok, post} ->
+        {:noreply,
+         socket
+         |> insert_new_post(post)}
+
+      {:error, error} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, error)}
+    end
   end
 
   def insert_new_post(socket, post) do
