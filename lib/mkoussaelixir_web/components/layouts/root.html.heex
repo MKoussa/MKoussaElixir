@@ -77,6 +77,30 @@
         from {background-position: 0% 10%; background-size: 6264px;}
         to {background-position: right; background-size: 6264px;}
       }
+
+      @media (max-width: 400px) {
+        .grid-container {
+            grid-template-rows: 10% 90%;
+            grid-template-columns: 10% 90%;
+        }
+
+        .nav {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .mainBody {
+            grid-column: 2;
+        }
+
+        .header-container-bottom {
+            display: none;
+        }
+
+        .header-container-side {
+            display: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -120,6 +144,7 @@
               transform="matrix(-1, 0, 0, 1, 0, 0)"
               stroke="#000000"
               class="nav-button-svg"
+              alt="Log in"
             >
               <g id="SVGRepo_bgCarrier" stroke-width="0" />
 

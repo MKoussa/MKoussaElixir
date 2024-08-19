@@ -167,7 +167,6 @@ a:visited {
 .mainBody {
     text-align: center;
     padding-left: 10%;
-    padding-right: 10%;
     background-color: inherit;
     font-size: clamp(6px, 2.5vw, 16px);
     font-weight: bold;

@@ -26,6 +26,10 @@ defmodule Mkoussaelixir.Accounts do
     Repo.get_by(User, email: email)
   end
 
+  def get_user_count() do
+    Repo.aggregate(User, :count)
+  end
+
   @doc """
   Gets a user by email and password.
 

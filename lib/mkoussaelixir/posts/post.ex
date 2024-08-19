@@ -7,6 +7,7 @@ defmodule Mkoussaelixir.Posts.Post do
 
   schema "posts" do
     field :content, :string
+    field :repost_id, :integer
 
     has_many :likes, Like
     belongs_to :poster, User
@@ -17,7 +18,7 @@ defmodule Mkoussaelixir.Posts.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:poster_id, :content])
+    |> cast(attrs, [:poster_id, :content, :repost_id])
     |> validate_required([:poster_id, :content])
     |> validate_length(:content, min: 3, max: 140)
   end
