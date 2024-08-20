@@ -52,6 +52,8 @@ defmodule MkoussaelixirWeb.Router do
 
       live "/chat/rooms", RootLive.Chat.IndexRoomsLive
       live "/chat/rooms/:id", RootLive.Chat.ShowRoomsLive
+
+      live "/posts/:id", RootLive.Post.ShowPostLive
     end
 
     delete "/users/log_out", UserSessionController, :delete

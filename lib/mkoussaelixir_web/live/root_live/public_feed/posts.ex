@@ -18,13 +18,45 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
               border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}
     >
       <span style="display: block;">
-        <%= @post.inserted_at %>,
-        <strong>
+        <%= if @poster_uuid != @liker.uuid and !@post.repost_id do %>
+          <.button
+            phx-click="flip"
+            phx-value-repost_id={@post.id}
+            style={"float: left;
+                    margin: 0.2em;
+                    border: clamp(0.1rem, 0.5em, 1rem) outset;
+                    border-radius: 50%;
+                    font-size: clamp(0.7rem, 1.2em, 3rem);
+                    background-color: #{@public_profile.public_post_foreground_color};
+                    color: #{@public_profile.public_post_background_color};
+                    border-color: #{@public_profile.public_post_foreground_color};
+                    mix-blend-mode: normal;"}
+          >
+            ♼
+          </.button>
+        <% end %>
+
+        <b>
           <.link patch={~p"/users/public_profile/#{@poster_uuid}"}>
             <%= @public_profile.username %>
           </.link>
-        </strong>
+        </b>
         :
+        <%= if !@post.repost_id do %>
+          <.link patch={~p"/posts/#{@post.id}"}>
+            <.button style={"float: right;
+                           margin: 0.2em;
+                          border: clamp(0.1rem, 0.5em, 1rem) outset;
+                          border-radius: 50%;
+                          font-size: clamp(0.7rem, 1.2em, 3rem);
+                          background-color: #{@public_profile.public_post_foreground_color};
+                          color: #{@public_profile.public_post_background_color};
+                          border-color: #{@public_profile.public_post_foreground_color};
+                          mix-blend-mode: normal;"}>
+              🗩
+            </.button>
+          </.link>
+        <% end %>
       </span>
       <%= if @post.repost_id do %>
         <h3 style="animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
@@ -41,13 +73,25 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
               border: #{@repost.poster.public_profile.public_post_border_size}px #{@repost.poster.public_profile.public_post_border_type} #{@repost.poster.public_profile.public_post_border_color};"}
         >
           <span>
-            <%= @repost.inserted_at %>,
             <strong>
               <.link patch={~p"/users/public_profile/#{@repost.poster.uuid}"}>
                 <%= @repost.poster.public_profile.username %>
               </.link>
             </strong>
             :
+            <.link patch={~p"/posts/#{@repost.id}"}>
+              <.button style={"float: right;
+                           margin: 0.2em;
+                          border: clamp(0.1rem, 0.5em, 1rem) outset;
+                          border-radius: 50%;
+                          font-size: clamp(0.7rem, 1.2em, 3rem);
+                          background-color: #{@repost.poster.public_profile.public_post_foreground_color};
+                          color: #{@repost.poster.public_profile.public_post_background_color};
+                          border-color: #{@repost.poster.public_profile.public_post_foreground_color};
+                          mix-blend-mode: normal;"}>
+                🗩
+              </.button>
+            </.link>
           </span>
           <p style="white-space: pre-line;"><%= @repost.content %></p>
           <span>
@@ -63,22 +107,6 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
         </div>
       <% else %>
         <span style="display: block;">
-          <%= if @poster_uuid != @liker.uuid and !@post.repost_id do %>
-            <.button
-              phx-click="flip"
-              phx-value-repost_id={@post.id}
-              style={"float: left;
-                      border: clamp(0.1rem, 0.5em, 1rem) outset;
-                      border-radius: 60%;
-                      font-size: clamp(0.7rem, 1.2em, 3rem);
-                      background-color: #{@public_profile.public_post_foreground_color};
-                      color: #{@public_profile.public_post_background_color};
-                      border-color: #{@public_profile.public_post_foreground_color};
-                      mix-blend-mode: normal;"}
-            >
-              ♼
-            </.button>
-          <% end %>
           <p style="white-space: pre-line;"><%= @post.content %></p>
         </span>
         <br />

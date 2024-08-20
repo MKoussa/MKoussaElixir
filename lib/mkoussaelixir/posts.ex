@@ -65,6 +65,12 @@ defmodule Mkoussaelixir.Posts do
   """
   def get_post!(id), do: Repo.get!(Post, id)
 
+  def get_post_and_poster!(id) do
+    Post
+    |> preload(:poster)
+    |> Repo.get!(id)
+  end
+
   def get_repost!(id) do
     Post
     |> preload(:poster)
