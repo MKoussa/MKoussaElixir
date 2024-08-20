@@ -2,7 +2,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
   use MkoussaelixirWeb, :live_component
 
   alias Mkoussaelixir.Posts
-  alias Mkoussaelixir.Posts.Post
+  alias Mkoussaelixir.Posts.{Post, Comment}
 
   def render(assigns) do
     ~H"""
@@ -35,6 +35,12 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
      |> assign(:changeset, Posts.change_post(%Post{content: content}))}
   end
 
+  def handle_event("update", %{"comment" => %{"content" => content}}, socket) do
+    {:noreply,
+     socket
+     |> assign(:changeset, Posts.comment_changeset(%Comment{content: content}))}
+  end
+
   def handle_event("post", %{"post" => %{"content" => content}}, socket) do
     case Posts.create_post(%{content: content, poster_id: socket.assigns.poster.id}) do
       {:ok, _} ->
@@ -47,14 +53,35 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Post.Form do
     end
   end
 
+  def handle_event("post", %{"comment" => %{"content" => content}}, socket) do
+    case Posts.create_comment(%{
+           content: content,
+           commenter_id: socket.assigns.poster.id,
+           post_id: socket.assigns.post_id
+         }) do
+      {:ok, _} ->
+        {:noreply, assign_comment_changeset(socket)}
+
+      {:error, error} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, error)}
+    end
+  end
+
   def update(assigns, socket) do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign_changeset}
+     |> assign_comment_changeset()
+     |> assign_changeset()}
   end
 
   def assign_changeset(socket) do
     assign(socket, :changeset, Posts.change_post(%Post{}))
+  end
+
+  def assign_comment_changeset(socket) do
+    assign(socket, :changeset, Posts.comment_changeset(%Comment{}))
   end
 end
