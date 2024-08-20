@@ -18,7 +18,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
               border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}
     >
       <span style="display: block;">
-        <%= if @poster_uuid != @liker.uuid and !@post.repost_id do %>
+        <%= if @poster_uuid != @liker.uuid and !@repost_id and @show_repost_bubble do %>
           <.button
             phx-click="flip"
             phx-value-repost_id={@post.id}
@@ -42,7 +42,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
           </.link>
         </b>
         :
-        <%= if !@post.repost_id do %>
+        <%= if !@repost_id and @show_comment_bubble do %>
           <.link patch={~p"/posts/#{@post.id}"}>
             <.button style={"float: right;
                            margin: 0.2em;
@@ -58,7 +58,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
           </.link>
         <% end %>
       </span>
-      <%= if @post.repost_id do %>
+      <%= if @repost_id do %>
         <h3 style="animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
           _~♥ REPOST ♥~_
         </h3>

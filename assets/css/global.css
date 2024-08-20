@@ -383,12 +383,11 @@ a:visited {
 
 @keyframes backColor {
     0% {
-        color: #0f0d07;
+        color: transparent;
         transform: translateY(10%);
     }
 
     100% {
-        color: #C46DC4;
         transform: translateY(0);
     }
 }

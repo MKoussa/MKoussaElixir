@@ -20,7 +20,8 @@ defmodule MkoussaelixirWeb.PageLive do
             <div
               id="posts"
               style="height: calc(70vh - 10rem);
-                     overflow: scroll;
+                     overflow-y: scroll;
+                     overflow-x: hidden;
                      padding-left: 0.2rem;
                      padding-right: 0.2rem;
                      border-bottom: 1rem solid var(--base-purple);
@@ -34,6 +35,8 @@ defmodule MkoussaelixirWeb.PageLive do
                   module={MkoussaelixirWeb.RootLive.PublicFeed.Posts}
                   liker={@current_user}
                   repost_id={post.repost_id}
+                  show_comment_bubble={true}
+                  show_repost_bubble={true}
                   post={post}
                   poster_uuid={post.poster.uuid}
                   public_profile={post.poster.public_profile}
@@ -80,15 +83,21 @@ defmodule MkoussaelixirWeb.PageLive do
   def mount(_, _, socket) do
     if socket.assigns.current_user do
       if connected?(socket), do: Endpoint.subscribe("public_post_feed")
+    end
 
+    {:ok, socket}
+  end
+
+  def handle_params(_, _, socket) do
+    if socket.assigns.current_user do
       new_post_form = Posts.change_post(%Post{})
 
-      {:ok,
+      {:noreply,
        socket
        |> assign_posts()
        |> assign(:new_post_form, to_form(new_post_form))}
     else
-      {:ok,
+      {:noreply,
        socket
        |> assign(user_count: Accounts.get_user_count())
        |> assign(post_count: Posts.get_post_count())}

@@ -1,129 +1,127 @@
-<div class="root-transition">
-  <%= if is_nil(@current_user.confirmed_at) do %>
-    <h3>Check Your Email</h3>
-    <p>A confirmation email was sent to <i><%= @current_user.email %></i>.</p>
-    <p>
-      To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @current_user.email %>.
-    </p>
-  <% else %>
-    <.header class="text-center">
-      Settings
-      <:subtitle>
+<section>
+  <div class="root-transition">
+    <%= if is_nil(@current_user.confirmed_at) do %>
+      <h3>Check Your Email</h3>
+      <p>A confirmation email was sent to <i><%= @current_user.email %></i>.</p>
+      <p>
+        To unlock full account features, you'll need to validate your account by clicking the link in the email that was sent to <%= @current_user.email %>.
+      </p>
+    <% else %>
+      <h2>
+        Settings
+      </h2>
+      <p>
         Manage your public profile, chat, email address and password settings.
-      </:subtitle>
-    </.header>
-    <div>
-      <div>
-        <h3>Public Profile</h3>
-        <.simple_form
-          for={@public_profile_form}
-          id="public_profile_form"
-          phx-submit="update_public_profile"
-        >
-          <.input
-            field={@public_profile_form[:username]}
-            label="Username"
-            name="username"
-            value={@current_user.public_profile.username}
-            type="text"
-          />
-          <.input
-            field={@public_profile_form[:bio]}
-            label="Bio"
-            name="bio"
-            value={@current_user.public_profile.bio}
-            type="textarea"
-          />
-          <p>This is what your public posts will look like for <i>everybody.</i></p>
-          <.input
-            field={@public_profile_form[:public_post_foreground_color]}
-            label="Public Foreground Color"
-            name="public_post_foreground_color"
-            value={@current_user.public_profile.public_post_foreground_color}
-            type="color"
-          />
-          <.input
-            field={@public_profile_form[:public_post_background_color]}
-            label="Public Background Color"
-            name="public_post_background_color"
-            value={@current_user.public_profile.public_post_background_color}
-            type="color"
-          />
-          <.input
-            field={@public_profile_form[:public_post_border_size]}
-            label="Public Border Size"
-            name="public_post_border_size"
-            value={@current_user.public_profile.public_post_border_size}
-            type="select"
-            options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-          />
-          <.input
-            field={@public_profile_form[:public_post_border_type]}
-            label="Public Border Type"
-            name="public_post_border_type"
-            value={@current_user.public_profile.public_post_border_type}
-            type="select"
-            options={[
-              "none",
-              "hidden",
-              "dotted",
-              "dashed",
-              "solid",
-              "double",
-              "groove",
-              "ridge",
-              "inset",
-              "outset"
-            ]}
-          />
-          <.input
-            field={@public_profile_form[:public_post_border_color]}
-            label="Public Border Color"
-            name="public_post_border_color"
-            value={@current_user.public_profile.public_post_border_color}
-            type="color"
-          />
-          <p>This is what your Chats will look like for <i>just you.</i></p>
-          <p>Messages from you.</p>
-          <.input
-            field={@public_profile_form[:chat_foreground_color_me]}
-            label="Foreground Color: Me"
-            name="chat_foreground_color_me"
-            value={@current_user.public_profile.chat_foreground_color_me}
-            type="color"
-          />
-          <.input
-            field={@public_profile_form[:chat_background_color_me]}
-            label="Background Color: Me"
-            name="chat_background_color_me"
-            value={@current_user.public_profile.chat_background_color_me}
-            type="color"
-          />
-          <p>Messages from them.</p>
-          <.input
-            field={@public_profile_form[:chat_foreground_color_them]}
-            label="Foreground Color: Them"
-            name="chat_foreground_color_them"
-            value={@current_user.public_profile.chat_foreground_color_them}
-            type="color"
-          />
-          <.input
-            field={@public_profile_form[:chat_background_color_them]}
-            label="Background Color: Them"
-            name="chat_background_color_them"
-            value={@current_user.public_profile.chat_background_color_them}
-            type="color"
-          />
-          <:actions>
-            <.button
-              phx-disable-with="Redirecting to Bio..."
-              style="width: 80%; height: clamp(3rem, 5em, 8rem);"
-            >
-              Change Profile
-            </.button>
-          </:actions>
-        </.simple_form>
-      </div>
+      </p>
+      <h3>Public Profile</h3>
+      <.simple_form
+        for={@public_profile_form}
+        id="public_profile_form"
+        phx-submit="update_public_profile"
+      >
+        <.input
+          field={@public_profile_form[:username]}
+          label="Username"
+          name="username"
+          value={@current_user.public_profile.username}
+          type="text"
+        />
+        <.input
+          field={@public_profile_form[:bio]}
+          label="Bio"
+          name="bio"
+          value={@current_user.public_profile.bio}
+          type="textarea"
+        />
+        <p>This is what your public posts will look like for <i>everybody.</i></p>
+        <.input
+          field={@public_profile_form[:public_post_foreground_color]}
+          label="Public Foreground Color"
+          name="public_post_foreground_color"
+          value={@current_user.public_profile.public_post_foreground_color}
+          type="color"
+        />
+        <.input
+          field={@public_profile_form[:public_post_background_color]}
+          label="Public Background Color"
+          name="public_post_background_color"
+          value={@current_user.public_profile.public_post_background_color}
+          type="color"
+        />
+        <.input
+          field={@public_profile_form[:public_post_border_size]}
+          label="Public Border Size"
+          name="public_post_border_size"
+          value={@current_user.public_profile.public_post_border_size}
+          type="select"
+          options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        />
+        <.input
+          field={@public_profile_form[:public_post_border_type]}
+          label="Public Border Type"
+          name="public_post_border_type"
+          value={@current_user.public_profile.public_post_border_type}
+          type="select"
+          options={[
+            "none",
+            "hidden",
+            "dotted",
+            "dashed",
+            "solid",
+            "double",
+            "groove",
+            "ridge",
+            "inset",
+            "outset"
+          ]}
+        />
+        <.input
+          field={@public_profile_form[:public_post_border_color]}
+          label="Public Border Color"
+          name="public_post_border_color"
+          value={@current_user.public_profile.public_post_border_color}
+          type="color"
+        />
+        <p>This is what your Chats will look like for <i>just you.</i></p>
+        <p>Messages from you.</p>
+        <.input
+          field={@public_profile_form[:chat_foreground_color_me]}
+          label="Foreground Color: Me"
+          name="chat_foreground_color_me"
+          value={@current_user.public_profile.chat_foreground_color_me}
+          type="color"
+        />
+        <.input
+          field={@public_profile_form[:chat_background_color_me]}
+          label="Background Color: Me"
+          name="chat_background_color_me"
+          value={@current_user.public_profile.chat_background_color_me}
+          type="color"
+        />
+        <p>Messages from them.</p>
+        <.input
+          field={@public_profile_form[:chat_foreground_color_them]}
+          label="Foreground Color: Them"
+          name="chat_foreground_color_them"
+          value={@current_user.public_profile.chat_foreground_color_them}
+          type="color"
+        />
+        <.input
+          field={@public_profile_form[:chat_background_color_them]}
+          label="Background Color: Them"
+          name="chat_background_color_them"
+          value={@current_user.public_profile.chat_background_color_them}
+          type="color"
+        />
+        <:actions>
+          <.button
+            phx-disable-with="Redirecting to Bio..."
+            style="width: 80%; height: clamp(3rem, 5em, 8rem);"
+          >
+            Change Profile
+          </.button>
+        </:actions>
+      </.simple_form>
       <div>
         <.simple_form
           for={@email_form}
@@ -192,6 +190,6 @@
           </:actions>
         </.simple_form>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+</section>

@@ -3,13 +3,14 @@ defmodule Mkoussaelixir.Posts.Post do
   import Ecto.Changeset
 
   alias Mkoussaelixir.Accounts.User
-  alias Mkoussaelixir.Posts.Like
+  alias Mkoussaelixir.Posts.{Like, Comment}
 
   schema "posts" do
     field :content, :string
     field :repost_id, :integer
 
     has_many :likes, Like
+    has_many :comments, Comment
     belongs_to :poster, User
 
     timestamps(type: :utc_datetime)

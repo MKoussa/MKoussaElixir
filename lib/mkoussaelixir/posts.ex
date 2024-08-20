@@ -1,10 +1,11 @@
 defmodule Mkoussaelixir.Posts do
   import Ecto.Query
+
   alias Mkoussaelixir.Accounts
   alias Mkoussaelixir.Repo
 
   alias Mkoussaelixir.Accounts.User
-  alias Mkoussaelixir.Posts.{Post, Like}
+  alias Mkoussaelixir.Posts.{Post, Like, Comment}
   alias MkoussaelixirWeb.Endpoint
 
   @doc """
@@ -46,6 +47,14 @@ defmodule Mkoussaelixir.Posts do
     |> order_by([p], {:desc, p.inserted_at})
     |> limit(10)
     |> preload(:poster)
+    |> Repo.all()
+  end
+
+  def get_comments(post_id) do
+    Comment
+    |> where([c], c.post_id == ^post_id)
+    |> order_by([c], {:asc, c.inserted_at})
+    |> preload(:commenter)
     |> Repo.all()
   end
 
@@ -96,6 +105,13 @@ defmodule Mkoussaelixir.Posts do
     |> publish_post_created()
   end
 
+  def create_comment(attrs \\ %{}) do
+    %Comment{}
+    |> Comment.changeset(attrs)
+    |> Repo.insert()
+    |> publish_comment_created()
+  end
+
   def create_like(attrs \\ %{}) do
     %Like{}
     |> Like.changeset(attrs)
@@ -137,6 +153,13 @@ defmodule Mkoussaelixir.Posts do
 
   def publish_post_created(result), do: result
 
+  def publish_comment_created({:ok, comment} = result) do
+    Endpoint.broadcast("post-comment:#{comment.post_id}", "comment", %{comment: comment})
+    result
+  end
+
+  def publish_comment_created(result), do: result
+
   def publish_like_created({:ok, like} = result) do
     Endpoint.broadcast("post:#{like.post_id}", "like", %{like: like})
     result
@@ -147,6 +170,11 @@ defmodule Mkoussaelixir.Posts do
   def preload_post_sender(post) do
     post
     |> Repo.preload(:poster)
+  end
+
+  def preload_post_commenter(comment) do
+    comment
+    |> Repo.preload(:commenter)
   end
 
   @doc """
@@ -194,6 +222,10 @@ defmodule Mkoussaelixir.Posts do
   """
   def change_post(%Post{} = post, attrs \\ %{}) do
     Post.changeset(post, attrs)
+  end
+
+  def comment_changeset(%Comment{} = comment, attrs \\ %{}) do
+    Comment.changeset(comment, attrs)
   end
 
   def like_changeset(%Like{} = like, attrs \\ %{}) do

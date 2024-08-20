@@ -4,6 +4,7 @@ defmodule Mkoussaelixir.Repo.Migrations.CreatePosts do
   def change do
     create table(:posts) do
       add :content, :string
+      add :repost_id, :integer
       add :poster_id, references(:users), null: false, on_delete: :delete_all
       add :likes, :map, default: %{}
 

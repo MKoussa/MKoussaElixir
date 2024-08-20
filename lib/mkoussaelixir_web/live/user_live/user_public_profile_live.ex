@@ -7,8 +7,11 @@ defmodule MkoussaelixirWeb.UserPublicProfileLive do
 
   def render(assigns) do
     ~H"""
-    <div style={"padding: 0.3rem;
-                 border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}>
+    <div
+      class="root-transition"
+      style={"padding: 0.3rem;
+              border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}
+    >
       <section>
         <h3><%= @public_profile.username %></h3>
         <div style={"background-color: #{@public_profile.public_post_background_color};
@@ -39,6 +42,9 @@ defmodule MkoussaelixirWeb.UserPublicProfileLive do
               module={MkoussaelixirWeb.RootLive.PublicFeed.Posts}
               liker={@current_user}
               post={post}
+              show_repost_bubble={false}
+              show_comment_bubble={true}
+              repost_id={post.repost_id}
               poster_uuid={post.poster.uuid}
               public_profile={@public_profile}
               style="margin-bottom: 0.5%;"
@@ -50,28 +56,39 @@ defmodule MkoussaelixirWeb.UserPublicProfileLive do
     """
   end
 
-  def mount(%{"uuid" => uuid}, _, socket) do
+  def mount(%{"uuid" => _}, _, socket) do
     if connected?(socket), do: Endpoint.subscribe("public_post_feed")
 
-    public_profile = Accounts.get_public_profile_by_user_uuid(uuid)
-
-    {:ok,
-     socket
-     |> assign(:public_profile, public_profile)
-     |> assign_posts_by_uuid(uuid)}
+    {:ok, socket}
   end
 
   def assign_posts_by_uuid(socket, uuid) do
     posts = Mkoussaelixir.Posts.last_ten_public_posts_by_user_uuid(uuid)
 
     socket
-    |> stream(:posts, posts)
+    |> stream(:posts, posts, reset: true)
+  end
+
+  def handle_params(%{"uuid" => uuid}, _, socket) do
+    public_profile = Accounts.get_public_profile_by_user_uuid(uuid)
+
+    {:noreply,
+     socket
+     |> assign(:user_uuid, uuid)
+     |> assign(:public_profile, public_profile)
+     |> assign_posts_by_uuid(uuid)}
   end
 
   def handle_info(%{event: "post", payload: %{post: post}}, socket) do
-    {:noreply,
-     socket
-     |> insert_new_post(post)}
+    user = Accounts.get_user_by_uuid(socket.assigns.user_uuid)
+
+    if(post.poster_id == user.id) do
+      {:noreply,
+       socket
+       |> insert_new_post(post)}
+    else
+      {:noreply, socket}
+    end
   end
 
   def handle_info(%{event: "like", payload: %{like: like}}, socket) do
@@ -87,6 +104,22 @@ defmodule MkoussaelixirWeb.UserPublicProfileLive do
     )
 
     {:noreply, socket}
+  end
+
+  def handle_event("flip", %{"repost_id" => repost_id}, socket) do
+    case Posts.create_post(%{
+           poster_id: socket.assigns.current_user.id,
+           content: "Repost",
+           repost_id: String.to_integer(repost_id)
+         }) do
+      {:ok, _} ->
+        {:noreply, socket}
+
+      {:error, error} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, error)}
+    end
   end
 
   def insert_new_post(socket, post) do
