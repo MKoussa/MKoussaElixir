@@ -9,9 +9,5 @@ defmodule Mkoussaelixir.Repo.Migrations.CreateComments do
 
       timestamps(type: :utc_datetime)
     end
-
-    alter table("posts") do
-      add :comments, :map, default: %{}
-    end
   end
 end

@@ -12,10 +12,13 @@
     <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Sixtyfour" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Astloch" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Moirai+One" rel="stylesheet" />
+
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet" />
-
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
     <style>
@@ -59,7 +62,7 @@
         font-family: Sixtyfour, Helvetica, sans-serif;
       }
       h1 {
-        font-size: clamp(0.4rem, 3vw, 2.4rem);
+        font-size: clamp(0.4rem, 2.3vw, 2.7rem);
       }
       h2, h3 {
         mix-blend-mode: difference;
@@ -80,7 +83,7 @@
 
       @media (max-width: 430px) {
         .grid-container {
-            grid-template-rows: 10% 90%;
+            grid-template-rows: 7% 93%;
             grid-template-columns: 10% 90%;
         }
 
@@ -107,21 +110,42 @@
     <div class="grid-container">
       <div class="header-container-top" style=" grid-column: 1 / 5; grid-row: 1;">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite;">
-          <span :for={_n <- 1..2}>MKOUSSA&nbsp;</span>
-          <span style="mix-blend-mode: difference; animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
-            <%= if is_nil(@current_user) do %>
-              WELCOME&nbsp;
-            <% else %>
-              <%= @current_user.email %>
+          <span :for={n <- 1..13}>
+            <%= if n == 3 do %>
+              <span style="mix-blend-mode: difference; animation: rainbow-color 2.5s linear; animation-iteration-count: infinite;">
+                <%= if is_nil(@current_user) do %>
+                  &nbsp;WELCOME
+                <% else %>
+                  &nbsp;<%= @current_user.email %>
+                <% end %>
+              </span>
             <% end %>
+            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 6.6vw, 4.12rem); margin-right: -0.42em;">
+              W
+            </span>
+            <span style="font-family: Righteous;">
+              eerd
+            </span>
+            <span style="font-family: Astloch; margin-left: -0.42em; font-style: italic;">
+              Space
+            </span>
           </span>
-          <span :for={_n <- 1..11}>MKOUSSA&nbsp;</span>
         </h1>
       </div>
 
       <div class="header-container-side" style="grid-column: 1; grid-row: 1 / 5; rotate: 180deg;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          <span :for={_n <- 1..12}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..12}>
+            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 6.6vw, 4.12rem); margin-right: -0.42em;">
+              W
+            </span>
+            <span style="font-family: Righteous;">
+              eerd
+            </span>
+            <span style="font-family: Astloch; margin-left: -0.42em; font-style: italic;">
+              Space
+            </span>
+          </span>
         </h1>
       </div>
 
@@ -168,8 +192,8 @@
         <% end %>
       </div>
       <div style="display: block;">
-        <div class="nav-user-div" style="width: auto;">
-          <%= if @current_user do %>
+        <%= if @current_user do %>
+          <div class="nav-user-div" style="width: auto;">
             <ul class="nav_user">
               <li class="nav_user_li">
                 <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
@@ -188,21 +212,41 @@
                 </.link>
               </li>
             </ul>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
         <div class="mainBody">
           <%= @inner_content %>
         </div>
       </div>
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 5;">
         <h1 class="header-scroll" style="animation: marquee 20s linear infinite; rotate: 90deg;">
-          <span :for={_n <- 1..12}>MKOUSSA&nbsp;</span>
+          <span :for={_n <- 1..12}>
+            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 6.6vw, 4.12rem); margin-right: -0.42em;">
+              W
+            </span>
+            <span style="font-family: Righteous;">
+              eerd
+            </span>
+            <span style="font-family: Astloch; margin-left: -0.42em; font-style: italic;">
+              Space
+            </span>
+          </span>
         </h1>
       </div>
 
       <div class="header-container-bottom" style="grid-column: 1 / 5; grid-row: 4;">
         <h1 class="header-scroll" style="animation: marquee 100s linear infinite; rotate: 180deg;">
-          <span :for={number <- 1..14}>MK<%= number %>USSA&nbsp;</span>
+          <span :for={number <- 1..14}>
+            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 6.6vw, 4.12rem); margin-right: -0.42em;">
+              W
+            </span>
+            <span style="font-family: Righteous;">
+              eerd
+            </span>
+            <span style="font-family: Astloch; margin-left: -0.42em; font-style: italic;">
+              Space
+            </span>
+          </span>
         </h1>
       </div>
     </div>

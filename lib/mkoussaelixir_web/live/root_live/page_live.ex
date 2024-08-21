@@ -15,7 +15,13 @@ defmodule MkoussaelixirWeb.PageLive do
     <div class="root-transition">
       <%= if @current_user do %>
         <%= if @current_user.confirmed_at do %>
-          <h3>Public <i>Feeeeeeed</i></h3>
+          <p style="font-family: Astloch; font-size: clamp(0.825rem, 3.6vw, 4.12rem); margin-top: clamp(-0.975rem, -4vw, -11.12rem); margin-bottom: clamp(-0.225rem, -2.6vw, -10.12rem);">
+            Public
+            <i style="font-family: 'Moirai One'; margin-right: -0.42em; font-size: clamp(1.025rem, 4.6vw, 4.12rem)">
+              F
+            </i>
+            <i style="font-family: Righteous;">eeeeeeed</i>
+          </p>
           <section class="chat-room">
             <div
               id="posts"
@@ -63,17 +69,30 @@ defmodule MkoussaelixirWeb.PageLive do
         <h2>Welcome, <i>Friend</i></h2>
         <br />
         <p>
-          Build community with <%= @user_count %>+ unique and compelling users.
+          Build community and engage with <%= @user_count %>+ unique and compelling users.
         </p>
-        <p>Read, repost and boop over <%= @post_count %> posts.</p>
-        <p>Live chat in one of 10 public rooms.</p>
-        <p>Customizable posts and bio.</p>
-        <p><i>This</i> is Web 3.0</p>
-        <p><i>You</i> create your own experience.</p>
-        <p><i>This is You.</i></p>
-
+        <p>Read, write, repost, comment on and boop over <%= @post_count %> posts and counting.</p>
+        <p>Explore live chat in one of 10 public rooms.</p>
+        <p>Design and customize your posts, chat and bio.</p>
+        <p><i>You</i> create your own Web 3.0 experience.</p>
+        <p><i>This</i> is a <b>space</b>. <i>You</i> are <b>weerd</b>.</p>
+        <span>
+          <span style="vertical-align: 1em;">Welcome to</span>
+          <span style="font-size: clamp(0.625rem, 6vw, 3.8rem);">
+            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 6.6vw, 4.12rem); margin-right: -0.42em;">
+              W
+            </span>
+            <span style="font-family: Righteous;">
+              eerd
+            </span>
+            <span style="font-family: Astloch; margin-left: -0.42em; font-style: italic;">
+              Space
+            </span>
+          </span>
+        </span>
+        <br />
         <.link patch={~p"/users/register"}>
-          <.button>Join Us Today</.button>
+          <.button>Get Weerd Today</.button>
         </.link>
       <% end %>
     </div>

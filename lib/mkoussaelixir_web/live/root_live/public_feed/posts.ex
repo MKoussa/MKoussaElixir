@@ -89,7 +89,7 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
                           color: #{@repost.poster.public_profile.public_post_background_color};
                           border-color: #{@repost.poster.public_profile.public_post_foreground_color};
                           mix-blend-mode: normal;"}>
-                🗩
+                💬
               </.button>
             </.link>
           </span>
