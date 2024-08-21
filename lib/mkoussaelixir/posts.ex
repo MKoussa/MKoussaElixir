@@ -124,6 +124,11 @@ defmodule Mkoussaelixir.Posts do
     Repo.exists?(query)
   end
 
+  def already_reposted?(%Post{} = post, %User{} = user) do
+    query = from p in Post, where: p.poster_id == ^user.id and p.repost_id == ^post.id
+    Repo.exists?(query)
+  end
+
   def average_like_color(%Post{} = post) do
     list_of_colors =
       Like
