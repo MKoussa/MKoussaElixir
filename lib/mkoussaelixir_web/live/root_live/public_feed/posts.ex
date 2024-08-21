@@ -46,10 +46,30 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
                           border: 0;
                           border-radius: 20%;
                           font-size: clamp(0.7rem, 3em, 6rem);
-                          color: #{@public_profile.public_post_foreground_color};
                           background-color: #{@public_profile.public_post_background_color};
-                          mix-blend-mode: normal;"}>
-              &#128490;
+                          mix-blend-mode: normal;
+                          width: clamp(2rem, 3.5vw, 9rem);
+                          height: clamp(2rem, 3.5vw, 9rem);
+                          margin: 1%;
+                          "}>
+              <svg
+                class="nav-button-svg"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                style="animation: none;
+                       mix-blend-mode: normal;
+                       "
+              >
+                <path
+                  stroke={"#{@public_profile.public_post_foreground_color}"}
+                  fill={"#{@public_profile.public_post_background_color}"}
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z"
+                />
+              </svg>
             </.button>
           </.link>
         <% end %>
@@ -79,11 +99,30 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
               <.button style={"float: right;
                           border: 0;
                           border-radius: 20%;
-                          font-size: clamp(0.7rem, 2em, 5rem);
-                          color: #{@repost.poster.public_profile.public_post_foreground_color};
+                          font-size: clamp(0.7rem, 3em, 6rem);
                           background-color: #{@repost.poster.public_profile.public_post_background_color};
-                          mix-blend-mode: normal;"}>
-                &#128490;
+                          mix-blend-mode: normal;
+                          width: clamp(2rem, 3.5vw, 9rem);
+                          height: clamp(2rem, 3.5vw, 9rem);
+                          "}>
+                <svg
+                  class="nav-button-svg"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  style="animation: none;
+                       mix-blend-mode: normal;
+                       "
+                >
+                  <path
+                    stroke={"#{@repost.poster.public_profile.public_post_foreground_color}"}
+                    fill={"#{@repost.poster.public_profile.public_post_background_color}"}
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z"
+                  />
+                </svg>
               </.button>
             </.link>
           </span>
