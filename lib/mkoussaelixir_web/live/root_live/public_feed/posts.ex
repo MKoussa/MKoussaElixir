@@ -11,28 +11,26 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
       class="root-transition"
       style={"display: block;
               margin: 1%;
-              padding: 1%;
+              padding: 0.2rem;
               word-break: break-word;
               background-color: #{@public_profile.public_post_background_color};
               color: #{@public_profile.public_post_foreground_color};
               border: #{@public_profile.public_post_border_size}px #{@public_profile.public_post_border_type} #{@public_profile.public_post_border_color};"}
     >
       <span style="display: block;">
-        <%= if @poster_uuid != @liker.uuid and !@repost_id and @show_repost_bubble do %>
+        <%= if @poster_uuid != @liker.uuid and !@repost_id and @show_repost_bubble and !Posts.already_reposted?(@post, @liker) do %>
           <.button
             phx-click="flip"
             phx-value-repost_id={@post.id}
             style={"float: left;
-                    margin: 0.2em;
-                    border: clamp(0.1rem, 0.5em, 1rem) outset;
-                    border-radius: 50%;
-                    font-size: clamp(0.7rem, 1.2em, 3rem);
-                    background-color: #{@public_profile.public_post_foreground_color};
-                    color: #{@public_profile.public_post_background_color};
-                    border-color: #{@public_profile.public_post_foreground_color};
+                    border: 0;
+                    border-radius: 20%;
+                    font-size: clamp(0.7rem, 3em, 6rem);
+                    color: #{@public_profile.public_post_foreground_color};
+                    background-color: #{@public_profile.public_post_background_color};
                     mix-blend-mode: normal;"}
           >
-            ♼
+            &#9853;
           </.button>
         <% end %>
 
@@ -45,15 +43,13 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
         <%= if !@repost_id and @show_comment_bubble do %>
           <.link patch={~p"/posts/#{@post.id}"}>
             <.button style={"float: right;
-                           margin: 0.2em;
-                          border: clamp(0.1rem, 0.5em, 1rem) outset;
-                          border-radius: 50%;
-                          font-size: clamp(0.7rem, 1.2em, 3rem);
-                          background-color: #{@public_profile.public_post_foreground_color};
-                          color: #{@public_profile.public_post_background_color};
-                          border-color: #{@public_profile.public_post_foreground_color};
+                          border: 0;
+                          border-radius: 20%;
+                          font-size: clamp(0.7rem, 3em, 6rem);
+                          color: #{@public_profile.public_post_foreground_color};
+                          background-color: #{@public_profile.public_post_background_color};
                           mix-blend-mode: normal;"}>
-              🗩
+              &#128490;
             </.button>
           </.link>
         <% end %>
@@ -81,15 +77,13 @@ defmodule MkoussaelixirWeb.RootLive.PublicFeed.Posts do
             :
             <.link patch={~p"/posts/#{@repost.id}"}>
               <.button style={"float: right;
-                           margin: 0.2em;
-                          border: clamp(0.1rem, 0.5em, 1rem) outset;
-                          border-radius: 50%;
-                          font-size: clamp(0.7rem, 1.2em, 3rem);
-                          background-color: #{@repost.poster.public_profile.public_post_foreground_color};
-                          color: #{@repost.poster.public_profile.public_post_background_color};
-                          border-color: #{@repost.poster.public_profile.public_post_foreground_color};
+                          border: 0;
+                          border-radius: 20%;
+                          font-size: clamp(0.7rem, 2em, 5rem);
+                          color: #{@repost.poster.public_profile.public_post_foreground_color};
+                          background-color: #{@repost.poster.public_profile.public_post_background_color};
                           mix-blend-mode: normal;"}>
-                💬
+                &#128490;
               </.button>
             </.link>
           </span>

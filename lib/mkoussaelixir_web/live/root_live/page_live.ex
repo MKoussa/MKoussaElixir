@@ -150,10 +150,21 @@ defmodule MkoussaelixirWeb.PageLive do
            content: "Repost",
            repost_id: String.to_integer(repost_id)
          }) do
-      {:ok, post} ->
+      {:ok, new_post} ->
+        post = Posts.get_post!(repost_id)
+        poster = Accounts.get_user!(post.poster_id)
+
+        send_update(MkoussaelixirWeb.RootLive.PublicFeed.Posts,
+          id: "public-post:#{post.id}",
+          post: post,
+          liker: socket.assigns.current_user,
+          public_profile: Accounts.get_public_profile_by_user_uuid(poster.uuid),
+          poster_uuid: poster.uuid
+        )
+
         {:noreply,
          socket
-         |> insert_new_post(post)}
+         |> insert_new_post(new_post)}
 
       {:error, error} ->
         {:noreply,
