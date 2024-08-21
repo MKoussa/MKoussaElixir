@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :mkoussaelixir, Mkoussaelixir.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("POSTGRES_USERNAME", "no db username found"),
+  password: System.get_env("POSTGRES_PASSWORD", "no db pass found"),
   hostname: "localhost",
-  database: "mkelixir",
+  database: System.get_env("APP_NAME", "no db found"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -23,7 +23,8 @@ config :mkoussaelixir, MkoussaelixirWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
-  debug_errors: true,
+  # SHOW ERROR PAGE debug_errors: false
+  debug_errors: false,
   secret_key_base: System.get_env("SECRET_KEY_BASE", "no secret found"),
   watchers: [
     esbuild:
