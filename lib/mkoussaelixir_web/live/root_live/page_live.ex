@@ -67,19 +67,18 @@ defmodule MkoussaelixirWeb.PageLive do
         <% end %>
       <% else %>
         <h2>Welcome, <i>Friend</i></h2>
-        <br />
-        <p>
-          Build community and engage with <%= @user_count %>+ unique and compelling users.
-        </p>
-        <p>Read, write, repost, comment on and boop over <%= @post_count %> posts and counting.</p>
-        <p>Explore live chat in one of 10 public rooms.</p>
-        <p>Design and customize your posts, chat and bio.</p>
-        <p><i>You</i> create your own Web 3.0 experience.</p>
-        <p><i>This</i> is a <b>space</b>. <i>You</i> are <b>weerd</b>.</p>
+
+        <p><i>This</i> is a <b>space</b>.</p>
         <span>
           <span style="vertical-align: 1em;">Welcome to</span>
-          <span style="font-size: clamp(0.625rem, 6vw, 3.8rem);">
-            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 6.6vw, 4.12rem); margin-right: -0.42em;">
+          <h3>MKOUSSA</h3>
+        </span>
+        <p>More information in the About</p>
+        <.link href="https://weerd.space/">
+          <span>
+            <span style="vertical-align: 1em;">Looking for</span>
+            <span style="font-size: clamp(0.625rem, 3vw, 3.8rem);">
+            <span style="font-family: 'Moirai One'; font-size: clamp(0.825rem, 3.3vw, 4.12rem); margin-right: -0.42em;">
               W
             </span>
             <span style="font-family: Righteous;">
@@ -88,11 +87,8 @@ defmodule MkoussaelixirWeb.PageLive do
             <span style="font-family: Astloch; margin-left: -0.42em; font-style: italic;">
               Space
             </span>
+          </span>?
           </span>
-        </span>
-        <br />
-        <.link patch={~p"/users/register"}>
-          <.button>Get Weerd Today</.button>
         </.link>
       <% end %>
     </div>

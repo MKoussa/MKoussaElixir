@@ -37,26 +37,26 @@ defmodule MkoussaelixirWeb.Router do
       live "/", PageLive
       live "/mkoussa", AboutLive
       live "/thermostat", ThermostatLive
-      live "/users/public_profile/:uuid", UserPublicProfileLive
+      # live "/users/public_profile/:uuid", UserPublicProfileLive
       ## Authentication routes
       ## TODO move to seperate live_session scope
-      live "/users/log_in", UserLoginLive, :new
-      live "/users/register", UserRegistrationLive, :new
-      live "/users/reset_password", UserForgotPasswordLive, :new
-      live "/users/reset_password/:token", UserResetPasswordLive, :edit
-      live "/users/settings", UserSettingsLive, :edit
-      live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
-      live "/users/orders", UserLive.UserOrdersLive
-      live "/users/confirm/:token", UserConfirmationLive, :edit
-      live "/users/confirm", UserConfirmationInstructionsLive, :new
+      # live "/users/log_in", UserLoginLive, :new
+      # live "/users/register", UserRegistrationLive, :new
+      # live "/users/reset_password", UserForgotPasswordLive, :new
+      # live "/users/reset_password/:token", UserResetPasswordLive, :edit
+      # live "/users/settings", UserSettingsLive, :edit
+      # live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      # live "/users/orders", UserLive.UserOrdersLive
+      # live "/users/confirm/:token", UserConfirmationLive, :edit
+      # live "/users/confirm", UserConfirmationInstructionsLive, :new
 
-      live "/chat/rooms", RootLive.Chat.IndexRoomsLive
-      live "/chat/rooms/:id", RootLive.Chat.ShowRoomsLive
+      # live "/chat/rooms", RootLive.Chat.IndexRoomsLive
+      # live "/chat/rooms/:id", RootLive.Chat.ShowRoomsLive
 
-      live "/posts/:id", RootLive.Post.ShowPostLive
+      # live "/posts/:id", RootLive.Post.ShowPostLive
     end
 
-    delete "/users/log_out", UserSessionController, :delete
+    # delete "/users/log_out", UserSessionController, :delete
   end
 
   # scope "/chat", MkoussaelixirWeb do
@@ -70,11 +70,11 @@ defmodule MkoussaelixirWeb.Router do
   # end
 
   ## Authentication routes
-  scope "/users", MkoussaelixirWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
+  # scope "/users", MkoussaelixirWeb do
+  #   pipe_through [:browser, :redirect_if_user_is_authenticated, :home]
 
-    post "/log_in", UserSessionController, :create
-  end
+  #   post "/log_in", UserSessionController, :create
+  # end
 
   pipeline :blorp do
     plug :put_root_layout, html: {MkoussaelixirWeb.Layouts, :blorp}

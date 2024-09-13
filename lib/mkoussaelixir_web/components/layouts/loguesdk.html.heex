@@ -99,9 +99,6 @@
         <br /><br />
         <.link class="navButton" patch={~p"/loguesdk/resources/"}>Resources</.link>
         <br /><br />
-        <%= if is_nil(@current_user) do %>
-          <.link class="navButton" navigate={~p"/users/log_in"}>Log In</.link> <br /><br />
-        <% end %>
       </div>
       <div style="grid-column: 3; grid-row: 2;">
         <div class="nav-user-div">

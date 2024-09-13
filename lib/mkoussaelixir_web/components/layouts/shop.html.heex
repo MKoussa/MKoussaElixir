@@ -128,16 +128,6 @@
           Products
         </.link>
         <br /><br />
-        <%= if is_nil(@current_user) do %>
-          <a
-            class="navButton"
-            style="font-size: clamp(25px, 3.5vw, 50px);"
-            href={~p"/users/log_in"}
-          >
-            Log In
-          </a>
-          <br /><br />
-        <% end %>
       </div>
       <div style="grid-column: 3; grid-row: 2;">
         <div class="nav-user-div" style="font-family: 'Six Caps';">
