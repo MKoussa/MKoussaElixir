@@ -14,6 +14,7 @@ defmodule MkoussaelixirWeb.AboutLive do
       <p>
         Checkout my <a href="https://mkoussa.bandcamp.com">Bandcamp</a>, where you can stream/download/buy my music!
       </p>
+      <p>Find me on <.link href="https://www.youtube.com/themkoussa">YouTube</.link></p>
       <p>This site is powered by:</p>
       <author>
         Elixir <%= Application.spec(:elixir, :vsn) %> | Phoenix <%= Application.spec(:phoenix, :vsn) %> |
