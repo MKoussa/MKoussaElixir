@@ -9,8 +9,6 @@
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
 
-    <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Sixtyfour" rel="stylesheet" />
 
@@ -42,14 +40,14 @@
         background-color: #232323;
       }
       .mainBody {
-        font-size: clamp(12px, 2.5vw, 22px);
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
         font-family: 'Bebas Neue'; 
         color: gold; 
         animation-name: backColorLogueSDK;
         animation-duration: 3s; 
       }
       .download-table {
-        border-radius: 5px;
+        border-radius: .7rem;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
@@ -60,8 +58,63 @@
         animation-name: backColorLogueSDK;
         animation-duration: 4s;
       }
+      th {
+        text-decoration: underline;
+      }
+      tr, td, th {
+        padding: 1%;
+
+      }
       .nav {
         animation-duration: 1.7s;
+      }
+
+      .youtube-video-container {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        width: clamp(10rem, 100%, 40rem);
+      }
+
+      .youtube-video-container::after {
+        display: block;
+        content: "";
+        padding-top: 56.25%;
+      }
+
+      .youtube-video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      @media (max-width: 430px) {
+        .grid-container {
+            grid-template-columns: 7vw 93vw;
+            grid-template-rows: 6vw 94vh 6vw; 
+        }
+
+        .nav {
+            grid-column: 1;
+            grid-row: 2;
+        }
+              .navButton {
+          transform: rotate(-70deg);
+      }
+
+        .mainBody {
+            grid-column: 2;
+            grid-row: 2;
+            height: 94vh;
+            margin: 0.5rem;
+        }
+
+        .header-container-side {
+            display: none;
+        }
       }
     </style>
   </head>
@@ -97,33 +150,10 @@
         <.link class="navButton" patch={~p"/loguesdk/effects/"}>Effects</.link> <br /><br />
         <.link class="navButton" patch={~p"/loguesdk/oscillators/"}>Oscillators</.link>
         <br /><br />
-        <.link class="navButton" patch={~p"/loguesdk/resources/"}>Resources</.link>
-        <br /><br />
+        <.link class="navButton" patch={~p"/loguesdk/resources/"}>Resources</.link> <br /><br />
       </div>
-      <div style="grid-column: 3; grid-row: 2;">
-        <div class="nav-user-div">
-          <%= if @current_user do %>
-            <ul
-              class="nav_user"
-              style="font-family: 'Bebas Neue'; color: gold; background-color: gold; animation-name: backColorReverseLogueSDK;"
-            >
-              <li class="nav_user_li">
-                <.link class="nav_user_button" href={~p"/users/log_out"} method="delete">
-                  Log Out
-                </.link>
-              </li>
-              <li class="nav_user_li">
-                <.link class="nav_user_button" navigate={~p"/users/orders/"}>Orders</.link>
-              </li>
-              <li class="nav_user_li">
-                <.link class="nav_user_button" navigate={~p"/users/settings/"}>Settings</.link>
-              </li>
-            </ul>
-          <% end %>
-        </div>
-        <div class="mainBody">
-          <%= @inner_content %>
-        </div>
+      <div class="mainBody">
+        <%= @inner_content %>
       </div>
 
       <div class="header-container-side" style="grid-column: 4; grid-row: 1 / 4;">
