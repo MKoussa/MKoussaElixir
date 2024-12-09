@@ -402,12 +402,12 @@ a:visited {
 
 @keyframes backColorLogueSDK {
     0% {
-        color: #0f0d07;
+        color: transparent;
         transform: translateY(10%);
     }
 
     100% {
-        color: gold;
+        color: var(--loguesdk-base);
         transform: translateY(0);
     }
 }

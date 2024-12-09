@@ -52,7 +52,7 @@
         margin-right: auto;
         text-align: center;
         table-layout: fixed;
-        border: 3px solid gold;
+        border: 3px solid var(--loguesdk-base);
         color: gold;
         mix-blend-mode: difference;
         animation-name: backColorLogueSDK;
@@ -62,8 +62,11 @@
         text-decoration: underline;
       }
       tr, td, th {
-        padding: 1%;
+        margin: 1%;
 
+      }
+      tr:nth-of-type(odd) {
+        background-color: #232323;
       }
       .nav {
         animation-duration: 1.7s;
