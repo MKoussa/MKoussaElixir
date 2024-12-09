@@ -5,6 +5,13 @@ defmodule MkoussaelixirWeb.LoguesdkLive.ResourcesLive do
     ~H"""
     <section class="loguesdk-mainBody">
       <h1>Resources</h1>
+      <img
+        src="/images/korg-nts-1-mk-1-signal-route.png"
+        style="width: clamp(2rem, 70vw, 52rem);
+               background-color: var(--loguesdk-base);
+               border: 25px solid var(--loguesdk-base);"
+      />
+
       <h3>Windows Tooling</h3>
       <a href="https://www.msys2.org/">
         MSYS - Software Distribution and Building Platform for Windows
@@ -16,9 +23,9 @@ defmodule MkoussaelixirWeb.LoguesdkLive.ResourcesLive do
       <a href="https://github.com/korginc/logue-sdk">Logue-SDK Github Repo</a>
       <br />
       <h3>NTS-1</h3>
-      <a href="http://nic.vajn.icu/PDF/audio-gear/Korg/NTS-1/NTS-1_digital_Kit_OM_EFGSJ2.pdf">
+      <.link href="/downloads/ntkdigunit/NTS-1_digital_Kit_OM_EFGSJ2.pdf" download target="_blank">
         Korg NTS-1 Owners Manual
-      </a>
+      </.link>
       <br />
       <h4>Walk Throughs</h4>
       <a href="https://www.korg.com/us/products/dj/nts_1/custom_effects.php#article1">
