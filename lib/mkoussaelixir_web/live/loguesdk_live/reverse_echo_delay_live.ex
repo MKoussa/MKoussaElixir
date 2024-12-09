@@ -82,7 +82,10 @@ defmodule MkoussaelixirWeb.LoguesdkLive.ReverseEchoDelayLive do
           <td>2.2</td>
           <td>May 22nd, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/ReverseEcho/V2/ntkdigunit" download>
+            <a
+              href={~p"/downloads/ntkdigunit/reverse-echo/delfx/v2-2/reverse-echo.ntkdigunit"}
+              download
+            >
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"
@@ -113,7 +116,10 @@ defmodule MkoussaelixirWeb.LoguesdkLive.ReverseEchoDelayLive do
           <td>2.0</td>
           <td>May 12th, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/ReverseEcho/V2/ntkdigunit" download>
+            <a
+              href={~p"/downloads/ntkdigunit/reverse-echo/delfx/v2-0/reverse-echo.ntkdigunit"}
+              download
+            >
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"
@@ -142,7 +148,10 @@ defmodule MkoussaelixirWeb.LoguesdkLive.ReverseEchoDelayLive do
           <td>1.0</td>
           <td>April 28th, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/ReverseEcho/V1/ntkdigunit" download>
+            <a
+              href={~p"/downloads/ntkdigunit/reverse-echo/delfx/v1-0/reverse-echo.ntkdigunit"}
+              download
+            >
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"
@@ -171,7 +180,10 @@ defmodule MkoussaelixirWeb.LoguesdkLive.ReverseEchoDelayLive do
           <td>0.0</td>
           <td>April 22nd, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/ReverseEcho/V0/ntkdigunit" download>
+            <a
+              href={~p"/downloads/ntkdigunit/reverse-echo/delfx/v0-0/reverse-echo.ntkdigunit"}
+              download
+            >
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"

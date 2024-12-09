@@ -78,7 +78,7 @@ defmodule MkoussaelixirWeb.LoguesdkLive.StutterModLive do
           <td>3.0</td>
           <td>May 13th, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/Stutter/V3/stutter.ntkdigunit" download>
+            <a download href={~p"/downloads/ntkdigunit/stutter/modfx/v3-0/stutter.ntkdigunit"}>
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"
@@ -107,7 +107,7 @@ defmodule MkoussaelixirWeb.LoguesdkLive.StutterModLive do
           <td>2.0</td>
           <td>April 14th, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/Stutter/V2/stutter.ntkdigunit" download>
+            <a href={~p"/downloads/ntkdigunit/stutter/modfx/v2-0/stutter.ntkdigunit"} download>
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"
@@ -136,7 +136,7 @@ defmodule MkoussaelixirWeb.LoguesdkLive.StutterModLive do
           <td>1.0</td>
           <td>April 12th, 2024</td>
           <td>
-            <a href="/NTKDIGUNIT/Stutter/V1/stutter.ntkdigunit" download>
+            <a href={~p"/downloads/ntkdigunit/stutter/modfx/v1-0/stutter.ntkdigunit"} download>
               <svg
                 width="clamp(0.5rem, 8vw, 4rem)"
                 height="clamp(0.5rem, 8vw, 4rem)"
@@ -165,4 +165,9 @@ defmodule MkoussaelixirWeb.LoguesdkLive.StutterModLive do
     </section>
     """
   end
+
+  # def handle_event("send_file", %{"filepath" => filepath}, socket) do
+  #   # {:noreply, socket}
+  #   send_download(socket, {:file, filepath})
+  # end
 end
